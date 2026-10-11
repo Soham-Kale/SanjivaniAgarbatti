@@ -54,7 +54,7 @@ export default function EnquiryForm({ type, defaultPlan = 'franchise' }: { type:
     setState('offline');
   }
 
-  const err = (k: string) => errors[k] && <span className="text-[.8rem] text-ember">{errors[k]}</span>;
+  const err = (k: string) => errors[k] && <span className="text-[.8rem] text-red-700">{errors[k]}</span>;
 
   return (
     <form onSubmit={onSubmit} className="grid gap-3.5 sm:grid-cols-2" noValidate>
@@ -137,10 +137,10 @@ export default function EnquiryForm({ type, defaultPlan = 'franchise' }: { type:
       </label>
 
       <div className="flex flex-wrap items-center gap-3.5 sm:col-span-2">
-        <button className="btn-solid disabled:opacity-60" type="submit" disabled={state === 'sending'}>
+        <button className="btn-primary disabled:opacity-60" type="submit" disabled={state === 'sending'}>
           {state === 'sending' ? t({ mr: 'पाठवत आहे…', en: 'Sending…' }) : t({ mr: 'चौकशी पाठवा', en: 'Send enquiry' })}
         </button>
-        <span role="status" className="min-h-[1.4em] text-[.95rem] text-gold">
+        <span role="status" className="min-h-[1.4em] text-[.95rem] text-gold-deep">
           {state === 'done' && (
             <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
               {t({ mr: 'धन्यवाद! आमची टीम लवकरच तुमच्याशी संपर्क करेल.', en: 'Thank you! Our team will contact you soon.' })}
@@ -154,9 +154,9 @@ export default function EnquiryForm({ type, defaultPlan = 'franchise' }: { type:
           )}
         </span>
       </div>
-      <p className="text-[.8rem] text-muted sm:col-span-2">
+      <p className="text-[.8rem] text-stone sm:col-span-2">
         {t({ mr: 'किंवा थेट कॉल करा:', en: 'Or call directly:' })}{' '}
-        <a href={`tel:${SITE.phones[0].tel}`} className="text-ivory">{SITE.phones[0].display}</a>
+        <a href={`tel:${SITE.phones[0].tel}`} className="text-charcoal">{SITE.phones[0].display}</a>
       </p>
     </form>
   );

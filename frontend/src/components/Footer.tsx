@@ -3,61 +3,68 @@
 import Link from 'next/link';
 import { Brand } from './Header';
 import { useLang } from '@/lib/i18n';
-import { NAV, SITE, waLink } from '@/lib/site';
+import { CATEGORIES, NAV, SITE, waLink } from '@/lib/site';
 
 export default function Footer() {
   const { t } = useLang();
   return (
-    <footer id="contact" className="border-t border-line bg-ink-deep pb-28 pt-[70px]">
-      <div className="wrap">
-        <div className="mb-14 flex flex-wrap items-center justify-between gap-5 rounded-[20px] border border-gold-soft bg-gradient-to-r from-[#2a1c10] to-transparent px-8 py-7">
+    <footer className="on-dark relative overflow-hidden bg-forest-night pb-28 pt-20 text-mist">
+      <div className="pointer-events-none absolute inset-0 grain opacity-60" />
+      <div className="wrap relative">
+        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           <div>
-            <div className="eyebrow">{t({ mr: 'डीलर / होलसेल', en: 'Dealer / Wholesale' })}</div>
-            <h3 className="text-[1.6rem]">{t({ mr: 'दुकानदार आहात? होलसेल दरासाठी संपर्क करा', en: 'Own a shop? Contact us for wholesale rates' })}</h3>
-          </div>
-          <Link className="btn-solid" href="/contact#dealer">
-            {t({ mr: 'डीलर चौकशी', en: 'Dealer enquiry' })}
-          </Link>
-        </div>
-        <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
-          <div>
-            <Brand />
-            <p className="mt-3.5 text-[.95rem] text-muted">Quality Products • Trusted Service • Complete Puja Solution</p>
+            <Brand dark />
+            <p className="mt-5 max-w-xs text-[.95rem]">{t({ mr: 'प्रार्थनेचा पवित्र सुगंध. माळेवाडी-अकलूज येथे तयार केलेली अगरबत्ती, धूप व पूजा साहित्य.', en: 'The sacred fragrance of prayer. Agarbatti, dhoop and puja sahitya made in Malewadi-Akluj.' })}</p>
+            <p className="mt-4 text-[.8rem] tracking-wide text-gold-light/80">Quality Products • Trusted Service • Complete Puja Solution</p>
           </div>
           <div>
-            <h4 className="mb-3 text-[1.1rem] text-gold">{t({ mr: 'पत्ता', en: 'Address' })}</h4>
-            <p className="text-[.95rem] text-muted">{t(SITE.address)}</p>
-          </div>
-          <div>
-            <h4 className="mb-3 text-[1.1rem] text-gold">{t({ mr: 'संपर्क', en: 'Contact' })}</h4>
-            <ul className="grid gap-1.5 text-[.95rem] text-muted">
-              {SITE.phones.map((p) => (
-                <li key={p.tel}>
-                  <a href={`tel:${p.tel}`} className="hover:text-ivory">{p.display}</a>
+            <h3 className="mb-4 font-body text-[.8rem] font-semibold uppercase tracking-[.16em] text-gold-light">{t({ mr: 'उत्पादने', en: 'Products' })}</h3>
+            <ul className="grid gap-2 text-[.95rem]">
+              {CATEGORIES.filter((c) => c.id !== 'all').map((c) => (
+                <li key={c.id}>
+                  <Link href={`/products?c=${c.id}`} className="hover:text-ivory">{t(c.label)}</Link>
                 </li>
               ))}
-              <li>
-                <a href={`mailto:${SITE.email}`} className="hover:text-ivory">{SITE.email}</a>
-              </li>
-              <li>
-                <a href={waLink()} target="_blank" rel="noopener" className="hover:text-ivory">WhatsApp</a>
-              </li>
             </ul>
           </div>
           <div>
-            <h4 className="mb-3 text-[1.1rem] text-gold">{t({ mr: 'पाने', en: 'Pages' })}</h4>
-            <ul className="grid gap-1.5 text-[.95rem] text-muted">
-              {NAV.map((n) => (
+            <h3 className="mb-4 font-body text-[.8rem] font-semibold uppercase tracking-[.16em] text-gold-light">{t({ mr: 'माहिती', en: 'Explore' })}</h3>
+            <ul className="grid gap-2 text-[.95rem]">
+              {NAV.filter((n) => n.href !== '/products').map((n) => (
                 <li key={n.href}>
                   <Link href={n.href} className="hover:text-ivory">{t(n.label)}</Link>
                 </li>
               ))}
+              <li>
+                <Link href="/contact#dealer" className="hover:text-ivory">{t({ mr: 'डीलर / होलसेल', en: 'Dealer / wholesale' })}</Link>
+              </li>
             </ul>
           </div>
+          <div>
+            <h3 className="mb-4 font-body text-[.8rem] font-semibold uppercase tracking-[.16em] text-gold-light">{t({ mr: 'संपर्क', en: 'Contact' })}</h3>
+            <address className="not-italic">
+              <p className="text-[.95rem]">{t(SITE.address)}</p>
+              <ul className="mt-4 grid gap-2 text-[.95rem]">
+                {SITE.phones.map((p) => (
+                  <li key={p.tel}>
+                    <a href={`tel:${p.tel}`} className="text-ivory hover:text-gold-light">{p.display}</a>
+                  </li>
+                ))}
+                <li>
+                  <a href={`mailto:${SITE.email}`} className="break-all hover:text-ivory">{SITE.email}</a>
+                </li>
+                <li>
+                  <a href={waLink()} target="_blank" rel="noopener" className="hover:text-ivory">WhatsApp ↗</a>
+                </li>
+              </ul>
+            </address>
+          </div>
         </div>
-        <p className="mt-12 border-t border-line pt-6 text-[.82rem] text-muted">
-          © {new Date().getFullYear()} {t(SITE.name)}
-        </p>
+        <div className="hairline mt-14" />
+        <div className="mt-6 flex flex-wrap justify-between gap-3 text-[.82rem] text-mist/70">
+          <p>© {new Date().getFullYear()} {t(SITE.name)}</p>
+          <p>{t({ mr: 'फ्रँचायझीमध्ये नफ्याची हमी नाही; अटी करारानुसार.', en: 'No profit is guaranteed under the franchise; terms as per agreement.' })}</p>
+        </div>
       </div>
     </footer>
   );

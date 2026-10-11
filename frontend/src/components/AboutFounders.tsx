@@ -18,11 +18,11 @@ export default function AboutFounders({ headingLevel = 'h2' }: { headingLevel?: 
       <div className="grid items-center gap-14 md:grid-cols-[1.1fr_1fr]">
         <Reveal>
           <div className="eyebrow">{t({ mr: 'आमच्याविषयी', en: 'About us' })}</div>
-          <H className="mt-2.5 text-[clamp(2rem,4vw,3rem)]">
+          <H className="h-section mt-3">
             {t({ mr: 'एकच दुकान, पूजा साहित्याची संपूर्ण दुनिया', en: 'One shop, a whole world of puja sahitya' })}
           </H>
-          <p className="my-[18px] font-display text-[1.7rem] text-gold">“आपल्या प्रत्येक पूजेसाठी… संजीवनी सोबत!”</p>
-          <p className="text-sand">
+          <p className="my-[18px] font-display text-[1.7rem] text-gold-deep">“आपल्या प्रत्येक पूजेसाठी… संजीवनी सोबत!”</p>
+          <p className="text-charcoal-soft">
             {t({
               mr: 'पूजेपासून सण-समारंभापर्यंत लागणारे सर्व प्रकारचे पूजा साहित्य एकाच ठिकाणी, गुणवत्तेची खात्री आणि रास्त किमतीत. ग्रामीण व शहरी भागातील युवक-युवतींना आणि महिलांना स्वयंरोजगार व व्यवसायाची संधी देणे हा आमचा उद्देश आहे.',
               en: 'Everything needed from daily puja to festivals, in one place, with assured quality and fair prices. Our aim is to create self-employment and business opportunities for young people and women in rural and urban areas.',
@@ -32,11 +32,11 @@ export default function AboutFounders({ headingLevel = 'h2' }: { headingLevel?: 
         <div className="grid grid-cols-2 gap-[18px]">
           {FOUNDERS.map((f, i) => (
             <Reveal key={f.role} delay={i * 0.12} className="text-center">
-              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-line">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-charcoal/10">
                 <Image src={f.img} alt={f.name.mr} fill sizes="(max-width: 768px) 50vw, 260px" className="object-cover saturate-[.9]" />
               </div>
               <b className="mt-2.5 block font-display text-[1.1rem]">{t(f.name)}</b>
-              <span className="text-[.82rem] tracking-[.08em] text-gold">{f.role}</span>
+              <span className="text-[.82rem] tracking-[.08em] text-gold-deep">{f.role}</span>
             </Reveal>
           ))}
         </div>

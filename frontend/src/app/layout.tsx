@@ -1,13 +1,30 @@
 import type { Metadata, Viewport } from 'next';
-import { Eczar, Mukta } from 'next/font/google';
+import { Noto_Sans_Devanagari, Tiro_Devanagari_Marathi } from 'next/font/google';
 import './globals.css';
 import { LangProvider } from '@/lib/i18n';
+import { CartProvider } from '@/lib/cart';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatButtons from '@/components/FloatButtons';
+import CartDrawer from '@/components/cart/CartDrawer';
+import { SITE } from '@/lib/site';
 
-const eczar = Eczar({ subsets: ['devanagari', 'latin'], weight: ['500', '600', '700'], variable: '--font-eczar', display: 'swap' });
-const mukta = Mukta({ subsets: ['devanagari', 'latin'], weight: ['300', '400', '500', '600'], variable: '--font-mukta', display: 'swap' });
+// Tiro Devanagari Marathi is drawn specifically for Marathi (correct ळ, ऱ्, conjuncts) and
+// pairs a calm serif with Latin. Noto Sans Devanagari is the most complete, readable body face.
+// Both are self-hosted by next/font at build time: no runtime request to Google.
+const display = Tiro_Devanagari_Marathi({
+  subsets: ['devanagari', 'latin'],
+  weight: '400',
+  style: ['normal', 'italic'],
+  variable: '--font-display',
+  display: 'swap',
+});
+const body = Noto_Sans_Devanagari({
+  subsets: ['devanagari', 'latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-body',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
@@ -25,17 +42,34 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport: Viewport = { themeColor: '#0e0b09' };
+export const viewport: Viewport = { themeColor: '#163D32' };
+
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: SITE.name.en,
+  alternateName: SITE.name.mr,
+  telephone: SITE.phones.map((p) => p.tel),
+  email: SITE.email,
+  address: { '@type': 'PostalAddress', streetAddress: SITE.address.en, addressLocality: 'Akluj', addressRegion: 'Maharashtra', postalCode: '413101', addressCountry: 'IN' },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="mr" className={`${eczar.variable} ${mukta.variable}`}>
+    <html lang="mr" className={`${display.variable} ${body.variable}`}>
       <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} />
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-forest focus:px-4 focus:py-2 focus:text-ivory">
+          मुख्य मजकुराकडे जा
+        </a>
         <LangProvider>
-          <Header />
-          <main id="top">{children}</main>
-          <Footer />
-          <FloatButtons />
+          <CartProvider>
+            <Header />
+            <main id="main">{children}</main>
+            <Footer />
+            <FloatButtons />
+            <CartDrawer />
+          </CartProvider>
         </LangProvider>
       </body>
     </html>

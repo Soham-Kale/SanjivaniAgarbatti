@@ -1,55 +1,92 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import ProductCard from './ProductCard';
 import Reveal from './Reveal';
+import AddToList from './cart/AddToList';
 import { useLang } from '@/lib/i18n';
 import { CATEGORIES, SITE, waLink } from '@/lib/site';
+import { hasModel } from '@/lib/models';
+import { FRAGRANCE_NAMES } from '@/lib/fragrances';
 import type { Product } from '@/lib/types';
+
+const ProductViewer = dynamic(() => import('./3d/ProductViewer'), {
+  ssr: false,
+  loading: () => <div className="absolute inset-0 grid place-items-center text-stone">3D…</div>,
+});
+
+const TYPE: Record<string, { mr: string; en: string }> = {
+  pouch: { mr: 'पाऊच', en: 'Pouch' },
+  packet: { mr: 'लांब पॅकेट', en: 'Long packet' },
+  jar: { mr: 'जार', en: 'Jar' },
+  box: { mr: 'बॉक्स', en: 'Box' },
+  pack: { mr: 'पॅक', en: 'Pack' },
+};
 
 export default function ProductDetail({ p, related }: { p: Product; related: Product[] }) {
   const { t } = useLang();
   const images = [p.image, ...p.gallery];
   const [active, setActive] = useState(0);
+  const [mode, setMode] = useState<'photo' | '3d'>('photo');
+  const [qty, setQty] = useState(1);
   const cat = CATEGORIES.find((c) => c.id === p.category);
+  const model = hasModel(p.slug);
+
+  const specs: [string, string][] = [
+    [t({ mr: 'श्रेणी', en: 'Category' }), cat ? t(cat.label) : '—'],
+    [t({ mr: 'पॅकिंग', en: 'Packing' }), TYPE[p.subtype] ? t(TYPE[p.subtype]) : '—'],
+  ];
+  if (p.fragrance && FRAGRANCE_NAMES[p.fragrance]) specs.push([t({ mr: 'सुगंध', en: 'Fragrance' }), t(FRAGRANCE_NAMES[p.fragrance])]);
+  if (p.priceNote) specs.push([t({ mr: 'पॅक / किंमत', en: 'Packs / price' }), t(p.priceNote)]);
+  specs.push([t({ mr: 'उत्पादक', en: 'Made by' }), t({ mr: 'संजीवनी, माळेवाडी-अकलूज', en: 'Sanjivani, Malewadi-Akluj' })]);
 
   return (
-    <div className="wrap py-14">
-      <nav className="mb-8 text-[.85rem] text-muted" aria-label="breadcrumb">
-        <Link href="/products" className="hover:text-ivory">{t({ mr: 'उत्पादने', en: 'Products' })}</Link>
-        {cat && (
-          <>
-            {' / '}
-            <Link href={`/products?c=${p.category}`} className="hover:text-ivory">{t(cat.label)}</Link>
-          </>
-        )}
-        {' / '}
-        <span className="text-ivory">{t(p.name)}</span>
+    <div className="wrap py-10 md:py-14">
+      <nav className="mb-8 text-[.88rem] text-stone" aria-label="breadcrumb">
+        <ol className="flex flex-wrap gap-1.5">
+          <li><Link href="/products" className="hover:text-forest">{t({ mr: 'उत्पादने', en: 'Products' })}</Link> /</li>
+          {cat && <li><Link href={`/products?c=${p.category}`} className="hover:text-forest">{t(cat.label)}</Link> /</li>}
+          <li aria-current="page" className="text-charcoal">{t(p.name)}</li>
+        </ol>
       </nav>
 
-      <div className="grid gap-12 md:grid-cols-2">
-        <div>
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[200px_200px_18px_18px] border border-gold-soft bg-black shadow-ember">
+      <div className="grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <div className="lg:sticky lg:top-24 lg:self-start">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] bg-gradient-to-b from-sage to-ivory-2 shadow-card">
             <AnimatePresence mode="wait">
-              <motion.div key={images[active]} className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}>
-                <Image src={images[active]} alt={p.name.mr} fill priority sizes="(max-width: 768px) 100vw, 560px" className="object-cover" />
-              </motion.div>
+              {mode === 'photo' ? (
+                <motion.div key={images[active]} className="absolute inset-0" initial={{ opacity: 0, scale: 1.03 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.45 }}>
+                  <Image src={images[active]} alt={`${p.name.mr} (${p.name.en})`} fill priority sizes="(max-width: 1024px) 100vw, 640px" className="object-cover" />
+                </motion.div>
+              ) : (
+                <motion.div key="3d" className="absolute inset-0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                  <ProductViewer slug={p.slug} />
+                  <p className="pointer-events-none absolute inset-x-0 bottom-3 text-center text-[.78rem] text-stone">
+                    {t({ mr: 'फिरवण्यासाठी ओढा · 3D मॉडेल खऱ्या पॅकच्या फोटोवरून', en: 'Drag to rotate · 3D model made from the real pack photo' })}
+                  </p>
+                </motion.div>
+              )}
             </AnimatePresence>
+            {model && (
+              <div className="absolute left-3 top-3 flex rounded-full bg-ivory/90 p-1 text-[.82rem] font-semibold shadow-card backdrop-blur" role="group" aria-label={t({ mr: 'दृश्य', en: 'View' })}>
+                {(['photo', '3d'] as const).map((m) => (
+                  <button key={m} type="button" aria-pressed={mode === m} onClick={() => setMode(m)} className="relative min-h-[40px] rounded-full px-4 text-forest aria-pressed:text-ivory">
+                    {mode === m && <motion.span layoutId="view-pill" className="absolute inset-0 rounded-full bg-forest" />}
+                    <span className="relative">{m === 'photo' ? t({ mr: 'फोटो', en: 'Photo' }) : t({ mr: '3D मध्ये पाहा', en: 'View in 3D' })}</span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
-          {images.length > 1 && (
-            <div className="mt-4 flex gap-3">
+          {images.length > 1 && mode === 'photo' && (
+            <div className="mt-4 flex gap-3 overflow-x-auto">
               {images.map((src, i) => (
-                <button
-                  key={src}
-                  type="button"
-                  onClick={() => setActive(i)}
-                  aria-label={`फोटो ${i + 1}`}
-                  className={`relative h-20 w-16 overflow-hidden rounded-lg border ${i === active ? 'border-gold' : 'border-line opacity-70'}`}
-                >
-                  <Image src={src} alt="" fill sizes="64px" className="object-cover" />
+                <button key={src} type="button" onClick={() => setActive(i)} aria-label={t({ mr: `फोटो ${i + 1}`, en: `Photo ${i + 1}` })} aria-pressed={i === active} className={`relative h-24 w-20 shrink-0 overflow-hidden rounded-xl border-2 transition ${i === active ? 'border-forest' : 'border-transparent opacity-70 hover:opacity-100'}`}>
+                  <Image src={src} alt="" fill sizes="80px" className="object-cover" />
                 </button>
               ))}
             </div>
@@ -58,50 +95,61 @@ export default function ProductDetail({ p, related }: { p: Product; related: Pro
 
         <Reveal>
           <div className="eyebrow">{t(p.tagline)}</div>
-          <h1 className="mt-2 text-[clamp(2.2rem,5vw,3.4rem)] text-gold">{p.name.mr}</h1>
-          <div className="font-display text-[1.1rem] italic text-muted">{p.name.en}</div>
-          <p className="mt-6 text-sand">{t(p.description)}</p>
-          {p.priceNote && (
-            <p className="mt-4">
-              <span className="text-muted">{t({ mr: 'पॅक:', en: 'Packs:' })}</span>{' '}
-              <b className="font-display text-gold">{t(p.priceNote)}</b>
-            </p>
-          )}
+          <h1 className="mt-3 text-[clamp(2.3rem,5vw,3.6rem)] text-forest">{p.name.mr}</h1>
+          <p className="font-display text-[1.2rem] italic text-sandal">{p.name.en}</p>
+          <p className="mt-6 text-[1.05rem] text-charcoal-soft">{t(p.description)}</p>
+
           {p.benefits.length > 0 && (
-            <ul className="mt-6 grid gap-2">
+            <ul className="mt-6 grid gap-2.5">
               {p.benefits.map((b) => (
-                <li key={b}>
-                  <span className="mr-2 text-gold">✦</span>
+                <li key={b} className="flex gap-3">
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
                   {b}
                 </li>
               ))}
             </ul>
           )}
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a className="btn-solid" href={waLink(`नमस्कार, मला ${p.name.mr} ऑर्डर करायची आहे.`)} target="_blank" rel="noopener">
-              {t({ mr: 'WhatsApp वर ऑर्डर करा', en: 'Order on WhatsApp' })}
-            </a>
-            <a className="btn-ghost" href={`tel:${SITE.phones[0].tel}`}>
-              {t({ mr: 'कॉल करा', en: 'Call us' })}
-            </a>
+
+          <div className="card mt-8 p-5">
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center rounded-full border border-charcoal/15 bg-white/60">
+                <button type="button" className="grid h-12 w-12 place-items-center text-lg" onClick={() => setQty((q) => Math.max(1, q - 1))} aria-label={t({ mr: 'कमी करा', en: 'Decrease' })}>−</button>
+                <span className="w-10 text-center text-lg tabular-nums" aria-live="polite">{qty}</span>
+                <button type="button" className="grid h-12 w-12 place-items-center text-lg" onClick={() => setQty((q) => Math.min(999, q + 1))} aria-label={t({ mr: 'वाढवा', en: 'Increase' })}>+</button>
+              </div>
+              <AddToList p={p} qty={qty} openOnAdd />
+            </div>
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[.92rem]">
+              <a className="btn-link" href={waLink(`नमस्कार, मला ${p.name.mr} (${qty}) ऑर्डर करायची आहे.`)} target="_blank" rel="noopener">{t({ mr: 'थेट WhatsApp वर विचारा', en: 'Ask on WhatsApp' })} ↗</a>
+              <a className="btn-link" href={`tel:${SITE.phones[0].tel}`}>{t({ mr: 'कॉल करा', en: 'Call us' })}</a>
+            </div>
+            <p className="mt-4 text-[.82rem] text-stone">{t({ mr: 'किंमत, पॅक साइज व डिलिव्हरी ऑर्डरनंतर फोन / WhatsApp वर कळवली जाते.', en: 'Price, pack size and delivery are confirmed by phone or WhatsApp after you order.' })}</p>
           </div>
-          <p className="mt-6 text-[.85rem] text-muted">
+
+          <dl className="mt-8 divide-y divide-charcoal/10 border-y border-charcoal/10">
+            {specs.map(([k, v]) => (
+              <div key={k} className="grid grid-cols-[140px_1fr] gap-4 py-3 text-[.95rem]">
+                <dt className="text-stone">{k}</dt>
+                <dd className="text-charcoal">{v}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <p className="mt-6 text-[.9rem] text-stone">
             {t({ mr: 'दुकानदार / डीलर? ', en: 'Shop owner / dealer? ' })}
-            <Link href="/contact#dealer" className="text-gold underline">
-              {t({ mr: 'होलसेल दरासाठी चौकशी करा', en: 'Ask for wholesale rates' })}
-            </Link>
+            <Link href="/contact#dealer" className="btn-link">{t({ mr: 'होलसेल दरासाठी चौकशी करा', en: 'Ask for wholesale rates' })}</Link>
           </p>
         </Reveal>
       </div>
 
       {related.length > 0 && (
-        <section className="mt-24">
-          <h2 className="mb-8 text-[2rem]">{t({ mr: 'हेही पाहा', en: 'You may also like' })}</h2>
-          <div className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-4">
+        <section className="mt-24" aria-labelledby="rel-title">
+          <h2 id="rel-title" className="h-section mb-8 !text-[clamp(1.8rem,3vw,2.4rem)]">{t({ mr: 'हेही पाहा', en: 'You may also like' })}</h2>
+          <ul className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
             {related.map((r) => (
-              <ProductCard key={r.slug} p={r} />
+              <li key={r.slug}><ProductCard p={r} /></li>
             ))}
-          </div>
+          </ul>
         </section>
       )}
     </div>

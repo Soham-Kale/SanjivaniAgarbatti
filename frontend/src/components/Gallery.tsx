@@ -49,7 +49,7 @@ export default function Gallery() {
             <motion.div initial={{ scale: 0.92 }} animate={{ scale: 1 }} className="relative h-[80vh] w-full max-w-3xl">
               <Image src={IMAGES[open].src} alt={IMAGES[open].alt} fill sizes="90vw" className="object-contain" />
             </motion.div>
-            <button className="absolute right-5 top-5 text-2xl text-ivory" aria-label="बंद करा">✕</button>
+            <button className="absolute right-5 top-5 text-2xl text-charcoal" aria-label="बंद करा">✕</button>
           </motion.div>
         )}
       </AnimatePresence>

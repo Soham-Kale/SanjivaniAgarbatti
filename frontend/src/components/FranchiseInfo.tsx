@@ -63,12 +63,12 @@ export default function FranchiseInfo() {
     <section className="wrap pb-24">
       <div className="grid gap-6 md:grid-cols-3">
         {BLOCKS.map((b, i) => (
-          <Reveal key={b.title.mr} delay={i * 0.1} className="card-surface p-7">
-            <h3 className="mb-4 text-[1.35rem] text-gold">{t(b.title)}</h3>
-            <ul className="grid gap-2 text-[.95rem] text-sand">
+          <Reveal key={b.title.mr} delay={i * 0.1} className="card p-7">
+            <h3 className="mb-4 text-[1.35rem] text-forest">{t(b.title)}</h3>
+            <ul className="grid gap-2 text-[.95rem] text-charcoal-soft">
               {b.items.map((it) => (
                 <li key={it.mr}>
-                  <span className="mr-2 text-gold">✦</span>
+                  <span className="mr-2 text-gold-deep">✦</span>
                   {t(it)}
                 </li>
               ))}
@@ -77,8 +77,8 @@ export default function FranchiseInfo() {
         ))}
       </div>
 
-      <h2 className="mb-6 mt-20 text-[clamp(1.8rem,3.5vw,2.6rem)]">{t({ mr: 'नेहमीचे प्रश्न', en: 'Frequently asked questions' })}</h2>
-      <div className="divide-y divide-line rounded-[18px] border border-line">
+      <h2 className="h-section mb-6 mt-20">{t({ mr: 'नेहमीचे प्रश्न', en: 'Frequently asked questions' })}</h2>
+      <div className="divide-y divide-charcoal/10 rounded-[18px] border border-charcoal/10">
         {FAQ.map((f, i) => (
           <div key={f.q.mr}>
             <button
@@ -88,12 +88,12 @@ export default function FranchiseInfo() {
               onClick={() => setOpen(open === i ? null : i)}
             >
               {t(f.q)}
-              <motion.span animate={{ rotate: open === i ? 45 : 0 }} className="text-gold">+</motion.span>
+              <motion.span animate={{ rotate: open === i ? 45 : 0 }} className="text-gold-deep">+</motion.span>
             </button>
             <AnimatePresence initial={false}>
               {open === i && (
                 <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                  <p className="px-6 pb-5 text-muted">{t(f.a)}</p>
+                  <p className="px-6 pb-5 text-stone">{t(f.a)}</p>
                 </motion.div>
               )}
             </AnimatePresence>

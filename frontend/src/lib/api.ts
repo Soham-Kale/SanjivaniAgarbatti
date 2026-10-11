@@ -38,7 +38,7 @@ export function getLocalProducts() {
 
 export type SubmitResult = { ok: true } | { ok: false; fields?: Record<string, string>; offline?: boolean };
 
-export async function submitEnquiry(type: EnquiryType, body: Record<string, string>): Promise<SubmitResult> {
+export async function submitEnquiry(type: EnquiryType, body: Record<string, unknown>): Promise<SubmitResult> {
   if (!API_URL) return { ok: false, offline: true };
   try {
     const res = await fetch(`${API_URL}/api/enquiries/${type}`, {

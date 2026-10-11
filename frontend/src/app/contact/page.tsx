@@ -22,11 +22,11 @@ export default function ContactPage() {
         <ContactCards />
       </section>
       <section className="wrap pb-24">
-        <div id="dealer" className="grid scroll-mt-24 gap-10 rounded-3xl border border-line bg-ink-2 p-6 md:grid-cols-[1fr_1.2fr] md:p-10">
+        <div id="dealer" className="grid scroll-mt-24 gap-10 rounded-3xl border border-charcoal/10 bg-ivory-2 p-6 md:grid-cols-[1fr_1.2fr] md:p-10">
           <div>
             <div className="eyebrow"><T mr="डीलर / होलसेल चौकशी" en="Dealer / wholesale enquiry" /></div>
-            <h2 className="mt-2.5 text-[2rem]"><T mr="दुकानदार आहात? होलसेल दरासाठी संपर्क करा" en="Own a shop? Ask for wholesale rates" /></h2>
-            <p className="text-muted">
+            <h2 className="mt-2.5 text-[2rem] text-forest"><T mr="दुकानदार आहात? होलसेल दरासाठी संपर्क करा" en="Own a shop? Ask for wholesale rates" /></h2>
+            <p className="text-stone">
               <T
                 mr="अगरबत्ती, धूप, कप धूप आणि पूजा साहित्याची संपूर्ण रेंज होलसेल दरात. फॉर्म भरा, आम्ही दरपत्रक पाठवू."
                 en="The full range of agarbatti, dhoop, cup dhoop and puja sahitya at wholesale rates. Fill the form and we will send our rate list."

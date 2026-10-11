@@ -3,6 +3,7 @@
 import { animate, useInView, useReducedMotion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useLang } from '@/lib/i18n';
+import type { I18n } from '@/lib/types';
 
 const MR_DIGITS = '०१२३४५६७८९';
 const toMr = (n: number) => String(n).replace(/\d/g, (d) => MR_DIGITS[Number(d)]);
@@ -19,29 +20,32 @@ function Count({ to, suffix }: { to: number; suffix: string }) {
     return () => c.stop();
   }, [inView, reduce, to]);
   return (
-    <b ref={ref} className="block font-display text-[1.9rem] tabular-nums text-gold">
+    <b ref={ref} className="block font-display text-[clamp(1.9rem,3.4vw,2.6rem)] font-normal tabular-nums text-forest">
       {lang === 'mr' ? toMr(v) : v}
       {suffix}
     </b>
   );
 }
 
-export default function Stats() {
+/** Trust strip of verified numbers (burn times from the catalogue, counts from the product data). */
+export default function Stats({ productCount, fragranceCount }: { productCount: number; fragranceCount: number }) {
   const { t } = useLang();
-  const items = [
-    { n: 40, s: { mr: '+ मि.', en: '+ min' }, l: { mr: 'एक अगरबत्ती जळते', en: 'one stick burns' } },
-    { n: 2, s: { mr: '+ तास', en: '+ hrs' }, l: { mr: 'कप धूप जळतो', en: 'cup dhoop burns' } },
-    { n: 12, s: { mr: '+', en: '+' }, l: { mr: 'सुगंध', en: 'fragrances' } },
-    { n: 3, s: { mr: '', en: '' }, l: { mr: 'फ्रँचायझी प्लॅन', en: 'franchise plans' } },
+  const items: { n: number; s: I18n; l: I18n }[] = [
+    { n: 40, s: { mr: '+ मि.', en: '+ min' }, l: { mr: 'एक अगरबत्ती किमान जळते', en: 'minimum burn per stick' } },
+    { n: 2, s: { mr: '+ तास', en: '+ hrs' }, l: { mr: 'एक कप धूप जळतो', en: 'per cup dhoop' } },
+    { n: fragranceCount, s: { mr: '', en: '' }, l: { mr: 'सुगंध', en: 'fragrances' } },
+    { n: productCount, s: { mr: '', en: '' }, l: { mr: 'उत्पादने', en: 'products' } },
   ];
   return (
-    <div className="grid grid-cols-2 border-y border-line bg-ink-2 md:grid-cols-4">
-      {items.map((it, i) => (
-        <div key={i} className="border-b border-line px-4 py-[22px] text-center odd:border-r md:border-b-0 md:border-r md:last:border-r-0">
-          <Count to={it.n} suffix={t(it.s)} />
-          <span className="text-[.88rem] text-muted">{t(it.l)}</span>
-        </div>
-      ))}
-    </div>
+    <section aria-label={t({ mr: 'ठळक माहिती', en: 'Highlights' })} className="border-b border-charcoal/10 bg-ivory">
+      <div className="wrap grid grid-cols-2 md:grid-cols-4">
+        {items.map((it, i) => (
+          <div key={i} className={`px-3 py-8 text-center md:py-10 ${i % 2 === 0 ? 'border-r' : ''} ${i < 2 ? 'border-b md:border-b-0' : ''} border-charcoal/10 md:border-r md:last:border-r-0`}>
+            <Count to={it.n} suffix={t(it.s)} />
+            <span className="text-[.88rem] text-stone">{t(it.l)}</span>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }

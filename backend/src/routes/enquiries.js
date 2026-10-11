@@ -27,5 +27,6 @@ function handler(type) {
 router.post('/franchise', limiter, handler('franchise'));
 router.post('/dealer', limiter, handler('dealer'));
 router.post('/contact', limiter, handler('contact'));
+router.post('/order', limiter, handler('order'));
 
 export default router;

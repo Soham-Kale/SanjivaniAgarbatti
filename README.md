@@ -6,6 +6,34 @@ hairlines, a fragrance explorer that recolours the smoke, franchise plans and en
 
 Content is Marathi-first, with an English toggle in the header (remembered per browser).
 
+## Design and 3D (premium upgrade)
+
+- **Palette** (tokens in `frontend/tailwind.config.ts`): ivory `#F8F3E9` backgrounds, deep forest green
+  `#163D32` for primary bands and buttons (from the logo's leaves), saffron gold `#C99A45` accents,
+  sandalwood `#79513A`, charcoal `#252722` text, soft sage `#DCE5D8`.
+- **Marathi typography**: *Tiro Devanagari Marathi* for headings (drawn for Marathi, correct ळ/ऱ्
+  and conjuncts) and *Noto Sans Devanagari* for body text, self-hosted by `next/font` at build time.
+  Body line-height 1.75 and heading padding keep vowel signs from clipping.
+- **Real 3D** with Three.js + `@react-three/fiber` + `@react-three/drei` + `maath`:
+  - Hero: the Kasturi premium jar and Kewda-Bel dhoop box as 3D models, a brass holder with lit
+    agarbatti, shader smoke, gold dust and contact shadows. Drag to rotate (mouse or touch); the
+    camera follows the pointer. Choosing a fragrance lower on the page recolours the smoke.
+  - Scroll showcase: a sticky section that turns between three real packs as you scroll.
+  - Product pages: a "3D मध्ये पाहा" toggle opens a drag-to-rotate viewer for the 16 products that
+    have a model (5 premium jars, 6 dhoop boxes, 5 pouches).
+  - The models are simple procedural shapes (jar, carton, pillow pouch) wrapped with **straight
+    crops of the client's own product photos** (`frontend/public/textures/`). No packaging was
+    redrawn or invented. Packets and puja items show photos only.
+  - Performance: 3D code is lazy-loaded (not in the first-load bundle), canvases stop rendering
+    when off screen, pixel ratio is capped and lowered on slow devices, and `prefers-reduced-motion`
+    renders a single still frame. If WebGL is unavailable the hero keeps a photo poster.
+- **Order list** (header bag icon): visitors add products with quantities, then send the list.
+  Prices are not published yet, so the order is saved to MongoDB (`POST /api/enquiries/order`) and
+  opened in WhatsApp for the shop to confirm price and delivery. The list persists in the browser.
+- **Content rules kept**: no reviews or ratings are shown (none exist yet), no profit promises on
+  franchise pages, and brochure lines that read as health claims (sleep, stress, insects,
+  purifying) were reworded to describe the fragrance only.
+
 ```
 sanjivani-agarbatti/
 ├── frontend/   Next.js 14 (App Router) + TypeScript + Tailwind CSS + Framer Motion + Three.js
@@ -43,6 +71,9 @@ npm run dev                   # starts the API with auto-reload
 Check it: open http://localhost:5000/api/health and http://localhost:5000/api/products
 
 ### 2. Frontend (website on http://localhost:3000)
+
+If you already ran `npm install` before the 3D upgrade, run it again: it adds
+`@react-three/fiber`, `@react-three/drei` and `maath`.
 
 In a second terminal:
 
@@ -85,6 +116,7 @@ Floating WhatsApp and call buttons are on every page. `sitemap.xml` and `robots.
 | POST | `/api/enquiries/franchise` | `name, mobile, city, plan (mini\|franchise\|warehouse), hasShop, investment, message` |
 | POST | `/api/enquiries/dealer` | `name, mobile, city, shopName, businessType, products, message` |
 | POST | `/api/enquiries/contact` | `name, mobile, city?, message` |
+| POST | `/api/enquiries/order` | `name, mobile, city?, message, items: [{ slug, name, qty }]` |
 
 Enquiries are validated (10-digit Indian mobile), rate-limited (8 per IP per 15 min) and have a
 honeypot field against bots.

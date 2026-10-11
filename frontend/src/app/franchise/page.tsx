@@ -34,11 +34,11 @@ export default function FranchisePage({ searchParams }: { searchParams: { plan?:
       <FranchiseInfo />
 
       <section className="wrap pb-24">
-        <div id="enquiry" className="grid scroll-mt-24 gap-10 rounded-3xl border border-line bg-ink-2 p-6 md:grid-cols-[1fr_1.2fr] md:p-10">
+        <div id="enquiry" className="grid scroll-mt-24 gap-10 rounded-3xl border border-charcoal/10 bg-ivory-2 p-6 md:grid-cols-[1fr_1.2fr] md:p-10">
           <div>
             <div className="eyebrow"><T mr="फ्रँचायझी चौकशी" en="Franchise enquiry" /></div>
-            <h2 className="mt-2.5 text-[2rem]"><T mr="तुमच्या गावात संजीवनी सुरू करूया" en="Let's start Sanjivani in your town" /></h2>
-            <p className="text-muted"><T mr="फॉर्म भरा, आमची टीम तुमच्याशी संपर्क करेल." en="Fill in the form and our team will get in touch." /></p>
+            <h2 className="mt-2.5 text-[2rem] text-forest"><T mr="तुमच्या गावात संजीवनी सुरू करूया" en="Let's start Sanjivani in your town" /></h2>
+            <p className="text-stone"><T mr="फॉर्म भरा, आमची टीम तुमच्याशी संपर्क करेल." en="Fill in the form and our team will get in touch." /></p>
           </div>
           <EnquiryForm type="franchise" defaultPlan={plan} />
         </div>

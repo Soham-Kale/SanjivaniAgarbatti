@@ -15,7 +15,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: { c
   const products = await getProducts();
   const initial = (VALID.includes(searchParams.c ?? '') ? searchParams.c : 'all') as Category | 'all';
   return (
-    <section className="section wrap pt-16">
+    <section className="wrap pb-24 pt-12 md:pt-16">
       <SectionHead
         as="h1"
         eyebrow={{ mr: 'आमची उत्पादने', en: 'Our products' }}
@@ -25,7 +25,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: { c
           en: 'Agarbatti that burns at least 40 minutes, with low smoke and no colour on your hands. Ask for dealer rates.',
         }}
       />
-      <ProductGrid products={products} initial={initial} showFragranceFilter />
+      <ProductGrid key={initial} products={products} initial={initial} />
     </section>
   );
 }

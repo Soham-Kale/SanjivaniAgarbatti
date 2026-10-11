@@ -20,6 +20,34 @@ export const SITE = {
 export const waLink = (text?: string) =>
   `https://wa.me/${SITE.whatsapp}${text ? `?text=${encodeURIComponent(text)}` : ''}`;
 
+export const CATEGORY_INFO: Record<Category, { label: I18n; blurb: I18n; image: string }> = {
+  daily: {
+    label: { mr: 'दैनंदिन अगरबत्ती', en: 'Daily Agarbatti' },
+    blurb: { mr: 'रोजच्या पूजेसाठी पाऊच व ₹५ पासूनची पॅकेट्स', en: 'Pouches and packets from ₹5 for daily puja' },
+    image: '/images/products/pouch-kewda.jpg',
+  },
+  premium: {
+    label: { mr: 'प्रीमियम अगरबत्ती', en: 'Premium Agarbatti' },
+    blurb: { mr: 'गोल्ड-कॅप जारमधील निवडक सुगंध', en: 'Select fragrances in gold-cap jars' },
+    image: '/images/products/premium-jar-kasturi.jpg',
+  },
+  dhoop: {
+    label: { mr: 'धूप कांडी', en: 'Dhoop Sticks' },
+    blurb: { mr: 'बॉक्स व जारमधील प्रीमियम धूप स्टिक', en: 'Premium dhoop sticks in boxes and jars' },
+    image: '/images/products/dhoop-box-kewda-bel.jpg',
+  },
+  cup: {
+    label: { mr: 'कप धूप', en: 'Cup Dhoop' },
+    blurb: { mr: 'कोळशासह बहुरंगी कप, २+ तास', en: 'Multicolour cups with charcoal, 2+ hours' },
+    image: '/images/gallery/cup-dhoop-open.jpg',
+  },
+  puja: {
+    label: { mr: 'पूजा साहित्य', en: 'Puja Sahitya' },
+    blurb: { mr: 'कापूर, वाती, गुलाल, भंडारा, रांगोळी', en: 'Camphor, wicks, gulal, bhandara, rangoli' },
+    image: '/images/products/phulvat.jpg',
+  },
+};
+
 export const CATEGORIES: { id: Category | 'all'; label: I18n }[] = [
   { id: 'all', label: { mr: 'सर्व', en: 'All' } },
   { id: 'daily', label: { mr: 'दैनंदिन अगरबत्ती', en: 'Daily Agarbatti' } },
@@ -32,9 +60,8 @@ export const CATEGORIES: { id: Category | 'all'; label: I18n }[] = [
 export const NAV: { href: string; label: I18n }[] = [
   { href: '/products', label: { mr: 'उत्पादने', en: 'Products' } },
   { href: '/#fragrance', label: { mr: 'सुगंध', en: 'Fragrances' } },
+  { href: '/about', label: { mr: 'आमची कथा', en: 'Our story' } },
   { href: '/franchise', label: { mr: 'फ्रँचायझी', en: 'Franchise' } },
-  { href: '/about', label: { mr: 'आमच्याविषयी', en: 'About' } },
-  { href: '/#gallery', label: { mr: 'गॅलरी', en: 'Gallery' } },
   { href: '/contact', label: { mr: 'संपर्क', en: 'Contact' } },
 ];
 

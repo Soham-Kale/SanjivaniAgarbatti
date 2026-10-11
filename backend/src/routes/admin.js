@@ -45,9 +45,9 @@ router.get('/enquiries.csv', async (req, res, next) => {
   try {
     const q = ENQUIRY_TYPES.includes(req.query.type) ? { type: req.query.type } : {};
     const rows = await Enquiry.find(q).sort({ createdAt: -1 }).lean();
-    const cols = ['createdAt', 'type', 'status', 'name', 'mobile', 'city', 'plan', 'hasShop', 'investment', 'shopName', 'businessType', 'products', 'message', 'notes'];
+    const cols = ['createdAt', 'type', 'status', 'name', 'mobile', 'city', 'plan', 'hasShop', 'investment', 'shopName', 'businessType', 'products', 'items', 'message', 'notes'];
     const esc = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
-    const csv = [cols.join(','), ...rows.map((r) => cols.map((c) => esc(c === 'createdAt' ? r[c]?.toISOString() : r[c])).join(','))].join('\n');
+    const csv = [cols.join(','), ...rows.map((r) => cols.map((c) => esc(c === 'createdAt' ? r[c]?.toISOString() : c === 'items' ? (r.items || []).map((i) => `${i.name || i.slug} x${i.qty}`).join('; ') : r[c])).join(','))].join('\n');
     res.setHeader('Content-Type', 'text/csv; charset=utf-8');
     res.setHeader('Content-Disposition', 'attachment; filename="sanjivani-enquiries.csv"');
     res.send('﻿' + csv); // BOM so Excel shows Marathi correctly

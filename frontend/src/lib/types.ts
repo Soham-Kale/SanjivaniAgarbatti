@@ -20,4 +20,11 @@ export interface Product {
   active?: boolean;
 }
 
-export type EnquiryType = 'franchise' | 'dealer' | 'contact';
+export type EnquiryType = 'franchise' | 'dealer' | 'contact' | 'order';
+
+export interface CartItem {
+  slug: string;
+  name: I18n;
+  image: string;
+  qty: number;
+}
