@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root { color-scheme: dark; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-ink text-ivory font-body text-[17px] leading-relaxed overflow-x-hidden; }
+  h1, h2, h3, h4 { @apply font-display font-semibold leading-[1.15]; text-wrap: balance; }
+  :focus-visible { outline: 2px solid #ff7b30; outline-offset: 3px; }
+  ::selection { background: #d4ab5a; color: #1a1209; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-wrap px-5; }
+  .eyebrow { @apply text-[.85rem] font-medium tracking-[.04em] text-gold; }
+  .btn { @apply inline-flex items-center gap-2 rounded-full border border-gold px-[22px] py-[13px] font-medium text-base transition-transform duration-200 hover:-translate-y-0.5 cursor-pointer; }
+  .btn-solid { @apply btn border-transparent bg-gold-grad text-[#1a1209]; }
+  .btn-ghost { @apply btn bg-transparent text-gold; }
+  .field { @apply grid gap-1.5 text-[.82rem] text-muted; }
+  .input { @apply w-full rounded-[10px] border border-line bg-ink p-3 font-body text-base text-ivory placeholder:text-[#6d6153] focus:border-gold-soft; }
+  .section { @apply py-24; }
+  .card-surface { @apply rounded-[18px] border border-line bg-gradient-to-br from-ink-3 to-ink-2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}

@@ -1,0 +1,1141 @@
+[
+ {
+  "slug": "pouch-kewda",
+  "category": "daily",
+  "subtype": "pouch",
+  "name": {
+   "mr": "केवडा अगरबत्ती",
+   "en": "Kewda Agarbatti"
+  },
+  "tagline": {
+   "mr": "दैनंदिन पूजेसाठी पाऊच",
+   "en": "Daily pouch"
+  },
+  "description": {
+   "mr": "प्रार्थनेचा पवित्र सुगंध म्हणजे संजीवनी अगरबत्ती. रोजच्या पूजेसाठी केवडा सुगंधाची पाऊच पॅक अगरबत्ती.",
+   "en": "Daily-use Kewda agarbatti in a resealable pouch, made in Malewadi-Akluj."
+  },
+  "fragrance": "kewda",
+  "benefits": [
+   "किमान ४० मिनिटे जळते",
+   "रंग हाताला लागत नाही",
+   "कमी धूर, सौम्य सुगंध",
+   "ताजातवाना, थोडा तीव्र सुगंध"
+  ],
+  "image": "/images/products/pouch-kewda.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": true,
+  "sort": 1,
+  "active": true
+ },
+ {
+  "slug": "pouch-chandan",
+  "category": "daily",
+  "subtype": "pouch",
+  "name": {
+   "mr": "चंदन अगरबत्ती",
+   "en": "Sandalwood Agarbatti"
+  },
+  "tagline": {
+   "mr": "दैनंदिन पूजेसाठी पाऊच",
+   "en": "Daily pouch"
+  },
+  "description": {
+   "mr": "प्रार्थनेचा पवित्र सुगंध म्हणजे संजीवनी अगरबत्ती. रोजच्या पूजेसाठी चंदन सुगंधाची पाऊच पॅक अगरबत्ती.",
+   "en": "Daily-use Sandalwood agarbatti in a resealable pouch, made in Malewadi-Akluj."
+  },
+  "fragrance": "chandan",
+  "benefits": [
+   "किमान ४० मिनिटे जळते",
+   "रंग हाताला लागत नाही",
+   "कमी धूर, सौम्य सुगंध",
+   "सौम्य व थंडावा देणारा, दीर्घकाळ टिकणारा सुगंध"
+  ],
+  "image": "/images/products/pouch-chandan.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 2,
+  "active": true
+ },
+ {
+  "slug": "pouch-mogra",
+  "category": "daily",
+  "subtype": "pouch",
+  "name": {
+   "mr": "मोगरा अगरबत्ती",
+   "en": "Mogra · Jasmine Agarbatti"
+  },
+  "tagline": {
+   "mr": "दैनंदिन पूजेसाठी पाऊच",
+   "en": "Daily pouch"
+  },
+  "description": {
+   "mr": "प्रार्थनेचा पवित्र सुगंध म्हणजे संजीवनी अगरबत्ती. रोजच्या पूजेसाठी मोगरा सुगंधाची पाऊच पॅक अगरबत्ती.",
+   "en": "Daily-use Mogra · Jasmine agarbatti in a resealable pouch, made in Malewadi-Akluj."
+  },
+  "fragrance": "mogra",
+  "benefits": [
+   "किमान ४० मिनिटे जळते",
+   "रंग हाताला लागत नाही",
+   "कमी धूर, सौम्य सुगंध",
+   "गोड व मोहक, ताजातवाना सुगंध"
+  ],
+  "image": "/images/products/pouch-mogra.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": true,
+  "sort": 3,
+  "active": true
+ },
+ {
+  "slug": "pouch-gulab",
+  "category": "daily",
+  "subtype": "pouch",
+  "name": {
+   "mr": "गुलाब अगरबत्ती",
+   "en": "Rose Agarbatti"
+  },
+  "tagline": {
+   "mr": "दैनंदिन पूजेसाठी पाऊच",
+   "en": "Daily pouch"
+  },
+  "description": {
+   "mr": "प्रार्थनेचा पवित्र सुगंध म्हणजे संजीवनी अगरबत्ती. रोजच्या पूजेसाठी गुलाब सुगंधाची पाऊच पॅक अगरबत्ती.",
+   "en": "Daily-use Rose agarbatti in a resealable pouch, made in Malewadi-Akluj."
+  },
+  "fragrance": "gulab",
+  "benefits": [
+   "किमान ४० मिनिटे जळते",
+   "रंग हाताला लागत नाही",
+   "कमी धूर, सौम्य सुगंध",
+   "प्रसन्न व गोड सुगंध, सकारात्मक ऊर्जा"
+  ],
+  "image": "/images/products/pouch-gulab.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 4,
+  "active": true
+ },
+ {
+  "slug": "pouch-kasturi",
+  "category": "daily",
+  "subtype": "pouch",
+  "name": {
+   "mr": "कस्तुरी अगरबत्ती",
+   "en": "Kasturi · Musk Agarbatti"
+  },
+  "tagline": {
+   "mr": "दैनंदिन पूजेसाठी पाऊच",
+   "en": "Daily pouch"
+  },
+  "description": {
+   "mr": "प्रार्थनेचा पवित्र सुगंध म्हणजे संजीवनी अगरबत्ती. रोजच्या पूजेसाठी कस्तुरी सुगंधाची पाऊच पॅक अगरबत्ती.",
+   "en": "Daily-use Kasturi · Musk agarbatti in a resealable pouch, made in Malewadi-Akluj."
+  },
+  "fragrance": "kasturi",
+  "benefits": [
+   "किमान ४० मिनिटे जळते",
+   "रंग हाताला लागत नाही",
+   "कमी धूर, सौम्य सुगंध",
+   "गाढ, उबदार आणि आकर्षक सुगंध"
+  ],
+  "image": "/images/products/pouch-kasturi.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 5,
+  "active": true
+ },
+ {
+  "slug": "packet-kewda",
+  "category": "daily",
+  "subtype": "packet",
+  "name": {
+   "mr": "केवडा अगरबत्ती पॅकेट",
+   "en": "Kewda Agarbatti Packet"
+  },
+  "tagline": {
+   "mr": "₹५ ते ₹१५ पॅक",
+   "en": "Packs from ₹5 to ₹15"
+  },
+  "description": {
+   "mr": "प्रत्येक घरासाठी परवडणारे केवडा अगरबत्तीचे लांब पॅकेट. दुकानदार व डीलरसाठी विक्रीस सोयीचे.",
+   "en": "Affordable long-pack Kewda agarbatti in ₹5, ₹7, ₹10, ₹12 and ₹15 packs."
+  },
+  "fragrance": "kewda",
+  "benefits": [
+   "किमान ४० मिनिटे जळते",
+   "ताजातवाना, थोडा तीव्र सुगंध",
+   "घर व दुकानात प्रसन्न वातावरण"
+  ],
+  "image": "/images/products/packet-kewda.jpg",
+  "gallery": [],
+  "priceNote": {
+   "mr": "₹५ / ₹७ / ₹१० / ₹१२ / ₹१५",
+   "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
+  },
+  "featured": false,
+  "sort": 6,
+  "active": true
+ },
+ {
+  "slug": "packet-gulab",
+  "category": "daily",
+  "subtype": "packet",
+  "name": {
+   "mr": "गुलाब अगरबत्ती पॅकेट",
+   "en": "Rose Agarbatti Packet"
+  },
+  "tagline": {
+   "mr": "₹५ ते ₹१५ पॅक",
+   "en": "Packs from ₹5 to ₹15"
+  },
+  "description": {
+   "mr": "प्रत्येक घरासाठी परवडणारे गुलाब अगरबत्तीचे लांब पॅकेट. दुकानदार व डीलरसाठी विक्रीस सोयीचे.",
+   "en": "Affordable long-pack Rose agarbatti in ₹5, ₹7, ₹10, ₹12 and ₹15 packs."
+  },
+  "fragrance": "gulab",
+  "benefits": [
+   "किमान ४० मिनिटे जळते",
+   "प्रसन्न व गोड सुगंध, सकारात्मक ऊर्जा",
+   "ध्यानासाठी उपयुक्त, मूड सुधारतो"
+  ],
+  "image": "/images/products/packet-gulab.jpg",
+  "gallery": [],
+  "priceNote": {
+   "mr": "₹५ / ₹७ / ₹१० / ₹१२ / ₹१५",
+   "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
+  },
+  "featured": false,
+  "sort": 7,
+  "active": true
+ },
+ {
+  "slug": "packet-mogra",
+  "category": "daily",
+  "subtype": "packet",
+  "name": {
+   "mr": "मोगरा अगरबत्ती पॅकेट",
+   "en": "Mogra · Jasmine Agarbatti Packet"
+  },
+  "tagline": {
+   "mr": "₹५ ते ₹१५ पॅक",
+   "en": "Packs from ₹5 to ₹15"
+  },
+  "description": {
+   "mr": "प्रत्येक घरासाठी परवडणारे मोगरा अगरबत्तीचे लांब पॅकेट. दुकानदार व डीलरसाठी विक्रीस सोयीचे.",
+   "en": "Affordable long-pack Mogra · Jasmine agarbatti in ₹5, ₹7, ₹10, ₹12 and ₹15 packs."
+  },
+  "fragrance": "mogra",
+  "benefits": [
+   "किमान ४० मिनिटे जळते",
+   "गोड व मोहक, ताजातवाना सुगंध",
+   "मन शांत व प्रसन्न ठेवतो"
+  ],
+  "image": "/images/products/packet-mogra.jpg",
+  "gallery": [],
+  "priceNote": {
+   "mr": "₹५ / ₹७ / ₹१० / ₹१२ / ₹१५",
+   "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
+  },
+  "featured": false,
+  "sort": 8,
+  "active": true
+ },
+ {
+  "slug": "packet-kasturi",
+  "category": "daily",
+  "subtype": "packet",
+  "name": {
+   "mr": "कस्तुरी अगरबत्ती पॅकेट",
+   "en": "Kasturi · Musk Agarbatti Packet"
+  },
+  "tagline": {
+   "mr": "₹५ ते ₹१५ पॅक",
+   "en": "Packs from ₹5 to ₹15"
+  },
+  "description": {
+   "mr": "प्रत्येक घरासाठी परवडणारे कस्तुरी अगरबत्तीचे लांब पॅकेट. दुकानदार व डीलरसाठी विक्रीस सोयीचे.",
+   "en": "Affordable long-pack Kasturi · Musk agarbatti in ₹5, ₹7, ₹10, ₹12 and ₹15 packs."
+  },
+  "fragrance": "kasturi",
+  "benefits": [
+   "किमान ४० मिनिटे जळते",
+   "गाढ, उबदार आणि आकर्षक सुगंध",
+   "पूजा, ध्यानासाठी विशेष"
+  ],
+  "image": "/images/products/packet-kasturi.jpg",
+  "gallery": [],
+  "priceNote": {
+   "mr": "₹५ / ₹७ / ₹१० / ₹१२ / ₹१५",
+   "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
+  },
+  "featured": false,
+  "sort": 9,
+  "active": true
+ },
+ {
+  "slug": "packet-champa",
+  "category": "daily",
+  "subtype": "packet",
+  "name": {
+   "mr": "चंपा अगरबत्ती पॅकेट",
+   "en": "Champa Agarbatti Packet"
+  },
+  "tagline": {
+   "mr": "₹५ ते ₹१५ पॅक",
+   "en": "Packs from ₹5 to ₹15"
+  },
+  "description": {
+   "mr": "प्रत्येक घरासाठी परवडणारे चंपा अगरबत्तीचे लांब पॅकेट. दुकानदार व डीलरसाठी विक्रीस सोयीचे.",
+   "en": "Affordable long-pack Champa agarbatti in ₹5, ₹7, ₹10, ₹12 and ₹15 packs."
+  },
+  "fragrance": "champa",
+  "benefits": [
+   "किमान ४० मिनिटे जळते",
+   "गोड व मऊ फुलांचा सुगंध",
+   "देवपूजा व धार्मिक विधींसाठी"
+  ],
+  "image": "/images/products/packet-champa.jpg",
+  "gallery": [],
+  "priceNote": {
+   "mr": "₹५ / ₹७ / ₹१० / ₹१२ / ₹१५",
+   "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
+  },
+  "featured": false,
+  "sort": 10,
+  "active": true
+ },
+ {
+  "slug": "packet-chandan",
+  "category": "daily",
+  "subtype": "packet",
+  "name": {
+   "mr": "चंदन अगरबत्ती पॅकेट",
+   "en": "Sandalwood Agarbatti Packet"
+  },
+  "tagline": {
+   "mr": "₹५ ते ₹१५ पॅक",
+   "en": "Packs from ₹5 to ₹15"
+  },
+  "description": {
+   "mr": "प्रत्येक घरासाठी परवडणारे चंदन अगरबत्तीचे लांब पॅकेट. दुकानदार व डीलरसाठी विक्रीस सोयीचे.",
+   "en": "Affordable long-pack Sandalwood agarbatti in ₹5, ₹7, ₹10, ₹12 and ₹15 packs."
+  },
+  "fragrance": "chandan",
+  "benefits": [
+   "किमान ४० मिनिटे जळते",
+   "सौम्य व थंडावा देणारा, दीर्घकाळ टिकणारा सुगंध",
+   "ध्यान व योगासाठी मन शांत व एकाग्र करतो"
+  ],
+  "image": "/images/products/packet-chandan.jpg",
+  "gallery": [],
+  "priceNote": {
+   "mr": "₹५ / ₹७ / ₹१० / ₹१२ / ₹१५",
+   "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
+  },
+  "featured": false,
+  "sort": 11,
+  "active": true
+ },
+ {
+  "slug": "packet-denim",
+  "category": "daily",
+  "subtype": "packet",
+  "name": {
+   "mr": "डेनिम अगरबत्ती पॅकेट",
+   "en": "Denim Agarbatti Packet"
+  },
+  "tagline": {
+   "mr": "₹५ ते ₹१५ पॅक",
+   "en": "Packs from ₹5 to ₹15"
+  },
+  "description": {
+   "mr": "प्रत्येक घरासाठी परवडणारे डेनिम अगरबत्तीचे लांब पॅकेट. दुकानदार व डीलरसाठी विक्रीस सोयीचे.",
+   "en": "Affordable long-pack Denim agarbatti in ₹5, ₹7, ₹10, ₹12 and ₹15 packs."
+  },
+  "fragrance": "denim",
+  "benefits": [
+   "किमान ४० मिनिटे जळते",
+   "आधुनिक, ताजातवाना सुगंध",
+   "घर, ऑफिस व दुकानासाठी योग्य"
+  ],
+  "image": "/images/products/packet-denim.jpg",
+  "gallery": [
+   "/images/gallery/packet-denim-single.jpg"
+  ],
+  "priceNote": {
+   "mr": "₹५ / ₹७ / ₹१० / ₹१२ / ₹१५",
+   "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
+  },
+  "featured": true,
+  "sort": 12,
+  "active": true
+ },
+ {
+  "slug": "premium-kasturi",
+  "category": "premium",
+  "subtype": "jar",
+  "name": {
+   "mr": "कस्तुरी प्रीमियम",
+   "en": "Kasturi · Musk Premium"
+  },
+  "tagline": {
+   "mr": "गोल्ड-कॅप जार",
+   "en": "Gold-cap jar"
+  },
+  "description": {
+   "mr": "निवडक कच्च्या मालापासून तयार केलेली कस्तुरी प्रीमियम अगरबत्ती, सुंदर गोल्ड-कॅप जारमध्ये. भेट देण्यासाठीही उत्तम.",
+   "en": "Premium Kasturi · Musk agarbatti in a gold-cap jar. A good gift too."
+  },
+  "fragrance": "kasturi",
+  "benefits": [
+   "गाढ, उबदार आणि आकर्षक सुगंध",
+   "पूजा, ध्यानासाठी विशेष",
+   "तणाव कमी करून मन शांत करतो",
+   "किमान ४० मिनिटे जळते"
+  ],
+  "image": "/images/products/premium-jar-kasturi.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": true,
+  "sort": 13,
+  "active": true
+ },
+ {
+  "slug": "premium-mogra",
+  "category": "premium",
+  "subtype": "jar",
+  "name": {
+   "mr": "मोगरा प्रीमियम",
+   "en": "Mogra · Jasmine Premium"
+  },
+  "tagline": {
+   "mr": "गोल्ड-कॅप जार",
+   "en": "Gold-cap jar"
+  },
+  "description": {
+   "mr": "निवडक कच्च्या मालापासून तयार केलेली मोगरा प्रीमियम अगरबत्ती, सुंदर गोल्ड-कॅप जारमध्ये. भेट देण्यासाठीही उत्तम.",
+   "en": "Premium Mogra · Jasmine agarbatti in a gold-cap jar. A good gift too."
+  },
+  "fragrance": "mogra",
+  "benefits": [
+   "गोड व मोहक, ताजातवाना सुगंध",
+   "मन शांत व प्रसन्न ठेवतो",
+   "रात्री वापरल्यास चांगली झोप",
+   "किमान ४० मिनिटे जळते"
+  ],
+  "image": "/images/products/premium-jar-mogra.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": true,
+  "sort": 14,
+  "active": true
+ },
+ {
+  "slug": "premium-kewda",
+  "category": "premium",
+  "subtype": "jar",
+  "name": {
+   "mr": "केवडा प्रीमियम",
+   "en": "Kewda Premium"
+  },
+  "tagline": {
+   "mr": "गोल्ड-कॅप जार",
+   "en": "Gold-cap jar"
+  },
+  "description": {
+   "mr": "निवडक कच्च्या मालापासून तयार केलेली केवडा प्रीमियम अगरबत्ती, सुंदर गोल्ड-कॅप जारमध्ये. भेट देण्यासाठीही उत्तम.",
+   "en": "Premium Kewda agarbatti in a gold-cap jar. A good gift too."
+  },
+  "fragrance": "kewda",
+  "benefits": [
+   "ताजातवाना, थोडा तीव्र सुगंध",
+   "घर व दुकानात प्रसन्न वातावरण",
+   "दीर्घकाळ टिकणारा सुगंध",
+   "किमान ४० मिनिटे जळते"
+  ],
+  "image": "/images/products/premium-jar-kewda.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 15,
+  "active": true
+ },
+ {
+  "slug": "premium-gulab",
+  "category": "premium",
+  "subtype": "jar",
+  "name": {
+   "mr": "गुलाब प्रीमियम",
+   "en": "Rose Premium"
+  },
+  "tagline": {
+   "mr": "गोल्ड-कॅप जार",
+   "en": "Gold-cap jar"
+  },
+  "description": {
+   "mr": "निवडक कच्च्या मालापासून तयार केलेली गुलाब प्रीमियम अगरबत्ती, सुंदर गोल्ड-कॅप जारमध्ये. भेट देण्यासाठीही उत्तम.",
+   "en": "Premium Rose agarbatti in a gold-cap jar. A good gift too."
+  },
+  "fragrance": "gulab",
+  "benefits": [
+   "प्रसन्न व गोड सुगंध, सकारात्मक ऊर्जा",
+   "ध्यानासाठी उपयुक्त, मूड सुधारतो",
+   "देवपूजेत भक्तिभाव वाढवतो",
+   "किमान ४० मिनिटे जळते"
+  ],
+  "image": "/images/products/premium-jar-gulab.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 16,
+  "active": true
+ },
+ {
+  "slug": "premium-jaswand",
+  "category": "premium",
+  "subtype": "jar",
+  "name": {
+   "mr": "जास्वंद प्रीमियम",
+   "en": "Hibiscus Premium"
+  },
+  "tagline": {
+   "mr": "गोल्ड-कॅप जार",
+   "en": "Gold-cap jar"
+  },
+  "description": {
+   "mr": "निवडक कच्च्या मालापासून तयार केलेली जास्वंद प्रीमियम अगरबत्ती, सुंदर गोल्ड-कॅप जारमध्ये. भेट देण्यासाठीही उत्तम.",
+   "en": "Premium Hibiscus agarbatti in a gold-cap jar. A good gift too."
+  },
+  "fragrance": "jaswand",
+  "benefits": [
+   "हलका व नैसर्गिक सुगंध",
+   "देवी पूजेसाठी शुभ मानला जातो",
+   "वातावरण ताजेतवाने ठेवतो",
+   "किमान ४० मिनिटे जळते"
+  ],
+  "image": "/images/products/premium-jar-jaswand.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 17,
+  "active": true
+ },
+ {
+  "slug": "dhoop-box-kewda-bel",
+  "category": "dhoop",
+  "subtype": "box",
+  "name": {
+   "mr": "केवडा व बेल धूप स्टिक",
+   "en": "Kewda & Bel Dhoop Box"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · बॉक्स",
+   "en": "Premium dhoop sticks · box"
+  },
+  "description": {
+   "mr": "प्रार्थनेचा पवित्र सुगंध. केवडा व बेल प्रीमियम धूप स्टिक, आकर्षक बॉक्स पॅकमध्ये.",
+   "en": "Premium Kewda & Bel dhoop sticks in a gift-ready box."
+  },
+  "fragrance": "kewda-bel",
+  "benefits": [
+   "ताजातवाना, थोडा तीव्र सुगंध",
+   "बेल भगवान शिवाला प्रिय",
+   "मनात शांतता व स्थैर्य"
+  ],
+  "image": "/images/products/dhoop-box-kewda-bel.jpg",
+  "gallery": [
+   "/images/gallery/dhoop-box-kewda-bel-2.jpg"
+  ],
+  "priceNote": null,
+  "featured": true,
+  "sort": 18,
+  "active": true
+ },
+ {
+  "slug": "dhoop-box-jaswand",
+  "category": "dhoop",
+  "subtype": "box",
+  "name": {
+   "mr": "जास्वंद धूप स्टिक",
+   "en": "Hibiscus Dhoop Box"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · बॉक्स",
+   "en": "Premium dhoop sticks · box"
+  },
+  "description": {
+   "mr": "प्रार्थनेचा पवित्र सुगंध. जास्वंद प्रीमियम धूप स्टिक, आकर्षक बॉक्स पॅकमध्ये.",
+   "en": "Premium Hibiscus dhoop sticks in a gift-ready box."
+  },
+  "fragrance": "jaswand",
+  "benefits": [
+   "हलका व नैसर्गिक सुगंध",
+   "देवी पूजेसाठी शुभ मानला जातो",
+   "वातावरण ताजेतवाने ठेवतो"
+  ],
+  "image": "/images/products/dhoop-box-jaswand.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 19,
+  "active": true
+ },
+ {
+  "slug": "dhoop-box-chandan",
+  "category": "dhoop",
+  "subtype": "box",
+  "name": {
+   "mr": "चंदन धूप स्टिक",
+   "en": "Sandalwood Dhoop Box"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · बॉक्स",
+   "en": "Premium dhoop sticks · box"
+  },
+  "description": {
+   "mr": "प्रार्थनेचा पवित्र सुगंध. चंदन प्रीमियम धूप स्टिक, आकर्षक बॉक्स पॅकमध्ये.",
+   "en": "Premium Sandalwood dhoop sticks in a gift-ready box."
+  },
+  "fragrance": "chandan",
+  "benefits": [
+   "सौम्य व थंडावा देणारा, दीर्घकाळ टिकणारा सुगंध",
+   "ध्यान व योगासाठी मन शांत व एकाग्र करतो",
+   "घरातील दुर्गंधी दूर करून वातावरण स्वच्छ ठेवतो"
+  ],
+  "image": "/images/products/dhoop-box-chandan.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": true,
+  "sort": 20,
+  "active": true
+ },
+ {
+  "slug": "dhoop-box-chafa",
+  "category": "dhoop",
+  "subtype": "box",
+  "name": {
+   "mr": "चाफा धूप स्टिक",
+   "en": "Chafa Dhoop Box"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · बॉक्स",
+   "en": "Premium dhoop sticks · box"
+  },
+  "description": {
+   "mr": "प्रार्थनेचा पवित्र सुगंध. चाफा प्रीमियम धूप स्टिक, आकर्षक बॉक्स पॅकमध्ये.",
+   "en": "Premium Chafa dhoop sticks in a gift-ready box."
+  },
+  "fragrance": "chafa",
+  "benefits": [
+   "गोड व मऊ सुगंध",
+   "देवपूजा व धार्मिक विधींसाठी",
+   "सकारात्मक व आनंदी वातावरण"
+  ],
+  "image": "/images/products/dhoop-box-chafa.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 21,
+  "active": true
+ },
+ {
+  "slug": "dhoop-box-gulab",
+  "category": "dhoop",
+  "subtype": "box",
+  "name": {
+   "mr": "गुलाब धूप स्टिक",
+   "en": "Rose Dhoop Box"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · बॉक्स",
+   "en": "Premium dhoop sticks · box"
+  },
+  "description": {
+   "mr": "प्रार्थनेचा पवित्र सुगंध. गुलाब प्रीमियम धूप स्टिक, आकर्षक बॉक्स पॅकमध्ये.",
+   "en": "Premium Rose dhoop sticks in a gift-ready box."
+  },
+  "fragrance": "gulab",
+  "benefits": [
+   "प्रसन्न व गोड सुगंध, सकारात्मक ऊर्जा",
+   "ध्यानासाठी उपयुक्त, मूड सुधारतो",
+   "देवपूजेत भक्तिभाव वाढवतो"
+  ],
+  "image": "/images/products/dhoop-box-gulab.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 22,
+  "active": true
+ },
+ {
+  "slug": "dhoop-box-rui",
+  "category": "dhoop",
+  "subtype": "box",
+  "name": {
+   "mr": "रुई धूप स्टिक",
+   "en": "Rui · Aak Dhoop Box"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · बॉक्स",
+   "en": "Premium dhoop sticks · box"
+  },
+  "description": {
+   "mr": "प्रार्थनेचा पवित्र सुगंध. रुई प्रीमियम धूप स्टिक, आकर्षक बॉक्स पॅकमध्ये.",
+   "en": "Premium Rui · Aak dhoop sticks in a gift-ready box."
+  },
+  "fragrance": "rui",
+  "benefits": [
+   "रुई वनस्पतीपासून तयार",
+   "शिवपूजेसाठी विशेष वापर",
+   "कीटक दूर ठेवण्यास मदत"
+  ],
+  "image": "/images/products/dhoop-box-rui.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 23,
+  "active": true
+ },
+ {
+  "slug": "dhoop-jar-kewda-bel",
+  "category": "dhoop",
+  "subtype": "jar",
+  "name": {
+   "mr": "केवडा व बेल धूप जार",
+   "en": "Kewda & Bel Dhoop Jar"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · जार",
+   "en": "Premium dhoop sticks · jar"
+  },
+  "description": {
+   "mr": "देवतेच्या चित्रासह सुंदर जारमध्ये केवडा व बेल प्रीमियम धूप स्टिक. रोजच्या पूजेसाठी व सणांसाठी.",
+   "en": "Premium Kewda & Bel dhoop sticks in a decorated jar."
+  },
+  "fragrance": "kewda-bel",
+  "benefits": [
+   "ताजातवाना, थोडा तीव्र सुगंध",
+   "बेल भगवान शिवाला प्रिय",
+   "मनात शांतता व स्थैर्य"
+  ],
+  "image": "/images/products/dhoop-jar-kewda-bel.jpg",
+  "gallery": [
+   "/images/gallery/dhoop-jar-kewda-bel-pair.jpg"
+  ],
+  "priceNote": null,
+  "featured": false,
+  "sort": 24,
+  "active": true
+ },
+ {
+  "slug": "dhoop-jar-jaswand",
+  "category": "dhoop",
+  "subtype": "jar",
+  "name": {
+   "mr": "जास्वंद धूप जार",
+   "en": "Hibiscus Dhoop Jar"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · जार",
+   "en": "Premium dhoop sticks · jar"
+  },
+  "description": {
+   "mr": "देवतेच्या चित्रासह सुंदर जारमध्ये जास्वंद प्रीमियम धूप स्टिक. रोजच्या पूजेसाठी व सणांसाठी.",
+   "en": "Premium Hibiscus dhoop sticks in a decorated jar."
+  },
+  "fragrance": "jaswand",
+  "benefits": [
+   "हलका व नैसर्गिक सुगंध",
+   "देवी पूजेसाठी शुभ मानला जातो",
+   "वातावरण ताजेतवाने ठेवतो"
+  ],
+  "image": "/images/products/dhoop-jar-jaswand.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 25,
+  "active": true
+ },
+ {
+  "slug": "dhoop-jar-chandan",
+  "category": "dhoop",
+  "subtype": "jar",
+  "name": {
+   "mr": "चंदन धूप जार",
+   "en": "Sandalwood Dhoop Jar"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · जार",
+   "en": "Premium dhoop sticks · jar"
+  },
+  "description": {
+   "mr": "देवतेच्या चित्रासह सुंदर जारमध्ये चंदन प्रीमियम धूप स्टिक. रोजच्या पूजेसाठी व सणांसाठी.",
+   "en": "Premium Sandalwood dhoop sticks in a decorated jar."
+  },
+  "fragrance": "chandan",
+  "benefits": [
+   "सौम्य व थंडावा देणारा, दीर्घकाळ टिकणारा सुगंध",
+   "ध्यान व योगासाठी मन शांत व एकाग्र करतो",
+   "घरातील दुर्गंधी दूर करून वातावरण स्वच्छ ठेवतो"
+  ],
+  "image": "/images/products/dhoop-jar-chandan.jpg",
+  "gallery": [
+   "/images/gallery/dhoop-jar-chandan-2.jpg"
+  ],
+  "priceNote": null,
+  "featured": false,
+  "sort": 26,
+  "active": true
+ },
+ {
+  "slug": "dhoop-jar-chafa",
+  "category": "dhoop",
+  "subtype": "jar",
+  "name": {
+   "mr": "चाफा धूप जार",
+   "en": "Chafa Dhoop Jar"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · जार",
+   "en": "Premium dhoop sticks · jar"
+  },
+  "description": {
+   "mr": "देवतेच्या चित्रासह सुंदर जारमध्ये चाफा प्रीमियम धूप स्टिक. रोजच्या पूजेसाठी व सणांसाठी.",
+   "en": "Premium Chafa dhoop sticks in a decorated jar."
+  },
+  "fragrance": "chafa",
+  "benefits": [
+   "गोड व मऊ सुगंध",
+   "देवपूजा व धार्मिक विधींसाठी",
+   "सकारात्मक व आनंदी वातावरण"
+  ],
+  "image": "/images/products/dhoop-jar-chafa.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 27,
+  "active": true
+ },
+ {
+  "slug": "dhoop-jar-gulab",
+  "category": "dhoop",
+  "subtype": "jar",
+  "name": {
+   "mr": "गुलाब धूप जार",
+   "en": "Rose Dhoop Jar"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · जार",
+   "en": "Premium dhoop sticks · jar"
+  },
+  "description": {
+   "mr": "देवतेच्या चित्रासह सुंदर जारमध्ये गुलाब प्रीमियम धूप स्टिक. रोजच्या पूजेसाठी व सणांसाठी.",
+   "en": "Premium Rose dhoop sticks in a decorated jar."
+  },
+  "fragrance": "gulab",
+  "benefits": [
+   "प्रसन्न व गोड सुगंध, सकारात्मक ऊर्जा",
+   "ध्यानासाठी उपयुक्त, मूड सुधारतो",
+   "देवपूजेत भक्तिभाव वाढवतो"
+  ],
+  "image": "/images/products/dhoop-jar-gulab.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 28,
+  "active": true
+ },
+ {
+  "slug": "dhoop-jar-mogra",
+  "category": "dhoop",
+  "subtype": "jar",
+  "name": {
+   "mr": "मोगरा धूप जार",
+   "en": "Mogra · Jasmine Dhoop Jar"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · जार",
+   "en": "Premium dhoop sticks · jar"
+  },
+  "description": {
+   "mr": "देवतेच्या चित्रासह सुंदर जारमध्ये मोगरा प्रीमियम धूप स्टिक. रोजच्या पूजेसाठी व सणांसाठी.",
+   "en": "Premium Mogra · Jasmine dhoop sticks in a decorated jar."
+  },
+  "fragrance": "mogra",
+  "benefits": [
+   "गोड व मोहक, ताजातवाना सुगंध",
+   "मन शांत व प्रसन्न ठेवतो",
+   "रात्री वापरल्यास चांगली झोप"
+  ],
+  "image": "/images/products/dhoop-jar-mogra.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 29,
+  "active": true
+ },
+ {
+  "slug": "dhoop-jar-rui",
+  "category": "dhoop",
+  "subtype": "jar",
+  "name": {
+   "mr": "रुई धूप जार",
+   "en": "Rui · Aak Dhoop Jar"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · जार",
+   "en": "Premium dhoop sticks · jar"
+  },
+  "description": {
+   "mr": "देवतेच्या चित्रासह सुंदर जारमध्ये रुई प्रीमियम धूप स्टिक. रोजच्या पूजेसाठी व सणांसाठी.",
+   "en": "Premium Rui · Aak dhoop sticks in a decorated jar."
+  },
+  "fragrance": "rui",
+  "benefits": [
+   "रुई वनस्पतीपासून तयार",
+   "शिवपूजेसाठी विशेष वापर",
+   "कीटक दूर ठेवण्यास मदत"
+  ],
+  "image": "/images/products/dhoop-jar-rui.jpg",
+  "gallery": [
+   "/images/gallery/dhoop-jar-rui-pair.jpg"
+  ],
+  "priceNote": null,
+  "featured": true,
+  "sort": 30,
+  "active": true
+ },
+ {
+  "slug": "cup-dhoop",
+  "category": "cup",
+  "subtype": "box",
+  "name": {
+   "mr": "प्रीमियम कप धूप",
+   "en": "Premium Cup Dhoop"
+  },
+  "tagline": {
+   "mr": "कोळशासह · २+ तास",
+   "en": "With charcoal · 2+ hours"
+  },
+  "description": {
+   "mr": "बहुरंगी प्रीमियम कप धूप, सोबत कोळसा. एक कप २ तासांपेक्षा जास्त वेळ सुगंध देतो. पूजा, होम व सणांसाठी.",
+   "en": "Multicolour premium cup dhoop with charcoal roll. Each cup burns for over 2 hours."
+  },
+  "fragrance": null,
+  "benefits": [
+   "२+ तास जळतो",
+   "सोबत कोळसा रोल",
+   "बहुरंगी कप, विविध सुगंध"
+  ],
+  "image": "/images/products/cup-dhoop.jpg",
+  "gallery": [
+   "/images/gallery/cup-dhoop-open.jpg",
+   "/images/gallery/cup-dhoop-closeup.jpg",
+   "/images/gallery/cup-dhoop-charcoal.jpg",
+   "/images/gallery/cup-dhoop-open-2.jpg"
+  ],
+  "priceNote": null,
+  "featured": true,
+  "sort": 31,
+  "active": true
+ },
+ {
+  "slug": "kapur",
+  "category": "puja",
+  "subtype": "pack",
+  "name": {
+   "mr": "कापूर",
+   "en": "Kapur · Camphor"
+  },
+  "tagline": {
+   "mr": "पूजा साहित्य",
+   "en": "Puja sahitya"
+  },
+  "description": {
+   "mr": "आरती व पूजेसाठी शुद्ध कापूर, सोयीच्या जारमध्ये.",
+   "en": "Pure camphor tablets for aarti, in a handy jar."
+  },
+  "fragrance": null,
+  "benefits": [
+   "आरतीसाठी स्वच्छ ज्योत",
+   "वातावरण शुद्ध ठेवतो"
+  ],
+  "image": "/images/products/kapur.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": true,
+  "sort": 32,
+  "active": true
+ },
+ {
+  "slug": "phulvat",
+  "category": "puja",
+  "subtype": "pack",
+  "name": {
+   "mr": "फुलवात",
+   "en": "Phulvat · Cotton wicks"
+  },
+  "tagline": {
+   "mr": "पूजा साहित्य",
+   "en": "Puja sahitya"
+  },
+  "description": {
+   "mr": "कापसाच्या मऊ, एकसारख्या फुलवाती. निरांजन व दिव्यासाठी.",
+   "en": "Soft cotton flower wicks for niranjan and diyas."
+  },
+  "fragrance": null,
+  "benefits": [
+   "एकसारखी जळणारी ज्योत",
+   "मऊ कापूस"
+  ],
+  "image": "/images/products/phulvat.jpg",
+  "gallery": [
+   "/images/gallery/phulvat-2.jpg"
+  ],
+  "priceNote": null,
+  "featured": true,
+  "sort": 33,
+  "active": true
+ },
+ {
+  "slug": "samai-vat",
+  "category": "puja",
+  "subtype": "pack",
+  "name": {
+   "mr": "समई वात",
+   "en": "Samai Vat · Long wicks"
+  },
+  "tagline": {
+   "mr": "पूजा साहित्य",
+   "en": "Puja sahitya"
+  },
+  "description": {
+   "mr": "समईसाठी लांब कापसाच्या वाती, दीर्घकाळ जळणाऱ्या.",
+   "en": "Long cotton wicks for samai lamps."
+  },
+  "fragrance": null,
+  "benefits": [
+   "दीर्घकाळ जळते",
+   "समई व दिव्यासाठी"
+  ],
+  "image": "/images/products/samai-vat.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": true,
+  "sort": 34,
+  "active": true
+ },
+ {
+  "slug": "ood",
+  "category": "puja",
+  "subtype": "pack",
+  "name": {
+   "mr": "ऊद (मिक्स)",
+   "en": "Ood · Mix"
+  },
+  "tagline": {
+   "mr": "पूजा साहित्य",
+   "en": "Puja sahitya"
+  },
+  "description": {
+   "mr": "धूप व होमासाठी सुगंधी ऊद मिश्रण.",
+   "en": "Fragrant ood mix for dhoop and havan."
+  },
+  "fragrance": null,
+  "benefits": [
+   "होम व धूपासाठी"
+  ],
+  "image": "/images/products/ood.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 35,
+  "active": true
+ },
+ {
+  "slug": "gulal",
+  "category": "puja",
+  "subtype": "pack",
+  "name": {
+   "mr": "गुलाल",
+   "en": "Gulal"
+  },
+  "tagline": {
+   "mr": "पूजा साहित्य",
+   "en": "Puja sahitya"
+  },
+  "description": {
+   "mr": "पूजा, उत्सव व मिरवणुकीसाठी गुलाल.",
+   "en": "Gulal for puja and festivals."
+  },
+  "fragrance": null,
+  "benefits": [
+   "पूजा व उत्सवासाठी"
+  ],
+  "image": "/images/products/gulal.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 36,
+  "active": true
+ },
+ {
+  "slug": "bhandara",
+  "category": "puja",
+  "subtype": "pack",
+  "name": {
+   "mr": "भंडारा",
+   "en": "Bhandara"
+  },
+  "tagline": {
+   "mr": "पूजा साहित्य",
+   "en": "Puja sahitya"
+  },
+  "description": {
+   "mr": "देवपूजेसाठी पिवळा भंडारा.",
+   "en": "Yellow bhandara for puja."
+  },
+  "fragrance": null,
+  "benefits": [
+   "देवपूजेसाठी"
+  ],
+  "image": "/images/products/bhandara.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 37,
+  "active": true
+ },
+ {
+  "slug": "rangoli",
+  "category": "puja",
+  "subtype": "pack",
+  "name": {
+   "mr": "रांगोळी",
+   "en": "Rangoli"
+  },
+  "tagline": {
+   "mr": "पूजा साहित्य",
+   "en": "Puja sahitya"
+  },
+  "description": {
+   "mr": "सण-उत्सवासाठी रंगीबेरंगी रांगोळी.",
+   "en": "Colourful rangoli for festivals."
+  },
+  "fragrance": null,
+  "benefits": [
+   "विविध रंग"
+  ],
+  "image": "/images/products/rangoli.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 38,
+  "active": true
+ }
+]
