@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useCart } from '@/lib/cart';
 import { useLang } from '@/lib/i18n';
-import { submitEnquiry } from '@/lib/api';
+import { submitEnquiry } from '@/lib/enquiry';
 import { useContent, useWa } from '@/lib/content-context';
 import { media } from '@/lib/media';
 import { rupees } from '@/lib/price';

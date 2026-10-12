@@ -34,10 +34,7 @@ export const setToken = (t: string) => {
   }
 };
 
-export const apiConfigured = () => Boolean(API_URL);
-
 export async function adminFetch<T = unknown>(path: string, init: RequestInit = {}): Promise<T> {
-  if (!API_URL) throw new ApiError('Backend URL missing: add NEXT_PUBLIC_API_URL=http://localhost:5000 to frontend/.env.local and restart npm run dev', 0);
   const headers = new Headers(init.headers);
   const token = getToken();
   if (token) headers.set('Authorization', `Bearer ${token}`);
@@ -46,7 +43,7 @@ export async function adminFetch<T = unknown>(path: string, init: RequestInit = 
   try {
     res = await fetch(`${API_URL}${path}`, { ...init, headers, cache: 'no-store' });
   } catch {
-    throw new ApiError(`Cannot reach the backend at ${API_URL}. Start it with "npm run dev" in the backend folder.`, 0);
+    throw new ApiError('Cannot reach the server. Check your internet connection and try again.', 0);
   }
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
@@ -73,10 +70,39 @@ export function logout() {
   location.href = '/admin/login';
 }
 
+const MAX_UPLOAD = 5 * 1024 * 1024;
+const UPLOAD_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/avif'];
+
+type UploadSignature = { cloudName: string; apiKey: string; timestamp: number; folder: string; allowedFormats: string; signature: string };
+
+/**
+ * Uploads photos straight from the browser to Cloudinary (signed by /api/admin/uploads/sign)
+ * and returns their https URLs.
+ */
 export async function uploadImages(files: FileList | File[]): Promise<string[]> {
-  const fd = new FormData();
-  Array.from(files).forEach((f) => fd.append('files', f));
-  const { urls } = await adminFetch<{ urls: string[] }>('/api/admin/uploads', { method: 'POST', body: fd });
+  const list = Array.from(files).slice(0, 10);
+  const bad = list.find((f) => !UPLOAD_TYPES.includes(f.type) || f.size > MAX_UPLOAD);
+  if (bad) throw new ApiError(`${bad.name}: upload JPG, PNG, WebP or AVIF images up to 5 MB`, 400);
+  const sig = await adminFetch<UploadSignature>('/api/admin/uploads/sign', { method: 'POST' });
+  const urls: string[] = [];
+  for (const file of list) {
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('api_key', sig.apiKey);
+    fd.append('timestamp', String(sig.timestamp));
+    fd.append('folder', sig.folder);
+    fd.append('allowed_formats', sig.allowedFormats);
+    fd.append('signature', sig.signature);
+    let res: Response;
+    try {
+      res = await fetch(`https://api.cloudinary.com/v1_1/${sig.cloudName}/image/upload`, { method: 'POST', body: fd });
+    } catch {
+      throw new ApiError('Cannot reach Cloudinary. Check your internet connection and try again.', 0);
+    }
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.secure_url) throw new ApiError(data.error?.message || `Upload failed (${res.status})`, res.status);
+    urls.push(data.secure_url);
+  }
   return urls;
 }
 

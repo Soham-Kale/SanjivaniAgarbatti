@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useLang } from '@/lib/i18n';
-import { submitEnquiry } from '@/lib/api';
+import { submitEnquiry } from '@/lib/enquiry';
 import { useContent, useWa } from '@/lib/content-context';
 import type { EnquiryType, I18n } from '@/lib/types';
 

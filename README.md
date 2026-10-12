@@ -48,70 +48,89 @@ Content is Marathi-first, with an English toggle in the header (remembered per b
 
 ```
 sanjivani-agarbatti/
-├── frontend/   Next.js 14 (App Router) + TypeScript + Tailwind CSS + Framer Motion + Three.js
-├── backend/    Node.js + Express + MongoDB (Mongoose): products and enquiries API
+├── frontend/   Next.js 14 (App Router) + TypeScript + Tailwind CSS + Framer Motion + Three.js,
+│               with the API built in (MongoDB via Mongoose, Cloudinary, Resend)
+├── backend/    old Express API, no longer used (safe to delete)
 └── docker-compose.yml   optional local MongoDB
 ```
+
+## How it is built
+
+Everything is one Next.js app in `frontend/`: the website, the admin panel and the API
+(`frontend/src/app/api`, server code in `frontend/src/server`). It deploys to Vercel as a
+single project. The old `backend/` (Express) folder is no longer used and can be deleted.
+
+| Service | Used for | Free plan |
+| --- | --- | --- |
+| MongoDB Atlas | products, prices, website content, enquiries, admin accounts | M0 cluster |
+| Cloudinary | product photos uploaded in the admin panel | yes |
+| Resend | emails each franchise / dealer / contact / order enquiry to the company | 100 emails a day |
+
+The site also runs **without** them: products then come from `frontend/src/data/products.json`,
+and the enquiry forms offer to send the details on WhatsApp instead. `/api/health` shows which
+services are set up.
 
 ## What you need
 
 - **Node.js 18.18 or newer** (20 LTS recommended): https://nodejs.org
-- **MongoDB**, one of:
-  - MongoDB Community Server installed locally, or
-  - Docker: `docker compose up -d` in this folder, or
-  - a free MongoDB Atlas cluster (copy its connection string into `backend/.env`).
-
-The frontend also runs **without** the backend: products then come from
-`frontend/src/data/products.json`, and the enquiry forms offer to send the details on WhatsApp
-instead.
+- A **MongoDB** database: a free MongoDB Atlas cluster (recommended, same as on Vercel), or
+  MongoDB installed locally, or Docker (`docker compose up -d` in this folder,
+  then `MONGODB_URI=mongodb://127.0.0.1:27017/sanjivani`).
+- Optional: a Cloudinary account (photo uploads) and a Resend account (enquiry emails).
 
 ## Setup and run (first time)
 
-Nothing has been installed yet. Run these commands yourself in a terminal.
-
-### 1. Backend (API on http://localhost:5000)
-
-```bash
-cd backend
-npm install
-cp .env.example .env          # Windows: copy .env.example .env
-# edit .env: set MONGODB_URI, a long random JWT_SECRET, ADMIN_EMAIL and ADMIN_PASSWORD
-npm run seed                  # loads the products into MongoDB (keeps admin edits)
-npm run dev                   # starts the API with auto-reload
-```
-
-Check it: open http://localhost:5000/api/health and http://localhost:5000/api/products
-
-If you already ran `npm install` in `backend` before the admin panel was added, run it again: it
-adds `bcryptjs`, `jsonwebtoken` and `multer`.
-
-### 2. Frontend (website on http://localhost:3000)
-
-If you already ran `npm install` before the 3D upgrade, run it again: it adds
-`@react-three/fiber`, `@react-three/drei` and `maath`.
-
-In a second terminal:
+Run these commands yourself in a terminal:
 
 ```bash
 cd frontend
 npm install
 cp .env.example .env.local    # Windows: copy .env.example .env.local
+# edit .env.local: MONGODB_URI, a long random JWT_SECRET, ADMIN_EMAIL, ADMIN_PASSWORD,
+# CLOUDINARY_URL, RESEND_API_KEY and ENQUIRY_EMAIL_TO (each line is explained in the file)
 npm run dev
 ```
 
-Open http://localhost:3000
+Open http://localhost:3000 (website) and http://localhost:3000/admin (admin panel). Only one
+terminal is needed now.
+
+The first time the site reads an empty database it copies in the 41 products from
+`src/data/products.json`. `npm run seed` does the same by hand (it only adds missing products;
+`npm run seed -- --force` overwrites them with the file and erases admin edits to those products).
+
+Coming from the old two-folder setup: copy `MONGODB_URI`, `JWT_SECRET`, `ADMIN_EMAIL` and
+`ADMIN_PASSWORD` from `backend/.env` into `frontend/.env.local`, and remove the
+`NEXT_PUBLIC_API_URL` line there. Photos uploaded earlier are in `backend/uploads`: copy that
+folder to `frontend/public/uploads` so they keep showing.
 
 ### Production build
 
 ```bash
 cd frontend && npm run build && npm start      # serves on port 3000
-cd backend  && npm start                       # serves on port 5000
 ```
+
+## Deploy on Vercel
+
+1. Push the project to GitHub, then in Vercel choose **Add New > Project** and import it.
+2. Set **Root Directory** to `frontend`. Vercel detects Next.js; keep the default build settings.
+3. Under **Environment Variables**, add every line of `frontend/.env.example` with your real
+   values, and set `NEXT_PUBLIC_SITE_URL` to the site address (for example
+   `https://sanjivaniagarbatti.com`). Leave `NEXT_PUBLIC_API_URL` out.
+4. **MongoDB Atlas > Network Access**: add `0.0.0.0/0` (Vercel servers have no fixed address).
+   Use a database user with a strong password; it lives only in `MONGODB_URI`.
+5. **Resend**: the test sender `onboarding@resend.dev` only delivers to the email you signed up
+   with. To send to any address, verify your domain in Resend (Domains) and set
+   `ENQUIRY_EMAIL_FROM`, e.g. `Sanjivani Website <enquiry@sanjivaniagarbatti.com>`.
+6. Deploy, then open `https://<your-site>/api/health`: it should show
+   `"db":"ok","auth":true,"uploads":true,"email":true`.
+7. Add your domain under **Settings > Domains**.
+
+After changing an environment variable on Vercel, redeploy for it to take effect.
 
 ## Admin panel (`/admin`)
 
-Open http://localhost:3000/admin and sign in. The panel is in Marathi and English and works on
-phone and desktop. Every save refreshes the website straight away.
+Open `/admin` and sign in. The panel is in Marathi and English and works on phone and desktop.
+Every save refreshes the website straight away.
 
 | Section | What the admin can do |
 | --- | --- |
@@ -121,25 +140,22 @@ phone and desktop. Every save refreshes the website straight away.
 | Orders & enquiries | Filter by type and status, change status, add notes, delete, download CSV for Excel |
 | Account | Change the admin password (signs out other devices) |
 
-**First admin.** Set `JWT_SECRET`, `ADMIN_EMAIL` and `ADMIN_PASSWORD` (10+ characters) in
-`backend/.env` and start the API: the account is created once, if no admin exists. Then remove
-`ADMIN_PASSWORD` from `.env`. Or create/reset an admin any time:
+**First admin.** Set `JWT_SECRET`, `ADMIN_EMAIL` and `ADMIN_PASSWORD` (10+ characters): the
+account is created at the first sign-in, if no admin exists. Then change the password in
+Account and remove `ADMIN_PASSWORD`. Or create/reset an admin any time:
 
 ```bash
-cd backend
+cd frontend
 npm run create-admin -- owner@example.com "a-long-password"
 ```
 
 Passwords are stored hashed (bcrypt); sign-in is limited to 10 tries per 15 minutes and gives a
-12-hour token kept only in that browser tab. Uploaded photos go to `backend/uploads` (served at
-`/uploads`; JPG/PNG/WebP/AVIF, max 5 MB) — back this folder up along with MongoDB.
+12-hour token kept only in that browser tab. Photos go straight from the browser to Cloudinary
+(JPG/PNG/WebP/AVIF, max 5 MB, folder `CLOUDINARY_FOLDER`).
 
 Prices: a product with no price shows "price on enquiry"; with a price, cards and the product page
 show it (MRP struck through, % off) and the cart shows totals in the WhatsApp order. Content you
-have not edited keeps the built-in text, so the site still works if the API is offline.
-
-`npm run seed` only adds missing products; `npm run seed -- --force` overwrites products with the
-JSON file (this erases admin edits to those products).
+have not edited keeps the built-in text, so the site still works if the database is offline.
 
 ## Pages
 
@@ -154,23 +170,25 @@ JSON file (this erases admin edits to those products).
 
 Floating WhatsApp and call buttons are on every page. `sitemap.xml` and `robots.txt` are generated.
 
-## API (backend)
+## API (`frontend/src/app/api`)
 
 | Method | Path | Notes |
 | --- | --- | --- |
-| GET | `/api/health` | server + DB status |
-| GET | `/api/products` | `?category=daily\|premium\|dhoop\|cup\|puja`, `?fragrance=chandan`, `?featured=true` |
+| GET | `/api/health` | which services are set up (database, sign-in, uploads, email) |
+| GET | `/api/products` | `?category=daily\|premium\|dhoop\|cup\|puja\|masala`, `?fragrance=chandan`, `?featured=true` |
 | GET | `/api/products/:slug` | one product |
+| GET | `/api/content` | the edited website content |
 | POST | `/api/enquiries/franchise` | `name, mobile, city, plan (mini\|franchise\|warehouse), hasShop, investment, message` |
 | POST | `/api/enquiries/dealer` | `name, mobile, city, shopName, businessType, products, message` |
 | POST | `/api/enquiries/contact` | `name, mobile, city?, message` |
 | POST | `/api/enquiries/order` | `name, mobile, city?, message, items: [{ slug, name, qty }]` |
 
-Enquiries are validated (10-digit Indian mobile), rate-limited (8 per IP per 15 min) and have a
-honeypot field against bots.
+Enquiries are validated (10-digit Indian mobile), rate-limited (8 per visitor per 15 min, counted
+per server instance) and have a honeypot field against bots. Each one is saved for the admin panel
+and emailed to `ENQUIRY_EMAIL_TO`; if the email fails it is logged and the enquiry is still saved.
 
 **Sign-in** (`/api/auth`): `POST /login {email, password}` returns a token; `GET /me`;
-`POST /password {currentPassword, newPassword}`. `GET /api/content` returns the edited website content (public).
+`POST /password {currentPassword, newPassword}`.
 
 **Admin endpoints** need `Authorization: Bearer <token>` (or the optional `x-admin-key` header):
 
@@ -184,7 +202,8 @@ honeypot field against bots.
 | GET/PUT | `/api/admin/products/:slug` | one product / update (any field, incl. `price`, `mrp`, `packSize`, `inStock`) |
 | DELETE | `/api/admin/products/:slug` | hide; `?permanent=true` deletes |
 | GET/PUT | `/api/admin/content` | website content `{ data }` |
-| POST | `/api/admin/uploads` | multipart field `files` (up to 10 images) → `{ urls }` |
+| POST | `/api/admin/uploads/sign` | signed fields for a direct upload to Cloudinary |
+| POST | `/api/revalidate` | refresh cached pages |
 
 ## Images
 
@@ -194,10 +213,8 @@ All product photos are in `frontend/public/images/` (resized to max 1200 px, nam
 - `gallery/` extra angles, the shop front, cup dhoop open box
 - `brand/` logo, founders, visiting card
 
-To change a product photo, replace the file with the same name, or edit `image` in
-`backend/src/data/products.json` and run `npm run seed` again. Keep
-`frontend/src/data/products.json` in sync (it is the offline fallback); copying the backend file
-over it is enough.
+To change a product photo, upload a new one in the admin panel, or replace the file with the same
+name. `frontend/src/data/products.json` is the starting catalogue and the offline fallback.
 
 ## Where to edit things
 
@@ -206,6 +223,7 @@ over it is enough.
 - Fragrance explorer text and smoke colours: `frontend/src/lib/fragrances.ts`
 - Colours and fonts (Divya palette): `frontend/tailwind.config.ts`
 - 3D incense scene: `frontend/src/components/IncenseScene.tsx`
+- Server code (database, sign-in, validation, email, uploads): `frontend/src/server/`
 
 ## Before going live (open items from the client requirements)
 
@@ -215,7 +233,6 @@ over it is enough.
 - Photos for Z-Black, Lavender, Masala agarbatti and Jaswand pouch (not shown yet).
 - Whether franchise amounts are shown publicly. The franchise copy makes **no profit or income
   promises** and shows the no-guarantee note from the agreement; keep it that way.
-- Enquiry notifications: add email (SMTP / Resend) or WhatsApp Cloud API at the `TODO` in
-  `backend/src/routes/enquiries.js`.
-- Use a long random `JWT_SECRET`, serve the site and API over HTTPS, and back up MongoDB and `backend/uploads`.
+- Enquiry emails: set up Resend and verify the company domain (see Deploy on Vercel).
+- Use a long random `JWT_SECRET` and turn on Atlas backups (or export the data regularly).
 - Set `NEXT_PUBLIC_SITE_URL` to the real domain for correct sitemap and share links.

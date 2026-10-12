@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { adminFetch, apiConfigured, getToken, logout } from '@/lib/admin/api';
+import { adminFetch, getToken, logout } from '@/lib/admin/api';
 
 const NAV = [
   { href: '/admin', mr: 'डॅशबोर्ड', en: 'Dashboard', icon: '◧' },
@@ -36,16 +36,6 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
 
   if (isLogin) return <div className="min-h-screen bg-ivory-2">{children}</div>;
 
-  if (!apiConfigured()) {
-    return (
-      <div className="wrap py-20">
-        <h1 className="text-wood">Admin panel</h1>
-        <p className="mt-3">
-          Set <code>NEXT_PUBLIC_API_URL</code> in <code>frontend/.env.local</code> (for example <code>http://localhost:5000</code>) and start the backend.
-        </p>
-      </div>
-    );
-  }
   if (!me) return <div className="grid min-h-screen place-items-center text-stone">Loading…</div>;
 
   const active = (href: string) => (href === '/admin' ? path === '/admin' : path.startsWith(href));
