@@ -5,11 +5,15 @@ import FranchiseInfo from '@/components/FranchiseInfo';
 import EnquiryForm from '@/components/EnquiryForm';
 import T from '@/components/T';
 import { getContent } from '@/lib/api';
+import { FRANCHISE_FAQ } from '@/lib/faq';
+import { breadcrumbJsonLd, faqJsonLd, ldJson, pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'फ्रँचायझी',
-  description: 'संजीवनी अगरबत्ती फ्रँचायझी: मिनी, संजीवनी फ्रँचायझी व वेअरहाऊस प्लॅन. संपूर्ण महाराष्ट्रात उपलब्ध.',
-};
+export const metadata: Metadata = pageMeta({
+  title: 'फ्रँचायझी · Agarbatti Franchise in Maharashtra',
+  description:
+    'संजीवनी अगरबत्ती फ्रँचायझी: मिनी, संजीवनी फ्रँचायझी व वेअरहाऊस प्लॅन, संपूर्ण महाराष्ट्रात. Sanjivani Agarbatti franchise: Mini, Franchise and Warehouse plans across Maharashtra. No profit guarantee.',
+  path: '/franchise',
+});
 
 const PLAN_IDS = ['mini', 'franchise', 'warehouse'];
 
@@ -18,8 +22,13 @@ export default async function FranchisePage({ searchParams }: { searchParams: { 
   const plan = PLAN_IDS.includes(searchParams.plan ?? '') ? searchParams.plan! : 'franchise';
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={ldJson(faqJsonLd(FRANCHISE_FAQ.map((f) => ({ q: `${f.q.mr} (${f.q.en})`, a: `${f.a.mr} ${f.a.en}` }))))} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={ldJson(breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Franchise', path: '/franchise' }]))} />
       <PageHero eyebrow={franchise.eyebrow} title={franchise.title} text={franchise.text} />
-      <section className="wrap relative z-10 -mt-10 pb-20">
+      <section className="wrap relative z-10 -mt-10 pb-20" aria-labelledby="plans-title">
+        <h2 id="plans-title" className="sr-only">
+          <T mr="फ्रँचायझी प्लॅन" en="Franchise plans" />
+        </h2>
         <Plans withCta />
         <Steps />
         <NoProfitNote />

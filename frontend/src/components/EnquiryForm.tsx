@@ -158,7 +158,7 @@ export default function EnquiryForm({ type, defaultPlan = 'franchise' }: { type:
       </div>
       <p className="text-[.8rem] text-stone sm:col-span-2">
         {t({ mr: 'किंवा थेट कॉल करा:', en: 'Or call directly:' })}{' '}
-        <a href={`tel:${site.phones[0]?.tel}`} className="text-charcoal">{site.phones[0]?.display}</a>
+        <a href={`tel:${site.phones[0]?.tel}`} className="font-semibold text-charcoal underline underline-offset-2">{site.phones[0]?.display}</a>
       </p>
     </form>
   );

@@ -3,11 +3,14 @@ import PageHero from '@/components/PageHero';
 import EnquiryForm from '@/components/EnquiryForm';
 import ContactCards from '@/components/ContactCards';
 import T from '@/components/T';
+import { pageMeta } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'संपर्क व डीलर चौकशी',
-  description: 'संजीवनी अगरबत्ती, माळेवाडी-अकलूज. फोन, WhatsApp, पत्ता आणि डीलर / होलसेल चौकशी.',
-};
+export const metadata: Metadata = pageMeta({
+  title: 'संपर्क व डीलर चौकशी · Contact Sanjivani Agarbatti',
+  description:
+    'संजीवनी अगरबत्ती, माळेवाडी-अकलूज (जि. सोलापूर): फोन +91 73871 42494, WhatsApp, पत्ता आणि डीलर / होलसेल चौकशी. Contact Sanjivani Agarbatti, Akluj for orders, wholesale rates and dealership.',
+  path: '/contact',
+});
 
 export default function ContactPage() {
   return (

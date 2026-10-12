@@ -4,6 +4,12 @@ import { dbConfigured } from './env';
 import { connectDB } from './db';
 
 export const json = (data: unknown, status = 200) => NextResponse.json(data, { status });
+/** Public data the CDN may serve for a minute (and a few minutes stale while it refreshes). */
+export const cached = (data: unknown) => {
+  const res = json(data);
+  res.headers.set('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=300');
+  return res;
+};
 export const fail = (status: number, error: string, fields?: Record<string, string>) => json(fields ? { error, fields } : { error }, status);
 
 /** Mongoose documents to plain JSON (ObjectIds and dates become strings). */

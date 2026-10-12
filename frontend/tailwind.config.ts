@@ -25,8 +25,9 @@ const config: Config = {
         lotus: '#F59BC0',
       },
       fontFamily: {
-        display: ['var(--font-display)', 'Tiro Devanagari Marathi', 'Noto Serif Devanagari', 'Georgia', 'serif'],
-        body: ['var(--font-body)', 'Noto Sans Devanagari', 'Mukta', 'system-ui', 'sans-serif'],
+        // One family everywhere. Noto Sans Devanagari / Mukta only apply if Poppins fails to load.
+        display: ['Poppins', 'Noto Sans Devanagari', 'Mukta', 'system-ui', 'sans-serif'],
+        body: ['Poppins', 'Noto Sans Devanagari', 'Mukta', 'system-ui', 'sans-serif'],
       },
       maxWidth: { wrap: '1280px' },
       borderColor: { DEFAULT: 'rgba(30,23,48,.12)' },

@@ -8,9 +8,9 @@ export type ModelSpec =
   | { kind: 'box'; texture: string; aspect: number; side: string }
   | { kind: 'pouch'; texture: string; aspect: number };
 
-const jar = (id: string, aspect: number, sticks: string): ModelSpec => ({ kind: 'jar', texture: `/textures/premium-jar-${id}.jpg`, aspect, sticks });
-const box = (id: string, aspect: number, side: string): ModelSpec => ({ kind: 'box', texture: `/textures/dhoop-box-${id}.jpg`, aspect, side });
-const pouch = (id: string, aspect: number): ModelSpec => ({ kind: 'pouch', texture: `/textures/pouch-${id}.jpg`, aspect });
+const jar = (id: string, aspect: number, sticks: string): ModelSpec => ({ kind: 'jar', texture: `/textures/premium-jar-${id}.webp`, aspect, sticks });
+const box = (id: string, aspect: number, side: string): ModelSpec => ({ kind: 'box', texture: `/textures/dhoop-box-${id}.webp`, aspect, side });
+const pouch = (id: string, aspect: number): ModelSpec => ({ kind: 'pouch', texture: `/textures/pouch-${id}.webp`, aspect });
 
 // aspect = texture height / width
 export const MODELS: Record<string, ModelSpec> = {

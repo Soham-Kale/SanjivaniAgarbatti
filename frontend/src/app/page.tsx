@@ -9,7 +9,11 @@ import FragranceExplorer from '@/components/FragranceExplorer';
 import WhyUs from '@/components/WhyUs';
 import FranchiseTeaser from '@/components/home/FranchiseTeaser';
 import ClosingMoment from '@/components/home/ClosingMoment';
+import type { Metadata } from 'next';
 import { getProducts } from '@/lib/api';
+import { abs } from '@/lib/seo';
+
+export const metadata: Metadata = { alternates: { canonical: abs('/') }, openGraph: { url: abs('/') } };
 
 // Section 8 (customer reviews) is intentionally absent: there are no genuine reviews yet.
 export default async function Home() {

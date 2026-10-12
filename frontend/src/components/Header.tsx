@@ -11,11 +11,11 @@ import { NAV } from '@/lib/site';
 
 export function Brand({ dark = false }: { dark?: boolean }) {
   return (
-    <Link href="/" className="group flex items-center gap-3" aria-label="संजीवनी मुख्य पान">
+    <Link href="/" className="group flex items-center gap-3">
       <Image src="/images/brand/logo-180.png" alt="" width={48} height={48} className="h-12 w-12 rounded-full bg-ivory object-contain ring-2 ring-gold/50 transition-transform duration-700 ease-soft group-hover:rotate-[360deg]" priority />
       <span className="leading-none">
         <b className={`block font-display text-[1.55rem] font-normal ${dark ? 'text-ivory' : 'text-wood'}`}>संजीवनी</b>
-        <small className={`mt-0.5 hidden text-[.62rem] sm:block font-semibold tracking-[.24em] ${dark ? 'text-gold-light' : 'text-gold-deep'}`}>INCENSE STICKS</small>
+        <small className={`mt-0.5 hidden text-[.62rem] sm:block keep-tracking font-semibold tracking-[.24em] ${dark ? 'text-gold-light' : 'text-gold-deep'}`}>INCENSE STICKS</small>
       </span>
     </Link>
   );
@@ -77,11 +77,11 @@ export default function Header() {
             type="button"
             onClick={() => setLang(lang === 'mr' ? 'en' : 'mr')}
             className={`h-11 rounded-full border px-3.5 text-[.82rem] font-semibold ${overHero ? 'border-ivory/30' : 'border-charcoal/15'}`}
-            aria-label={lang === 'mr' ? 'Switch to English' : 'मराठीत पाहा'}
+            aria-label={`मराठी / EN: ${lang === 'mr' ? 'Switch to English' : 'मराठीत पाहा'}`}
           >
-            <span className={lang === 'mr' ? '' : 'opacity-50'}>मराठी</span>
+            <span className={lang === 'mr' ? '' : 'opacity-70'}>मराठी</span>
             <span className="mx-1 opacity-40">/</span>
-            <span className={lang === 'en' ? '' : 'opacity-50'}>EN</span>
+            <span className={lang === 'en' ? '' : 'opacity-70'}>EN</span>
           </button>
           <motion.button
             whileTap={{ scale: 0.92 }}

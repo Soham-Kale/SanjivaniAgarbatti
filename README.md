@@ -21,8 +21,8 @@ Content is Marathi-first, with an English toggle in the header (remembered per b
 - **Product text**: every product has a `uses` field ("what it is for", shown on cards and the
   detail page) and the detail page shows plain "how to use" steps from `frontend/src/lib/usage.ts`.
   The About page gallery gives every photo a caption saying what it shows.
-- **Marathi typography**: *Tiro Devanagari Marathi* for headings (drawn for Marathi, correct ळ/ऱ्
-  and conjuncts) and *Noto Sans Devanagari* for body text, self-hosted by `next/font` at build time.
+- **Typography**: *Poppins* everywhere (headings and body). Poppins includes Devanagari, so Marathi
+  and English share one typeface. Self-hosted from `frontend/public/fonts` (no request to Google).
   Body line-height 1.75 and heading padding keep vowel signs from clipping.
 - **Real 3D** with Three.js + `@react-three/fiber` + `@react-three/drei` + `maath`:
   - Hero: the Kasturi premium jar and Kewda-Bel dhoop box as 3D models inside a turning gold aarti
@@ -115,12 +115,13 @@ cd frontend && npm run build && npm start      # serves on port 3000
 2. Set **Root Directory** to `frontend`. Vercel detects Next.js; keep the default build settings.
 3. Under **Environment Variables**, add every line of `frontend/.env.example` with your real
    values, and set `NEXT_PUBLIC_SITE_URL` to the site address (for example
-   `https://sanjivaniagarbatti.com`). Leave `NEXT_PUBLIC_API_URL` out.
+   `https://sanjivaniagarbatti.in`). Google links and the sitemap use it. Leave
+   `NEXT_PUBLIC_API_URL` out.
 4. **MongoDB Atlas > Network Access**: add `0.0.0.0/0` (Vercel servers have no fixed address).
    Use a database user with a strong password; it lives only in `MONGODB_URI`.
 5. **Resend**: the test sender `onboarding@resend.dev` only delivers to the email you signed up
    with. To send to any address, verify your domain in Resend (Domains) and set
-   `ENQUIRY_EMAIL_FROM`, e.g. `Sanjivani Website <enquiry@sanjivaniagarbatti.com>`.
+   `ENQUIRY_EMAIL_FROM`, e.g. `Sanjivani Website <enquiry@sanjivaniagarbatti.in>`.
 6. Deploy, then open `https://<your-site>/api/health`: it should show
    `"db":"ok","auth":true,"uploads":true,"email":true`.
 7. Add your domain under **Settings > Domains**.
@@ -205,6 +206,46 @@ and emailed to `ENQUIRY_EMAIL_TO`; if the email fails it is logged and the enqui
 | POST | `/api/admin/uploads/sign` | signed fields for a direct upload to Cloudinary |
 | POST | `/api/revalidate` | refresh cached pages |
 
+## Search engines and AI assistants (SEO)
+
+What the site already does (no setup needed):
+
+- Every page has its own Marathi + English title, description, canonical link and share preview
+  (`frontend/src/lib/seo.ts`, share image `public/images/og.jpg`).
+- Structured data (JSON-LD) Google and AI assistants read: the business (LocalBusiness with
+  address, phones, email), **the founders** Somnath P. Ghodake and Onkar D. Thite (Person, linked
+  as founders), the website, every product (with price and stock only when set in the admin panel;
+  no ratings or reviews are invented), breadcrumbs, the product list and the franchise FAQ.
+- `/sitemap.xml` (all pages and products, refreshed hourly), `/robots.txt` (search engines and AI
+  crawlers such as GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot and Google-Extended may read
+  every public page; `/admin` and `/api` are blocked) and `/llms.txt` (a plain summary of the
+  business, founders and products for AI assistants).
+- Missing pages return a real 404, the admin panel is `noindex`, one `h1` per page, alt text on
+  every image.
+- Speed (Lighthouse, local production build): home 84 mobile / 98 desktop, other pages 81–100.
+  The 3D scenes load after the page is ready, and are skipped on phones with data saver, very
+  little memory, or no graphics acceleration (they keep the photo).
+
+No website can guarantee the first result on Google or in ChatGPT. Ranking depends on Google and
+on how many other sites mention Sanjivani. After the site is live on its domain:
+
+1. Set `NEXT_PUBLIC_SITE_URL` on Vercel to the real domain and redeploy.
+2. **Google Search Console** (search.google.com/search-console): add the domain, verify it (DNS
+   record, or put the code in `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`), submit `sitemap.xml`, and
+   use "URL inspection > Request indexing" for the home, about and products pages.
+3. **Google Business Profile** (business.google.com): "Sanjivani Agarbatti", category *Incense
+   supplier* / *Manufacturer*, the same address and phone as the website, photos of the shop and
+   products, and the website link. This is what shows Sanjivani on Google Maps and in "agarbatti
+   near me" searches.
+4. **Bing Webmaster Tools** (bing.com/webmasters): import from Search Console and submit the
+   sitemap. ChatGPT search and Copilot use Bing's index.
+5. Mentions on other sites: IndiaMART, JustDial, TradeIndia, a Facebook and an Instagram page
+   (with the website link in the bio), local news or directories. Keep the name, address and phone
+   exactly the same everywhere. Add the social links to the site afterwards so Google can connect
+   them.
+6. Real customer reviews on the Google Business Profile (ask happy customers and dealers).
+7. Check results with Google's Rich Results Test and PageSpeed Insights.
+
 ## Images
 
 All product photos are in `frontend/public/images/` (resized to max 1200 px, named by product):
@@ -221,7 +262,8 @@ name. `frontend/src/data/products.json` is the starting catalogue and the offlin
 - Day to day: use the admin panel (`/admin`).
 - Built-in default texts (used until edited in the panel): `frontend/src/lib/content.ts`
 - Fragrance explorer text and smoke colours: `frontend/src/lib/fragrances.ts`
-- Colours and fonts (Divya palette): `frontend/tailwind.config.ts`
+- Colours and fonts: `frontend/tailwind.config.ts` (font files: `frontend/src/app/globals.css`)
+- SEO texts and structured data: `frontend/src/lib/seo.ts`
 - 3D incense scene: `frontend/src/components/IncenseScene.tsx`
 - Server code (database, sign-in, validation, email, uploads): `frontend/src/server/`
 

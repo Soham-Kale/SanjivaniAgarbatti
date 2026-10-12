@@ -4,9 +4,10 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { Component, useCallback, useRef, useState } from 'react';
+import { Component, Fragment, useCallback, useRef, useState } from 'react';
 import Aurora from './fx/Aurora';
 import { useLang } from '@/lib/i18n';
+import { useIdleMount } from '@/lib/use-mount-3d';
 import { useContent } from '@/lib/content-context';
 import { media } from '@/lib/media';
 
@@ -45,6 +46,7 @@ export default function Hero() {
   const { hero } = useContent();
   const reduce = useReducedMotion();
   const [ready, setReady] = useState(false);
+  const show3d = useIdleMount();
   const onReady = useCallback(() => setReady(true), []);
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
@@ -77,7 +79,9 @@ export default function Hero() {
           </motion.div>
           <h1 id="hero-title" className="mt-6 text-[clamp(3rem,7.6vw,6.2rem)] leading-[1.12] text-ivory">
             {words.map((w, i) => (
-              <span key={w + i} className="mr-[.25em] inline-block overflow-hidden pb-[.14em] pt-[.08em] align-top">
+              <Fragment key={w + i}>
+              {i > 0 && ' '}
+              <span className="inline-block overflow-hidden pb-[.14em] pt-[.08em] align-top">
                 <motion.span
                   className={`inline-block ${i === 1 ? 'text-gradient' : ''}`}
                   initial={reduce ? false : { y: '115%', rotate: 6 }}
@@ -87,6 +91,7 @@ export default function Hero() {
                   {w}
                 </motion.span>
               </span>
+              </Fragment>
             ))}
           </h1>
           <motion.p className="mt-3 font-display text-[1.25rem] italic text-gold-light/90" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }}>
@@ -116,9 +121,11 @@ export default function Hero() {
               <Image src={media(hero.poster)} alt="" fill priority sizes="340px" className="object-cover" />
             </div>
           </motion.div>
-          <SceneBoundary>
-            <IncenseScene onReady={onReady} progress={scrollYProgress} />
-          </SceneBoundary>
+          {show3d && (
+            <SceneBoundary>
+              <IncenseScene onReady={onReady} progress={scrollYProgress} />
+            </SceneBoundary>
+          )}
           <motion.div
             className="pointer-events-none absolute right-2 top-6 hidden h-32 w-32 lg:block"
             initial={reduce ? false : { opacity: 0, scale: 0.6, rotate: -40 }}

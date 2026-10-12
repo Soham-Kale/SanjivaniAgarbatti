@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { AnimatePresence, motion, useInView, useMotionValueEvent, useScroll } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import Aurora from '../fx/Aurora';
 import { useLang } from '@/lib/i18n';
@@ -52,6 +52,7 @@ export default function Showcase() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
   const [i, setI] = useState(0);
   const [low, setLow] = useState(false);
+  const near = useInView(ref, { once: true, margin: '600px' });
   useEffect(() => setLow(window.innerWidth < 768 || (navigator.hardwareConcurrency ?? 8) <= 4), []);
   useMotionValueEvent(scrollYProgress, 'change', (v) => setI(Math.min(STEPS.length - 1, Math.round(v * (STEPS.length - 1)))));
   const s = STEPS[i];
@@ -76,7 +77,7 @@ export default function Showcase() {
         </AnimatePresence>
         <div className="wrap relative grid flex-1 items-center gap-2 pt-16 lg:grid-cols-[1.25fr_1fr] lg:pt-0">
           <div className="relative h-[48svh] lg:h-[82svh]">
-            <ShowcaseScene slugs={STEPS.map((x) => x.slug)} progress={scrollYProgress} low={low} />
+            {near && <ShowcaseScene slugs={STEPS.map((x) => x.slug)} progress={scrollYProgress} low={low} />}
           </div>
           <div className="relative pb-10 lg:pb-0">
             <div className="eyebrow">{t({ mr: '3D मध्ये जवळून पाहा', en: 'Up close, in 3D' })}</div>

@@ -6,16 +6,18 @@ import { motion } from 'framer-motion';
 import Aurora from '../fx/Aurora';
 import { useLang } from '@/lib/i18n';
 import { useContent } from '@/lib/content-context';
+import { useNearMount } from '@/lib/use-mount-3d';
 
 const DiyaScene = dynamic(() => import('../3d/DiyaScene'), { ssr: false });
 
 export default function ClosingMoment() {
   const { t } = useLang();
   const { closing } = useContent();
+  const { ref, near } = useNearMount<HTMLElement>();
   return (
-    <section className="on-dark relative flex min-h-[100svh] flex-col overflow-hidden bg-wood-night text-center text-ivory">
+    <section ref={ref} className="on-dark relative flex min-h-[100svh] flex-col overflow-hidden bg-wood-night text-center text-ivory">
       <Aurora tone="warm" />
-      <DiyaScene />
+      {near && <DiyaScene />}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-wood-night to-transparent" />
       <div className="wrap relative pt-24 md:pt-32">
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="eyebrow justify-center">

@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next';
-import { Noto_Sans_Devanagari, Tiro_Devanagari_Marathi } from 'next/font/google';
 import './globals.css';
 import { LangProvider } from '@/lib/i18n';
 import { CartProvider } from '@/lib/cart';
@@ -11,60 +10,49 @@ import { Announcement, SiteOnly } from '@/components/SiteChrome';
 import { CursorRing, ScrollProgress } from '@/components/fx/Effects';
 import { ContentProvider } from '@/lib/content-context';
 import { getContent } from '@/lib/api';
-
-// Tiro Devanagari Marathi is drawn specifically for Marathi (correct ळ, ऱ्, conjuncts) and
-// pairs a calm serif with Latin. Noto Sans Devanagari is the most complete, readable body face.
-// Both are self-hosted by next/font at build time: no runtime request to Google.
-const display = Tiro_Devanagari_Marathi({
-  subsets: ['devanagari', 'latin'],
-  weight: '400',
-  style: ['normal', 'italic'],
-  variable: '--font-display',
-  display: 'swap',
-});
-const body = Noto_Sans_Devanagari({
-  subsets: ['devanagari', 'latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-body',
-  display: 'swap',
-});
+import { KEYWORDS, SITE_URL, ldJson, pageMeta, siteJsonLd } from '@/lib/seo';
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getContent();
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-    title: { default: seo.title, template: '%s | संजीवनी अगरबत्ती' },
-    description: seo.description,
-    keywords: ['संजीवनी अगरबत्ती', 'Sanjivani Agarbatti', 'धूप', 'अगरबत्ती अकलूज', 'agarbatti franchise Maharashtra', 'puja sahitya'],
+    metadataBase: new URL(SITE_URL),
+    applicationName: 'Sanjivani Agarbatti',
+    keywords: KEYWORDS,
+    authors: [{ name: 'Sanjivani Incense Sticks & Agarbatti', url: SITE_URL }],
+    creator: 'Sanjivani Incense Sticks & Agarbatti',
+    publisher: 'Sanjivani Incense Sticks & Agarbatti',
+    category: 'shopping',
+    formatDetection: { telephone: true, address: false, email: false },
     icons: { icon: '/images/brand/logo-180.png', apple: '/images/brand/logo-180.png' },
-    openGraph: {
-      title: seo.title,
-      description: seo.description,
-      images: ['/images/brand/logo.png'],
-      locale: 'mr_IN',
-      type: 'website',
+    robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1 } },
+    // Search Console / Bing Webmaster ownership codes (HTML-tag method), set on Vercel.
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+      other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ? { 'msvalidate.01': process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } : undefined,
     },
+    // Share preview defaults. Canonical links are set per page (a site-wide one would point
+    // every page at the home page).
+    ...withoutCanonical(pageMeta({ title: seo.title, description: seo.description, path: '/' })),
+    title: { default: seo.title, template: '%s | संजीवनी अगरबत्ती · Sanjivani Agarbatti' },
   };
 }
+
+const withoutCanonical = ({ alternates: _drop, ...rest }: Metadata) => rest;
 
 export const viewport: Viewport = { themeColor: '#120A21' };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const content = await getContent();
-  const { site } = content;
-  const orgLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: site.name.en,
-    alternateName: site.name.mr,
-    telephone: site.phones.map((p) => p.tel),
-    email: site.email,
-    address: { '@type': 'PostalAddress', streetAddress: site.address.en, addressLocality: 'Akluj', addressRegion: 'Maharashtra', postalCode: '413101', addressCountry: 'IN' },
-  };
   return (
-    <html lang="mr" className={`${display.variable} ${body.variable}`}>
+    <html lang="mr">
+      <head>
+        {/* Poppins is self-hosted (public/fonts, see globals.css). Preload the faces every page uses first. */}
+        {['400-devanagari', '600-devanagari', '400-latin', '600-latin'].map((f) => (
+          <link key={f} rel="preload" href={`/fonts/poppins-${f}.woff2`} as="font" type="font/woff2" crossOrigin="anonymous" />
+        ))}
+      </head>
       <body>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={ldJson(siteJsonLd(content))} />
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-wood focus:px-4 focus:py-2 focus:text-ivory">
           मुख्य मजकुराकडे जा
         </a>

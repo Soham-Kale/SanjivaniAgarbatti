@@ -16,7 +16,7 @@ export default function ProductCard({ p }: { p: Product }) {
   const cat = CATEGORIES.find((c) => c.id === p.category);
   return (
     <Tilt className="glow-border hover-glow group relative flex h-full flex-col overflow-hidden rounded-[26px] border border-charcoal/10 bg-white shadow-card transition-shadow duration-500 hover:shadow-lift">
-      <Link href={`/products/${p.slug}`} className="block" aria-label={t(p.name)}>
+      <Link href={`/products/${p.slug}`} className="block" tabIndex={-1} aria-hidden="true">
         <div className="relative m-2 aspect-[4/5] overflow-hidden rounded-[20px] bg-sand">
           <Image
             src={media(p.image)}
