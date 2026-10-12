@@ -8,10 +8,16 @@ Content is Marathi-first, with an English toggle in the header (remembered per b
 
 ## Design and 3D (premium upgrade)
 
-- **Palette** (tokens in `frontend/tailwind.config.ts`): ivory `#F8F3E9` and sand `#F1E5CF`
-  backgrounds, deep sandalwood-brown `wood` `#3B2416` for dark bands, headings and buttons, temple
-  gold `#C99A45` accents, kumkum `maroon` `#8C2A1F` for small highlights (from the catalogue's
-  headings), sandalwood `#79513A`, charcoal `#252722` text.
+- **Palette "sandhya aarti"** (tokens in `frontend/tailwind.config.ts`; the old token names are
+  kept so every page and the admin panel follow): royal plum night `wood` `#2B1745` / `#120A21`
+  for dark bands, headings and buttons; saffron `#FF7A1A` and temple gold `#F2B33D` for glow and
+  buttons; kumkum `maroon` `#C2185B` and lotus `#F59BC0` for highlights; warm cream `ivory`
+  `#FFF8EF` for reading sections. Highlighted words use a saffron-gold-lotus gradient.
+- **Motion** (Framer Motion): plum curtain page transition, word-by-word heading reveals, scroll
+  progress bar, cursor ring (mouse only), fragrance ribbons that react to scroll speed, a pinned
+  horizontal category slider whose cards lean in 3D with scroll speed, parallax photos, a story
+  thread that fills as you read, 3D tilt with light glare on cards, rotating glow borders, and
+  counters. Everything respects `prefers-reduced-motion`.
 - **Product text**: every product has a `uses` field ("what it is for", shown on cards and the
   detail page) and the detail page shows plain "how to use" steps from `frontend/src/lib/usage.ts`.
   The About page gallery gives every photo a caption saying what it shows.
@@ -19,10 +25,12 @@ Content is Marathi-first, with an English toggle in the header (remembered per b
   and conjuncts) and *Noto Sans Devanagari* for body text, self-hosted by `next/font` at build time.
   Body line-height 1.75 and heading padding keep vowel signs from clipping.
 - **Real 3D** with Three.js + `@react-three/fiber` + `@react-three/drei` + `maath`:
-  - Hero: the Kasturi premium jar and Kewda-Bel dhoop box as 3D models, a brass holder with lit
-    agarbatti, shader smoke, gold dust and contact shadows. Drag to rotate (mouse or touch); the
-    camera follows the pointer. Choosing a fragrance lower on the page recolours the smoke.
-  - Scroll showcase: a sticky section that turns between three real packs as you scroll.
+  - Hero: the Kasturi premium jar and Kewda-Bel dhoop box as 3D models inside a turning gold aarti
+    halo (rings, beads and a saffron aura), a brass holder with lit agarbatti, shader smoke, embers,
+    gold dust and contact shadows. Drag to rotate (mouse or touch); the camera follows the pointer
+    and pulls back as you scroll. Choosing a fragrance lower on the page recolours the smoke.
+  - Scroll showcase: a sticky section that turns five real packs on an arc inside a gold halo.
+  - Closing section: three clay diyas with flickering shader flames and rising embers.
   - Product pages: a "3D मध्ये पाहा" toggle opens a drag-to-rotate viewer for the 19 products that
     have a model (5 premium jars, 6 dhoop boxes, 5 pouches).
   - The models are simple procedural shapes (jar, carton, pillow pouch) wrapped with **straight

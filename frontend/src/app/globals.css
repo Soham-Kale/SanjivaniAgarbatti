@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* animatable angle for the rotating glow borders */
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 @layer base {
   :root { color-scheme: light; }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
@@ -21,33 +28,40 @@
     padding-block: 0.06em;
   }
   p { text-wrap: pretty; }
-  :focus-visible { outline: 2px solid #C99A45; outline-offset: 3px; border-radius: 6px; }
-  ::selection { background: #3B2416; color: #F8F3E9; }
+  :focus-visible { outline: 2px solid #FF7A1A; outline-offset: 3px; border-radius: 6px; }
+  ::selection { background: #2B1745; color: #FFD480; }
   img { -webkit-user-drag: none; }
 }
 
 @layer components {
   .wrap { @apply mx-auto w-full max-w-wrap px-4 sm:px-6; }
-  .eyebrow { @apply inline-flex items-center gap-2 font-body text-[.8rem] font-semibold uppercase tracking-[.14em] text-gold-deep; }
-  .eyebrow::before { content: ''; @apply inline-block h-px w-6 bg-current opacity-60; }
+  .eyebrow { @apply inline-flex items-center gap-2 font-body text-[.8rem] font-semibold uppercase tracking-[.16em] text-gold-deep; }
+  .eyebrow::before { content: ''; @apply inline-block h-[2px] w-7 rounded-full bg-gradient-to-r from-saffron to-maroon; }
   .on-dark .eyebrow { @apply text-gold-light; }
-  .h-section { @apply text-[clamp(2rem,4.2vw,3.25rem)] text-wood; }
+  .h-section { @apply text-[clamp(2.1rem,4.6vw,3.6rem)] leading-[1.22] text-wood; }
   .on-dark .h-section { @apply text-ivory; }
   .lede { @apply max-w-[52ch] text-[1.05rem] text-stone; }
   .on-dark .lede { @apply text-mist; }
 
-  .btn { @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full px-6 py-3 font-body text-[.98rem] font-semibold transition duration-300 ease-soft; }
-  .btn-primary { @apply btn bg-wood text-ivory shadow-[0_10px_30px_-12px_rgba(59,36,22,.7)] hover:bg-wood-light; }
-  .btn-gold { @apply btn bg-gold text-wood-night hover:bg-gold-light; }
-  .btn-outline { @apply btn border border-wood/30 text-wood hover:border-wood hover:bg-wood/5; }
-  .btn-outline-light { @apply btn border border-ivory/35 text-ivory hover:border-ivory hover:bg-ivory/10; }
+  .btn { @apply relative isolate inline-flex min-h-[48px] items-center justify-center gap-2 overflow-hidden rounded-full px-6 py-3 font-body text-[.98rem] font-semibold transition duration-300 ease-soft; }
+  /* light sweep across the button on hover */
+  .btn::after { content: ''; @apply pointer-events-none absolute inset-y-0 left-0 -z-0 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0; transform: translateX(-120%) skewX(-20deg); }
+  .btn:hover::after { @apply opacity-100; animation: shine .9s cubic-bezier(.22,1,.36,1); }
+  .btn-primary { @apply btn bg-gradient-to-br from-wood-light to-wood text-ivory shadow-[0_14px_34px_-14px_rgba(43,23,69,.8)] hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-14px_rgba(43,23,69,.9)]; }
+  .btn-gold { @apply btn bg-gradient-to-r from-saffron via-gold to-gold-light text-wood-night shadow-glow-sm hover:-translate-y-0.5 hover:shadow-[0_16px_46px_-10px_rgba(255,122,26,.8)]; }
+  .btn-outline { @apply btn border border-wood/25 bg-white/40 text-wood backdrop-blur hover:border-wood hover:bg-white/80; }
+  .btn-outline-light { @apply btn border border-ivory/30 bg-white/5 text-ivory backdrop-blur hover:border-gold-light hover:bg-white/10; }
   .btn-link { @apply inline-flex items-center gap-1.5 font-semibold text-wood underline-offset-4 hover:underline; }
 
   .field { @apply grid gap-1.5 text-[.85rem] font-medium text-stone; }
-  .input { @apply min-h-[48px] w-full rounded-xl border border-charcoal/15 bg-white/70 px-3.5 py-3 font-body text-base text-charcoal placeholder:text-stone/60 transition focus:border-wood focus:bg-white focus:outline-none focus:ring-2 focus:ring-wood/15; }
-  .card { @apply rounded-[22px] border border-charcoal/10 bg-ivory-2 shadow-card; }
-  .section { @apply py-20 md:py-28; }
-  .hairline { @apply h-px w-full bg-gradient-to-r from-transparent via-gold/50 to-transparent; }
+  .input { @apply min-h-[48px] w-full rounded-xl border border-charcoal/15 bg-white/80 px-3.5 py-3 font-body text-base text-charcoal placeholder:text-stone/60 transition focus:border-saffron focus:bg-white focus:outline-none focus:ring-4 focus:ring-saffron/15; }
+  .card { @apply rounded-[24px] border border-charcoal/10 bg-white/70 shadow-card backdrop-blur; }
+  .section { @apply py-20 md:py-32; }
+  .hairline { @apply h-px w-full bg-gradient-to-r from-transparent via-gold/60 to-transparent; }
+
+  /* frosted panel for dark sections */
+  .glass { @apply border border-white/10 bg-white/[.06] backdrop-blur-xl; }
+  .on-dark .card { @apply glass shadow-none; }
 }
 
 @layer utilities {
@@ -60,9 +74,47 @@
   }
   .text-balance { text-wrap: balance; }
   .grain {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
+  /* saffron -> gold -> lotus text, used for one highlighted word per heading */
+  .text-gradient {
+    background: linear-gradient(100deg, #FF7A1A 0%, #FFD480 45%, #F59BC0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-gradient-deep {
+    background: linear-gradient(100deg, #C2185B 0%, #FF7A1A 55%, #94600C 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* outlined display text */
+  .text-outline { color: transparent; -webkit-text-stroke: 1px rgba(255, 212, 128, .35); }
+  .text-outline-dark { color: transparent; -webkit-text-stroke: 1px rgba(43, 23, 69, .14); }
+  /* rotating saffron/kumkum ring around a card; the element needs `relative` and rounded corners */
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(from var(--angle), transparent 0 60%, #FF7A1A 75%, #FFD480 82%, #C2185B 92%, transparent);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: border-spin 6s linear infinite;
+    pointer-events: none;
+  }
+  .hover-glow::before { opacity: 0; transition: opacity .5s; }
+  .hover-glow:hover::before { opacity: 1; }
+  .no-scrollbar { scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
 }
+
+@keyframes shine { from { transform: translateX(-120%) skewX(-20deg); } to { transform: translateX(320%) skewX(-20deg); } }
+@keyframes border-spin { to { --angle: 360deg; } }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }

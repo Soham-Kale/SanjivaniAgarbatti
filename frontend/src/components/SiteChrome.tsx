@@ -19,7 +19,7 @@ export function Announcement() {
   if (!announcement.enabled || !text) return null;
   const inner = <span className="mx-auto block max-w-wrap px-4 py-2 text-center text-[.88rem] font-semibold">{text}</span>;
   return (
-    <div className="relative z-[60] bg-maroon text-ivory">
+    <div className="relative z-[60] bg-gradient-to-r from-maroon via-ember to-saffron text-white">
       {announcement.link ? (
         <Link href={announcement.link} className="block hover:underline">
           {inner}

@@ -1,5 +1,6 @@
 import Hero from '@/components/Hero';
 import Stats from '@/components/Stats';
+import FragranceRibbon from '@/components/home/FragranceRibbon';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
 import CategoryDiscovery from '@/components/home/CategoryDiscovery';
 import BrandStory from '@/components/home/BrandStory';
@@ -18,13 +19,14 @@ export default async function Home() {
   return (
     <>
       <Hero />
+      <FragranceRibbon />
       <Stats productCount={products.length} fragranceCount={fragranceCount} />
       <FeaturedProducts products={featured} total={products.length} />
       <CategoryDiscovery products={products} />
       <BrandStory />
       <Showcase />
-      <FragranceExplorer />
       <WhyUs />
+      <FragranceExplorer />
       <FranchiseTeaser />
       <ClosingMoment />
     </>

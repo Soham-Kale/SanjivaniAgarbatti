@@ -8,6 +8,7 @@ import Footer from '@/components/Footer';
 import FloatButtons from '@/components/FloatButtons';
 import CartDrawer from '@/components/cart/CartDrawer';
 import { Announcement, SiteOnly } from '@/components/SiteChrome';
+import { CursorRing, ScrollProgress } from '@/components/fx/Effects';
 import { ContentProvider } from '@/lib/content-context';
 import { getContent } from '@/lib/api';
 
@@ -46,7 +47,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export const viewport: Viewport = { themeColor: '#3B2416' };
+export const viewport: Viewport = { themeColor: '#120A21' };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const content = await getContent();
@@ -71,6 +72,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <ContentProvider value={content}>
             <CartProvider>
               <SiteOnly>
+                <ScrollProgress />
+                <CursorRing />
                 <Announcement />
                 <Header />
               </SiteOnly>

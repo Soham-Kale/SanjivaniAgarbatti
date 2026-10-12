@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useRef } from 'react';
 import SectionHead from './SectionHead';
 import { rise, stagger } from './Reveal';
 import { useLang } from '@/lib/i18n';
@@ -21,30 +22,55 @@ function Icon({ name }: { name: WhyIcon }) {
   );
 }
 
+/** Card with a saffron spotlight that follows the mouse. */
+function Spot({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  return (
+    <div
+      ref={ref}
+      onPointerMove={(e) => {
+        const r = ref.current!.getBoundingClientRect();
+        ref.current!.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        ref.current!.style.setProperty('--my', `${e.clientY - r.top}px`);
+      }}
+      className="glow-border hover-glow group relative h-full overflow-hidden rounded-[26px] border border-charcoal/10 bg-white/80 p-7 shadow-card backdrop-blur transition duration-500 hover:-translate-y-1.5 hover:shadow-lift"
+    >
+      <div aria-hidden className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 [background:radial-gradient(320px_circle_at_var(--mx)_var(--my),rgba(255,122,26,.14),transparent_60%)]" />
+      {children}
+    </div>
+  );
+}
+
 export default function WhyUs() {
   const { t } = useLang();
   const { why } = useContent();
   return (
-    <section className="section wrap" aria-labelledby="why-title">
-      <SectionHead
-        align="center"
-        eyebrow={why.eyebrow}
-        title={why.title}
-        text={why.text}
-      />
-      <motion.ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-80px' }}>
-        {why.items.map((it, i) => (
-          <motion.li key={i} variants={rise} className="group card flex gap-5 p-6 transition duration-500 hover:-translate-y-1 hover:shadow-lift">
-            <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-wood text-gold-light transition-transform duration-500 group-hover:rotate-[-6deg]">
-              <Icon name={it.icon} />
-            </span>
-            <div>
-              <h3 className="font-display text-[1.3rem] text-wood">{t(it.b)}</h3>
-              <p className="mt-1 text-[.95rem] text-stone">{t(it.s)}</p>
-            </div>
-          </motion.li>
-        ))}
-      </motion.ul>
+    <section className="section relative overflow-hidden" aria-labelledby="why-title">
+      <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-r from-saffron/15 via-gold/10 to-lotus/20 blur-[100px]" />
+      <div className="wrap relative">
+        <SectionHead align="center" eyebrow={why.eyebrow} title={why.title} text={why.text} />
+        <motion.ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3" variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-80px' }}>
+          {why.items.map((it, i) => (
+            <motion.li key={i} variants={rise}>
+              <Spot>
+                <div className="relative flex items-start justify-between">
+                  <motion.span
+                    whileHover={{ rotateY: 180 }}
+                    transition={{ type: 'spring', stiffness: 160, damping: 14 }}
+                    style={{ transformStyle: 'preserve-3d' }}
+                    className="grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br from-saffron via-ember to-maroon text-white shadow-glow-sm"
+                  >
+                    <Icon name={it.icon} />
+                  </motion.span>
+                  <span className="font-display text-[2.4rem] leading-none text-wood/10 transition-colors duration-500 group-hover:text-saffron/40">{String(i + 1).padStart(2, '0')}</span>
+                </div>
+                <h3 className="relative mt-6 font-display text-[1.4rem] text-wood">{t(it.b)}</h3>
+                <p className="relative mt-1.5 text-[.95rem] text-stone">{t(it.s)}</p>
+              </Spot>
+            </motion.li>
+          ))}
+        </motion.ul>
+      </div>
     </section>
   );
 }

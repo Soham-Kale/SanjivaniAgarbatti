@@ -11,8 +11,8 @@ import { NAV } from '@/lib/site';
 
 export function Brand({ dark = false }: { dark?: boolean }) {
   return (
-    <Link href="/" className="flex items-center gap-3" aria-label="संजीवनी मुख्य पान">
-      <Image src="/images/brand/logo-180.png" alt="" width={48} height={48} className="h-12 w-12 rounded-full bg-ivory object-contain ring-1 ring-gold/40" priority />
+    <Link href="/" className="group flex items-center gap-3" aria-label="संजीवनी मुख्य पान">
+      <Image src="/images/brand/logo-180.png" alt="" width={48} height={48} className="h-12 w-12 rounded-full bg-ivory object-contain ring-2 ring-gold/50 transition-transform duration-700 ease-soft group-hover:rotate-[360deg]" priority />
       <span className="leading-none">
         <b className={`block font-display text-[1.55rem] font-normal ${dark ? 'text-ivory' : 'text-wood'}`}>संजीवनी</b>
         <small className={`mt-0.5 hidden text-[.62rem] sm:block font-semibold tracking-[.24em] ${dark ? 'text-gold-light' : 'text-gold-deep'}`}>INCENSE STICKS</small>
@@ -30,6 +30,9 @@ export function BagIcon() {
   );
 }
 
+// pages that open with a dark hero: the header starts transparent with light text
+const DARK_TOP = ['/', '/products', '/franchise', '/contact', '/about'];
+
 export default function Header() {
   const { lang, setLang, t } = useLang();
   const { count, setOpen: openCart } = useCart();
@@ -40,24 +43,31 @@ export default function Header() {
   useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 40));
   useEffect(() => setOpen(false), [path]);
 
-  const overHero = path === '/' && !scrolled && !open;
+  const [hovered, setHovered] = useState<string | null>(null);
+  const overHero = DARK_TOP.includes(path) && !scrolled && !open;
   const tone = overHero ? 'text-ivory' : 'text-charcoal';
 
   return (
     <header
       className={`sticky top-0 z-50 transition-[background-color,box-shadow,border-color] duration-500 ${
-        overHero ? 'border-b border-transparent bg-transparent' : 'border-b border-charcoal/10 bg-ivory/90 shadow-[0_8px_30px_-20px_rgba(59,36,22,.35)] backdrop-blur-xl'
+        overHero ? 'border-b border-transparent bg-transparent' : 'border-b border-charcoal/10 bg-ivory/80 shadow-[0_10px_40px_-24px_rgba(43,23,69,.5)] backdrop-blur-2xl backdrop-saturate-150'
       }`}
     >
       <div className="wrap flex h-[72px] items-center justify-between gap-4">
         <Brand dark={overHero} />
-        <nav className="hidden items-center gap-7 lg:flex" aria-label="मुख्य मेनू">
+        <nav className={`hidden items-center gap-1 rounded-full border p-1 lg:flex ${overHero ? 'border-ivory/15 bg-white/5 backdrop-blur' : 'border-charcoal/10 bg-white/60'}`} aria-label="मुख्य मेनू" onMouseLeave={() => setHovered(null)}>
           {NAV.map((n) => {
             const active = path === n.href;
             return (
-              <Link key={n.href} href={n.href} className={`group relative py-2 text-[.95rem] font-medium ${tone} transition-opacity hover:opacity-100 ${active ? 'opacity-100' : 'opacity-75'}`}>
-                {t(n.label)}
-                <span className={`absolute inset-x-0 -bottom-0.5 h-px origin-left bg-gold transition-transform duration-300 ${active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'}`} />
+              <Link
+                key={n.href}
+                href={n.href}
+                onMouseEnter={() => setHovered(n.href)}
+                className={`relative rounded-full px-4 py-2 text-[.93rem] font-medium transition-colors ${active ? (overHero ? 'text-wood-night' : 'text-ivory') : tone}`}
+              >
+                {active && <motion.span layoutId="nav-active" className={`absolute inset-0 rounded-full ${overHero ? 'bg-gradient-to-r from-saffron to-gold' : 'bg-wood'}`} transition={{ type: 'spring', stiffness: 380, damping: 32 }} />}
+                {hovered === n.href && !active && <motion.span layoutId="nav-hover" className={`absolute inset-0 rounded-full ${overHero ? 'bg-white/10' : 'bg-wood/5'}`} transition={{ type: 'spring', stiffness: 380, damping: 32 }} />}
+                <span className="relative">{t(n.label)}</span>
               </Link>
             );
           })}
@@ -88,7 +98,7 @@ export default function Header() {
                   initial={{ scale: 0.4, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.4, opacity: 0 }}
-                  className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-gold px-1 text-[.7rem] font-bold text-wood-night"
+                  className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-gradient-to-r from-saffron to-maroon px-1 text-[.7rem] font-bold text-white"
                 >
                   {count}
                 </motion.span>
@@ -112,14 +122,14 @@ export default function Header() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-charcoal/10 bg-ivory lg:hidden"
+            className="relative overflow-hidden bg-wood-night lg:hidden"
           >
             <motion.ul className="wrap grid gap-1 py-5" initial="h" animate="s" variants={{ s: { transition: { staggerChildren: 0.05 } } }}>
               {NAV.map((n) => (
                 <motion.li key={n.href} variants={{ h: { opacity: 0, x: -12 }, s: { opacity: 1, x: 0 } }}>
-                  <Link href={n.href} className="flex min-h-[48px] items-center justify-between border-b border-charcoal/10 font-display text-[1.35rem] text-wood">
+                  <Link href={n.href} className={`flex min-h-[56px] items-center justify-between border-b border-white/10 font-display text-[1.5rem] ${path === n.href ? 'text-gradient' : 'text-ivory'}`}>
                     {t(n.label)}
-                    <span className="text-gold-deep">→</span>
+                    <span className="text-saffron">→</span>
                   </Link>
                 </motion.li>
               ))}

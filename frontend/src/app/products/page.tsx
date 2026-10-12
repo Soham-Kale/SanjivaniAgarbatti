@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import SectionHead from '@/components/SectionHead';
+import PageHero from '@/components/PageHero';
 import ProductGrid from '@/components/ProductGrid';
 import { getProducts } from '@/lib/api';
 import type { Category } from '@/lib/types';
@@ -15,9 +15,8 @@ export default async function ProductsPage({ searchParams }: { searchParams: { c
   const products = await getProducts();
   const initial = (VALID.includes(searchParams.c ?? '') ? searchParams.c : 'all') as Category | 'all';
   return (
-    <section className="wrap pb-24 pt-12 md:pt-16">
-      <SectionHead
-        as="h1"
+    <>
+      <PageHero
         eyebrow={{ mr: 'आमची उत्पादने', en: 'Our products' }}
         title={{ mr: 'संपूर्ण उत्पादन श्रेणी', en: 'The complete range' }}
         text={{
@@ -25,7 +24,9 @@ export default async function ProductsPage({ searchParams }: { searchParams: { c
           en: 'Agarbatti that burns at least 40 minutes, with low smoke and no colour on your hands. Ask for dealer rates.',
         }}
       />
-      <ProductGrid key={initial} products={products} initial={initial} />
-    </section>
+      <section className="wrap pb-24 pt-10">
+        <ProductGrid key={initial} products={products} initial={initial} />
+      </section>
+    </>
   );
 }

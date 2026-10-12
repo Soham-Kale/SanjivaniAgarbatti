@@ -1,6 +1,8 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
+import Aurora from './fx/Aurora';
 import { Brand } from './Header';
 import { useLang } from '@/lib/i18n';
 import { CATEGORIES, NAV } from '@/lib/site';
@@ -12,7 +14,7 @@ export default function Footer() {
   const waLink = useWa();
   return (
     <footer className="on-dark relative overflow-hidden bg-wood-night pb-28 pt-20 text-mist">
-      <div className="pointer-events-none absolute inset-0 grain opacity-60" />
+      <Aurora tone="cool" className="opacity-70" />
       <div className="wrap relative">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           <div>
@@ -21,7 +23,7 @@ export default function Footer() {
             <p className="mt-4 text-[.8rem] tracking-wide text-gold-light/80">{site.motto}</p>
           </div>
           <div>
-            <h3 className="mb-4 font-body text-[.8rem] font-semibold uppercase tracking-[.16em] text-gold-light">{t({ mr: 'उत्पादने', en: 'Products' })}</h3>
+            <h3 className="mb-4 font-body text-[.8rem] font-semibold uppercase tracking-[.16em] text-saffron">{t({ mr: 'उत्पादने', en: 'Products' })}</h3>
             <ul className="grid gap-2 text-[.95rem]">
               {CATEGORIES.filter((c) => c.id !== 'all').map((c) => (
                 <li key={c.id}>
@@ -31,7 +33,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-4 font-body text-[.8rem] font-semibold uppercase tracking-[.16em] text-gold-light">{t({ mr: 'माहिती', en: 'Explore' })}</h3>
+            <h3 className="mb-4 font-body text-[.8rem] font-semibold uppercase tracking-[.16em] text-saffron">{t({ mr: 'माहिती', en: 'Explore' })}</h3>
             <ul className="grid gap-2 text-[.95rem]">
               {NAV.filter((n) => n.href !== '/products').map((n) => (
                 <li key={n.href}>
@@ -44,7 +46,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="mb-4 font-body text-[.8rem] font-semibold uppercase tracking-[.16em] text-gold-light">{t({ mr: 'संपर्क', en: 'Contact' })}</h3>
+            <h3 className="mb-4 font-body text-[.8rem] font-semibold uppercase tracking-[.16em] text-saffron">{t({ mr: 'संपर्क', en: 'Contact' })}</h3>
             <address className="not-italic">
               <p className="text-[.95rem]">{t(site.address)}</p>
               {t(site.hours) && <p className="mt-1 text-[.88rem]">{t(site.hours)}</p>}
@@ -64,7 +66,18 @@ export default function Footer() {
             </address>
           </div>
         </div>
-        <div className="hairline mt-14" />
+        {/* giant wordmark rising into view */}
+        <motion.p
+          aria-hidden
+          initial={{ y: '40%', opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+          className="text-gradient pointer-events-none mt-16 select-none text-center font-display text-[clamp(4.5rem,17vw,15rem)] leading-[1.15] opacity-90"
+        >
+          {t(site.name).split(' ')[0]}
+        </motion.p>
+        <div className="hairline mt-6" />
         <div className="mt-6 flex flex-wrap justify-between gap-3 text-[.82rem] text-mist/70">
           <p>© {new Date().getFullYear()} {t(site.name)}</p>
           <p>{t(footer.note)}</p>

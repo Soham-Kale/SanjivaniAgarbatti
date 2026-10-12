@@ -16,23 +16,24 @@ export function Plans({ withCta = false, dark = false }: { withCta?: boolean; da
         const feat = p.featured;
         const surface = dark
           ? feat
-            ? 'border-gold bg-gradient-to-b from-wood-light to-wood-deep'
-            : 'border-ivory/15 bg-wood-deep/60'
+            ? 'glow-border border-gold/40 bg-gradient-to-b from-wood-light to-wood-deep'
+            : 'glass hover-glow glow-border'
           : feat
-            ? 'border-wood bg-wood text-ivory'
-            : 'border-charcoal/10 bg-ivory-2';
+            ? 'glow-border border-transparent bg-gradient-to-br from-wood-light via-wood to-wood-night text-ivory shadow-lift'
+            : 'hover-glow glow-border border-charcoal/10 bg-white/80 shadow-card backdrop-blur';
         const light = dark || feat;
         return (
           <motion.li key={p.id} variants={rise}>
-            <Tilt max={5} className={`flex h-full flex-col rounded-[24px] border p-7 ${surface}`}>
-              {feat && <span className="mb-3 inline-block self-start rounded-full bg-gold px-3 py-0.5 text-[.72rem] font-semibold uppercase tracking-[.14em] text-wood-night">{t({ mr: 'लोकप्रिय', en: 'Popular' })}</span>}
+            <Tilt max={6} className={`relative flex h-full flex-col overflow-hidden rounded-[28px] border p-8 ${surface}`}>
+              {feat && <div aria-hidden className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-saffron/30 blur-[70px]" />}
+              {feat && <span className="relative mb-3 inline-block self-start rounded-full bg-gradient-to-r from-saffron to-gold px-3 py-0.5 text-[.72rem] font-semibold uppercase tracking-[.14em] text-wood-night">{t({ mr: 'लोकप्रिय', en: 'Popular' })}</span>}
               <h3 className={`text-[1.5rem] ${light ? 'text-ivory' : 'text-wood'}`}>{t(p.name)}</h3>
-              <div className={`mt-3 font-display text-[2.5rem] tabular-nums ${light ? 'text-gold-light' : 'text-wood'}`}>{p.amount}</div>
+              <div className={`mt-3 font-display text-[2.8rem] leading-tight tabular-nums ${light ? 'text-gradient' : 'text-gradient-deep'}`}>{p.amount}</div>
               <div className={`text-[.9rem] ${light ? 'text-mist' : 'text-stone'}`}>{t(p.deposit)}</div>
               <ul className={`mt-5 grid gap-2 text-[.95rem] ${light ? 'text-ivory/90' : 'text-charcoal-soft'}`}>
                 {p.points.map((pt, k) => (
                   <li key={k} className="flex gap-2.5">
-                    <span className={light ? 'text-gold-light' : 'text-gold-deep'}>✦</span>
+                    <span className={light ? 'text-saffron' : 'text-maroon'}>✦</span>
                     {t(pt)}
                   </li>
                 ))}
@@ -61,7 +62,7 @@ export function Steps() {
       >
         {franchise.steps.map((s, i) => (
           <li key={i} className="relative px-1.5 text-center">
-            <span className="relative mx-auto mb-2.5 grid h-11 w-11 place-items-center rounded-full border border-gold bg-ivory font-display text-[1.1rem] text-wood">
+            <span className="relative mx-auto mb-2.5 grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-saffron to-maroon font-display text-[1.1rem] text-white shadow-glow-sm">
               {t({ mr: String(i + 1).replace(/\d/g, (d) => '०१२३४५६७८९'[Number(d)]), en: String(i + 1) })}
             </span>
             <span className="text-[.88rem] text-charcoal-soft">{t(s)}</span>

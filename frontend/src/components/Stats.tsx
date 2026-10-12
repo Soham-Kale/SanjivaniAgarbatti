@@ -1,6 +1,8 @@
 'use client';
 
-import { animate, useInView, useReducedMotion } from 'framer-motion';
+import { animate, motion, useInView, useReducedMotion } from 'framer-motion';
+import Tilt from './Tilt';
+import { rise, stagger } from './Reveal';
 import { useEffect, useRef, useState } from 'react';
 import { useLang } from '@/lib/i18n';
 import type { I18n } from '@/lib/types';
@@ -20,7 +22,7 @@ function Count({ to, suffix }: { to: number; suffix: string }) {
     return () => c.stop();
   }, [inView, reduce, to]);
   return (
-    <b ref={ref} className="block font-display text-[clamp(1.9rem,3.4vw,2.6rem)] font-normal tabular-nums text-wood">
+    <b ref={ref} className="text-gradient block font-display text-[clamp(2.2rem,4vw,3.2rem)] font-normal leading-tight tabular-nums">
       {lang === 'mr' ? toMr(v) : v}
       {suffix}
     </b>
@@ -37,15 +39,18 @@ export default function Stats({ productCount, fragranceCount }: { productCount: 
     { n: productCount, s: { mr: '', en: '' }, l: { mr: 'उत्पादने', en: 'products' } },
   ];
   return (
-    <section aria-label={t({ mr: 'ठळक माहिती', en: 'Highlights' })} className="border-b border-charcoal/10 bg-ivory">
-      <div className="wrap grid grid-cols-2 md:grid-cols-4">
+    <section aria-label={t({ mr: 'ठळक माहिती', en: 'Highlights' })} className="on-dark relative overflow-hidden bg-wood-night py-14 md:py-20">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+      <motion.ul className="wrap grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-4" variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-60px' }}>
         {items.map((it, i) => (
-          <div key={i} className={`px-3 py-8 text-center md:py-10 ${i % 2 === 0 ? 'border-r' : ''} ${i < 2 ? 'border-b md:border-b-0' : ''} border-charcoal/10 md:border-r md:last:border-r-0`}>
-            <Count to={it.n} suffix={t(it.s)} />
-            <span className="text-[.88rem] text-stone">{t(it.l)}</span>
-          </div>
+          <motion.li key={i} variants={rise} className="group relative">
+            <Tilt max={10} className="glass glow-border hover-glow relative h-full rounded-[22px] px-4 py-7 text-center md:py-9">
+              <Count to={it.n} suffix={t(it.s)} />
+              <span className="mt-1 block text-[.88rem] text-mist">{t(it.l)}</span>
+            </Tilt>
+          </motion.li>
         ))}
-      </div>
+      </motion.ul>
     </section>
   );
 }

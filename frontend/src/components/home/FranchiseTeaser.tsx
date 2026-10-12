@@ -10,7 +10,9 @@ export default function FranchiseTeaser() {
   const { t } = useLang();
   const { franchise } = useContent();
   return (
-    <section id="franchise" className="section relative scroll-mt-20 overflow-hidden bg-sand/50" aria-labelledby="fr-title">
+    <section id="franchise" className="section relative scroll-mt-20 overflow-hidden bg-gradient-to-b from-ivory via-sand/70 to-ivory" aria-labelledby="fr-title">
+      <div aria-hidden className="pointer-events-none absolute -right-40 top-10 h-[480px] w-[480px] rounded-full bg-saffron/15 blur-[110px]" />
+      <div aria-hidden className="pointer-events-none absolute -left-40 bottom-0 h-[420px] w-[420px] rounded-full bg-wood-light/15 blur-[110px]" />
       <div className="wrap relative">
         <SectionHead
           eyebrow={franchise.eyebrow}
