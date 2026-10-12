@@ -58,7 +58,7 @@ function Scene({ low, still, onReady }: { low: boolean; still: boolean; onReady:
       </group>
       <Smoke sources={tips} count={low ? 380 : 760} spread={0.8} />
       <Sparkles count={low ? 25 : 60} scale={[7, 5, 4]} position={[0, 0.8, -1]} size={2.2} speed={still ? 0 : 0.25} color="#E2BE78" opacity={0.7} />
-      <ContactShadows position={[0, -1.92, 0]} opacity={0.5} scale={9} blur={2.6} far={3.5} resolution={256} color="#06140f" frames={still ? 1 : Infinity} />
+      <ContactShadows position={[0, -1.92, 0]} opacity={0.5} scale={9} blur={2.6} far={3.5} resolution={256} color="#140b06" frames={still ? 1 : Infinity} />
       <Ready onReady={onReady} />
     </>
   );

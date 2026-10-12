@@ -3,19 +3,22 @@
 import Link from 'next/link';
 import { Brand } from './Header';
 import { useLang } from '@/lib/i18n';
-import { CATEGORIES, NAV, SITE, waLink } from '@/lib/site';
+import { CATEGORIES, NAV } from '@/lib/site';
+import { useContent, useWa } from '@/lib/content-context';
 
 export default function Footer() {
   const { t } = useLang();
+  const { site, footer } = useContent();
+  const waLink = useWa();
   return (
-    <footer className="on-dark relative overflow-hidden bg-forest-night pb-28 pt-20 text-mist">
+    <footer className="on-dark relative overflow-hidden bg-wood-night pb-28 pt-20 text-mist">
       <div className="pointer-events-none absolute inset-0 grain opacity-60" />
       <div className="wrap relative">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           <div>
             <Brand dark />
-            <p className="mt-5 max-w-xs text-[.95rem]">{t({ mr: 'प्रार्थनेचा पवित्र सुगंध. माळेवाडी-अकलूज येथे तयार केलेली अगरबत्ती, धूप व पूजा साहित्य.', en: 'The sacred fragrance of prayer. Agarbatti, dhoop and puja sahitya made in Malewadi-Akluj.' })}</p>
-            <p className="mt-4 text-[.8rem] tracking-wide text-gold-light/80">Quality Products • Trusted Service • Complete Puja Solution</p>
+            <p className="mt-5 max-w-xs text-[.95rem]">{t(footer.blurb)}</p>
+            <p className="mt-4 text-[.8rem] tracking-wide text-gold-light/80">{site.motto}</p>
           </div>
           <div>
             <h3 className="mb-4 font-body text-[.8rem] font-semibold uppercase tracking-[.16em] text-gold-light">{t({ mr: 'उत्पादने', en: 'Products' })}</h3>
@@ -43,15 +46,16 @@ export default function Footer() {
           <div>
             <h3 className="mb-4 font-body text-[.8rem] font-semibold uppercase tracking-[.16em] text-gold-light">{t({ mr: 'संपर्क', en: 'Contact' })}</h3>
             <address className="not-italic">
-              <p className="text-[.95rem]">{t(SITE.address)}</p>
+              <p className="text-[.95rem]">{t(site.address)}</p>
+              {t(site.hours) && <p className="mt-1 text-[.88rem]">{t(site.hours)}</p>}
               <ul className="mt-4 grid gap-2 text-[.95rem]">
-                {SITE.phones.map((p) => (
+                {site.phones.map((p) => (
                   <li key={p.tel}>
                     <a href={`tel:${p.tel}`} className="text-ivory hover:text-gold-light">{p.display}</a>
                   </li>
                 ))}
                 <li>
-                  <a href={`mailto:${SITE.email}`} className="break-all hover:text-ivory">{SITE.email}</a>
+                  <a href={`mailto:${site.email}`} className="break-all hover:text-ivory">{site.email}</a>
                 </li>
                 <li>
                   <a href={waLink()} target="_blank" rel="noopener" className="hover:text-ivory">WhatsApp ↗</a>
@@ -62,8 +66,8 @@ export default function Footer() {
         </div>
         <div className="hairline mt-14" />
         <div className="mt-6 flex flex-wrap justify-between gap-3 text-[.82rem] text-mist/70">
-          <p>© {new Date().getFullYear()} {t(SITE.name)}</p>
-          <p>{t({ mr: 'फ्रँचायझीमध्ये नफ्याची हमी नाही; अटी करारानुसार.', en: 'No profit is guaranteed under the franchise; terms as per agreement.' })}</p>
+          <p>© {new Date().getFullYear()} {t(site.name)}</p>
+          <p>{t(footer.note)}</p>
         </div>
       </div>
     </footer>

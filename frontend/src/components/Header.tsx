@@ -14,7 +14,7 @@ export function Brand({ dark = false }: { dark?: boolean }) {
     <Link href="/" className="flex items-center gap-3" aria-label="संजीवनी मुख्य पान">
       <Image src="/images/brand/logo-180.png" alt="" width={48} height={48} className="h-12 w-12 rounded-full bg-ivory object-contain ring-1 ring-gold/40" priority />
       <span className="leading-none">
-        <b className={`block font-display text-[1.55rem] font-normal ${dark ? 'text-ivory' : 'text-forest'}`}>संजीवनी</b>
+        <b className={`block font-display text-[1.55rem] font-normal ${dark ? 'text-ivory' : 'text-wood'}`}>संजीवनी</b>
         <small className={`mt-0.5 hidden text-[.62rem] sm:block font-semibold tracking-[.24em] ${dark ? 'text-gold-light' : 'text-gold-deep'}`}>INCENSE STICKS</small>
       </span>
     </Link>
@@ -46,7 +46,7 @@ export default function Header() {
   return (
     <header
       className={`sticky top-0 z-50 transition-[background-color,box-shadow,border-color] duration-500 ${
-        overHero ? 'border-b border-transparent bg-transparent' : 'border-b border-charcoal/10 bg-ivory/90 shadow-[0_8px_30px_-20px_rgba(22,61,50,.35)] backdrop-blur-xl'
+        overHero ? 'border-b border-transparent bg-transparent' : 'border-b border-charcoal/10 bg-ivory/90 shadow-[0_8px_30px_-20px_rgba(59,36,22,.35)] backdrop-blur-xl'
       }`}
     >
       <div className="wrap flex h-[72px] items-center justify-between gap-4">
@@ -88,7 +88,7 @@ export default function Header() {
                   initial={{ scale: 0.4, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.4, opacity: 0 }}
-                  className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-gold px-1 text-[.7rem] font-bold text-forest-night"
+                  className="absolute -right-0.5 -top-0.5 grid h-5 min-w-5 place-items-center rounded-full bg-gold px-1 text-[.7rem] font-bold text-wood-night"
                 >
                   {count}
                 </motion.span>
@@ -117,7 +117,7 @@ export default function Header() {
             <motion.ul className="wrap grid gap-1 py-5" initial="h" animate="s" variants={{ s: { transition: { staggerChildren: 0.05 } } }}>
               {NAV.map((n) => (
                 <motion.li key={n.href} variants={{ h: { opacity: 0, x: -12 }, s: { opacity: 1, x: 0 } }}>
-                  <Link href={n.href} className="flex min-h-[48px] items-center justify-between border-b border-charcoal/10 font-display text-[1.35rem] text-forest">
+                  <Link href={n.href} className="flex min-h-[48px] items-center justify-between border-b border-charcoal/10 font-display text-[1.35rem] text-wood">
                     {t(n.label)}
                     <span className="text-gold-deep">→</span>
                   </Link>

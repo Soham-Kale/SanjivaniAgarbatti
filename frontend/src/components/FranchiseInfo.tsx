@@ -64,7 +64,7 @@ export default function FranchiseInfo() {
       <div className="grid gap-6 md:grid-cols-3">
         {BLOCKS.map((b, i) => (
           <Reveal key={b.title.mr} delay={i * 0.1} className="card p-7">
-            <h3 className="mb-4 text-[1.35rem] text-forest">{t(b.title)}</h3>
+            <h3 className="mb-4 text-[1.35rem] text-wood">{t(b.title)}</h3>
             <ul className="grid gap-2 text-[.95rem] text-charcoal-soft">
               {b.items.map((it) => (
                 <li key={it.mr}>

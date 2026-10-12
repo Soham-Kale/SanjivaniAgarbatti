@@ -22,7 +22,7 @@
   }
   p { text-wrap: pretty; }
   :focus-visible { outline: 2px solid #C99A45; outline-offset: 3px; border-radius: 6px; }
-  ::selection { background: #163D32; color: #F8F3E9; }
+  ::selection { background: #3B2416; color: #F8F3E9; }
   img { -webkit-user-drag: none; }
 }
 
@@ -31,20 +31,20 @@
   .eyebrow { @apply inline-flex items-center gap-2 font-body text-[.8rem] font-semibold uppercase tracking-[.14em] text-gold-deep; }
   .eyebrow::before { content: ''; @apply inline-block h-px w-6 bg-current opacity-60; }
   .on-dark .eyebrow { @apply text-gold-light; }
-  .h-section { @apply text-[clamp(2rem,4.2vw,3.25rem)] text-forest; }
+  .h-section { @apply text-[clamp(2rem,4.2vw,3.25rem)] text-wood; }
   .on-dark .h-section { @apply text-ivory; }
   .lede { @apply max-w-[52ch] text-[1.05rem] text-stone; }
   .on-dark .lede { @apply text-mist; }
 
   .btn { @apply inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full px-6 py-3 font-body text-[.98rem] font-semibold transition duration-300 ease-soft; }
-  .btn-primary { @apply btn bg-forest text-ivory shadow-[0_10px_30px_-12px_rgba(22,61,50,.7)] hover:bg-forest-light; }
-  .btn-gold { @apply btn bg-gold text-forest-night hover:bg-gold-light; }
-  .btn-outline { @apply btn border border-forest/30 text-forest hover:border-forest hover:bg-forest/5; }
+  .btn-primary { @apply btn bg-wood text-ivory shadow-[0_10px_30px_-12px_rgba(59,36,22,.7)] hover:bg-wood-light; }
+  .btn-gold { @apply btn bg-gold text-wood-night hover:bg-gold-light; }
+  .btn-outline { @apply btn border border-wood/30 text-wood hover:border-wood hover:bg-wood/5; }
   .btn-outline-light { @apply btn border border-ivory/35 text-ivory hover:border-ivory hover:bg-ivory/10; }
-  .btn-link { @apply inline-flex items-center gap-1.5 font-semibold text-forest underline-offset-4 hover:underline; }
+  .btn-link { @apply inline-flex items-center gap-1.5 font-semibold text-wood underline-offset-4 hover:underline; }
 
   .field { @apply grid gap-1.5 text-[.85rem] font-medium text-stone; }
-  .input { @apply min-h-[48px] w-full rounded-xl border border-charcoal/15 bg-white/70 px-3.5 py-3 font-body text-base text-charcoal placeholder:text-stone/60 transition focus:border-forest focus:bg-white focus:outline-none focus:ring-2 focus:ring-forest/15; }
+  .input { @apply min-h-[48px] w-full rounded-xl border border-charcoal/15 bg-white/70 px-3.5 py-3 font-body text-base text-charcoal placeholder:text-stone/60 transition focus:border-wood focus:bg-white focus:outline-none focus:ring-2 focus:ring-wood/15; }
   .card { @apply rounded-[22px] border border-charcoal/10 bg-ivory-2 shadow-card; }
   .section { @apply py-20 md:py-28; }
   .hairline { @apply h-px w-full bg-gradient-to-r from-transparent via-gold/50 to-transparent; }

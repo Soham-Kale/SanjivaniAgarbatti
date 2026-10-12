@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useLang } from '@/lib/i18n';
 import { submitEnquiry } from '@/lib/api';
-import { PLANS, SITE, waLink } from '@/lib/site';
+import { useContent, useWa } from '@/lib/content-context';
 import type { EnquiryType, I18n } from '@/lib/types';
 
 type State = 'idle' | 'sending' | 'done' | 'error' | 'offline';
@@ -24,6 +24,8 @@ const L = {
 
 export default function EnquiryForm({ type, defaultPlan = 'franchise' }: { type: EnquiryType; defaultPlan?: string }) {
   const { t } = useLang();
+  const { site, franchise } = useContent();
+  const waLink = useWa();
   const [state, setState] = useState<State>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [waText, setWaText] = useState('');
@@ -81,7 +83,7 @@ export default function EnquiryForm({ type, defaultPlan = 'franchise' }: { type:
           <label className="field">
             {t(L.plan)}
             <select name="plan" defaultValue={defaultPlan} className="input">
-              {PLANS.map((p) => (
+              {franchise.plans.map((p) => (
                 <option key={p.id} value={p.id}>
                   {t(p.name)} · {p.amount}
                 </option>
@@ -156,7 +158,7 @@ export default function EnquiryForm({ type, defaultPlan = 'franchise' }: { type:
       </div>
       <p className="text-[.8rem] text-stone sm:col-span-2">
         {t({ mr: 'किंवा थेट कॉल करा:', en: 'Or call directly:' })}{' '}
-        <a href={`tel:${SITE.phones[0].tel}`} className="text-charcoal">{SITE.phones[0].display}</a>
+        <a href={`tel:${site.phones[0]?.tel}`} className="text-charcoal">{site.phones[0]?.display}</a>
       </p>
     </form>
   );

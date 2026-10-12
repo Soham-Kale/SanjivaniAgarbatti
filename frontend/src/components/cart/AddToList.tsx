@@ -26,7 +26,7 @@ export default function AddToList({ p, qty = 1, size = 'md', openOnAdd = false }
       aria-label={`${label}: ${t(p.name)}`}
       className={
         size === 'sm'
-          ? 'relative inline-flex h-10 min-w-10 items-center justify-center gap-1.5 overflow-hidden rounded-full bg-forest px-3 text-[.82rem] font-semibold text-ivory transition hover:bg-forest-light'
+          ? 'relative inline-flex h-10 min-w-10 items-center justify-center gap-1.5 overflow-hidden rounded-full bg-wood px-3 text-[.82rem] font-semibold text-ivory transition hover:bg-wood-light'
           : 'btn-primary relative overflow-hidden'
       }
     >

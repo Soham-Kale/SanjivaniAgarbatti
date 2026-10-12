@@ -39,18 +39,23 @@ export const rise: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
 };
 
-/** Image that is revealed by a sliding mask as it scrolls into view. */
+/**
+ * Image that is revealed by a sliding mask as it scrolls into view. The in-view check runs on an
+ * unclipped wrapper, because a fully clipped element never reports as intersecting.
+ */
 export function MaskReveal({ children, className, delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
   const reduce = useReducedMotion();
   return (
-    <motion.div
-      className={className}
-      initial={reduce ? false : { clipPath: 'inset(100% 0% 0% 0% round 24px)' }}
-      whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 24px)' }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 1.2, ease: EASE, delay }}
-    >
-      {children}
+    <motion.div initial={reduce ? false : 'hidden'} whileInView="show" viewport={{ once: true, margin: '-60px' }}>
+      <motion.div
+        className={className}
+        variants={{
+          hidden: { clipPath: 'inset(100% 0% 0% 0% round 22px)' },
+          show: { clipPath: 'inset(0% 0% 0% 0% round 22px)', transition: { duration: 1.2, ease: EASE, delay } },
+        }}
+      >
+        {children}
+      </motion.div>
     </motion.div>
   );
 }

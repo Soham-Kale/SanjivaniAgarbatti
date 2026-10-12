@@ -13,7 +13,7 @@
   },
   "description": {
    "mr": "प्रार्थनेचा पवित्र सुगंध म्हणजे संजीवनी अगरबत्ती. रोजच्या पूजेसाठी केवडा सुगंधाची पाऊच पॅक अगरबत्ती.",
-   "en": "Daily-use Kewda agarbatti in a resealable pouch, made in Malewadi-Akluj."
+   "en": "Daily-use Kewda agarbatti in a pouch pack, made in Malewadi-Akluj."
   },
   "fragrance": "kewda",
   "benefits": [
@@ -27,7 +27,11 @@
   "priceNote": null,
   "featured": true,
   "sort": 1,
-  "active": true
+  "active": true,
+  "uses": {
+   "mr": "रोजच्या देवपूजेत, सकाळ-संध्याकाळच्या आरतीला आणि घरात प्रसन्न सुगंधासाठी लावण्याची केवडा अगरबत्ती. पाऊच पॅकमुळे काड्या सुरक्षित राहतात.",
+   "en": "Kewda agarbatti for daily puja, morning and evening aarti, and a pleasant fragrance at home. The pouch keeps the sticks safe."
+  }
  },
  {
   "slug": "pouch-chandan",
@@ -43,7 +47,7 @@
   },
   "description": {
    "mr": "प्रार्थनेचा पवित्र सुगंध म्हणजे संजीवनी अगरबत्ती. रोजच्या पूजेसाठी चंदन सुगंधाची पाऊच पॅक अगरबत्ती.",
-   "en": "Daily-use Sandalwood agarbatti in a resealable pouch, made in Malewadi-Akluj."
+   "en": "Daily-use Sandalwood agarbatti in a pouch pack, made in Malewadi-Akluj."
   },
   "fragrance": "chandan",
   "benefits": [
@@ -57,7 +61,11 @@
   "priceNote": null,
   "featured": false,
   "sort": 2,
-  "active": true
+  "active": true,
+  "uses": {
+   "mr": "रोजच्या देवपूजेत, सकाळ-संध्याकाळच्या आरतीला आणि घरात प्रसन्न सुगंधासाठी लावण्याची चंदन अगरबत्ती. पाऊच पॅकमुळे काड्या सुरक्षित राहतात.",
+   "en": "Sandalwood agarbatti for daily puja, morning and evening aarti, and a pleasant fragrance at home. The pouch keeps the sticks safe."
+  }
  },
  {
   "slug": "pouch-mogra",
@@ -73,7 +81,7 @@
   },
   "description": {
    "mr": "प्रार्थनेचा पवित्र सुगंध म्हणजे संजीवनी अगरबत्ती. रोजच्या पूजेसाठी मोगरा सुगंधाची पाऊच पॅक अगरबत्ती.",
-   "en": "Daily-use Mogra · Jasmine agarbatti in a resealable pouch, made in Malewadi-Akluj."
+   "en": "Daily-use Mogra · Jasmine agarbatti in a pouch pack, made in Malewadi-Akluj."
   },
   "fragrance": "mogra",
   "benefits": [
@@ -87,7 +95,11 @@
   "priceNote": null,
   "featured": true,
   "sort": 3,
-  "active": true
+  "active": true,
+  "uses": {
+   "mr": "रोजच्या देवपूजेत, सकाळ-संध्याकाळच्या आरतीला आणि घरात प्रसन्न सुगंधासाठी लावण्याची मोगरा अगरबत्ती. पाऊच पॅकमुळे काड्या सुरक्षित राहतात.",
+   "en": "Mogra · Jasmine agarbatti for daily puja, morning and evening aarti, and a pleasant fragrance at home. The pouch keeps the sticks safe."
+  }
  },
  {
   "slug": "pouch-gulab",
@@ -103,7 +115,7 @@
   },
   "description": {
    "mr": "प्रार्थनेचा पवित्र सुगंध म्हणजे संजीवनी अगरबत्ती. रोजच्या पूजेसाठी गुलाब सुगंधाची पाऊच पॅक अगरबत्ती.",
-   "en": "Daily-use Rose agarbatti in a resealable pouch, made in Malewadi-Akluj."
+   "en": "Daily-use Rose agarbatti in a pouch pack, made in Malewadi-Akluj."
   },
   "fragrance": "gulab",
   "benefits": [
@@ -117,7 +129,11 @@
   "priceNote": null,
   "featured": false,
   "sort": 4,
-  "active": true
+  "active": true,
+  "uses": {
+   "mr": "रोजच्या देवपूजेत, सकाळ-संध्याकाळच्या आरतीला आणि घरात प्रसन्न सुगंधासाठी लावण्याची गुलाब अगरबत्ती. पाऊच पॅकमुळे काड्या सुरक्षित राहतात.",
+   "en": "Rose agarbatti for daily puja, morning and evening aarti, and a pleasant fragrance at home. The pouch keeps the sticks safe."
+  }
  },
  {
   "slug": "pouch-kasturi",
@@ -133,7 +149,7 @@
   },
   "description": {
    "mr": "प्रार्थनेचा पवित्र सुगंध म्हणजे संजीवनी अगरबत्ती. रोजच्या पूजेसाठी कस्तुरी सुगंधाची पाऊच पॅक अगरबत्ती.",
-   "en": "Daily-use Kasturi · Musk agarbatti in a resealable pouch, made in Malewadi-Akluj."
+   "en": "Daily-use Kasturi · Musk agarbatti in a pouch pack, made in Malewadi-Akluj."
   },
   "fragrance": "kasturi",
   "benefits": [
@@ -147,7 +163,45 @@
   "priceNote": null,
   "featured": false,
   "sort": 5,
-  "active": true
+  "active": true,
+  "uses": {
+   "mr": "रोजच्या देवपूजेत, सकाळ-संध्याकाळच्या आरतीला आणि घरात प्रसन्न सुगंधासाठी लावण्याची कस्तुरी अगरबत्ती. पाऊच पॅकमुळे काड्या सुरक्षित राहतात.",
+   "en": "Kasturi · Musk agarbatti for daily puja, morning and evening aarti, and a pleasant fragrance at home. The pouch keeps the sticks safe."
+  }
+ },
+ {
+  "slug": "pouch-jaswand",
+  "category": "daily",
+  "subtype": "pouch",
+  "name": {
+   "mr": "जास्वंद अगरबत्ती",
+   "en": "Hibiscus Agarbatti"
+  },
+  "tagline": {
+   "mr": "दैनंदिन पूजेसाठी पाऊच",
+   "en": "Daily pouch"
+  },
+  "description": {
+   "mr": "प्रार्थनेचा पवित्र सुगंध म्हणजे संजीवनी अगरबत्ती. रोजच्या पूजेसाठी जास्वंद सुगंधाची पाऊच पॅक अगरबत्ती.",
+   "en": "Daily-use Hibiscus agarbatti in a pouch pack, made in Malewadi-Akluj."
+  },
+  "fragrance": "jaswand",
+  "benefits": [
+   "किमान ४० मिनिटे जळते",
+   "रंग हाताला लागत नाही",
+   "कमी धूर, सौम्य सुगंध",
+   "हलका व नैसर्गिक सुगंध"
+  ],
+  "image": "/images/products/pouch-jaswand.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 6,
+  "active": true,
+  "uses": {
+   "mr": "रोजच्या देवपूजेत, सकाळ-संध्याकाळच्या आरतीला आणि घरात प्रसन्न सुगंधासाठी लावण्याची जास्वंद अगरबत्ती. पाऊच पॅकमुळे काड्या सुरक्षित राहतात.",
+   "en": "Hibiscus agarbatti for daily puja, morning and evening aarti, and a pleasant fragrance at home. The pouch keeps the sticks safe."
+  }
  },
  {
   "slug": "packet-kewda",
@@ -178,8 +232,12 @@
    "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
   },
   "featured": false,
-  "sort": 6,
-  "active": true
+  "sort": 7,
+  "active": true,
+  "uses": {
+   "mr": "रोजच्या पूजेसाठी कमी किमतीतील केवडा अगरबत्ती. घर, दुकान व ऑफिसमध्ये लावण्यासाठी; दुकानदारांना सुट्या विक्रीसाठी सोयीचे पॅक.",
+   "en": "Low-cost Kewda agarbatti for daily puja at home, in shops and offices. Handy small packs for retailers to sell."
+  }
  },
  {
   "slug": "packet-gulab",
@@ -210,8 +268,12 @@
    "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
   },
   "featured": false,
-  "sort": 7,
-  "active": true
+  "sort": 8,
+  "active": true,
+  "uses": {
+   "mr": "रोजच्या पूजेसाठी कमी किमतीतील गुलाब अगरबत्ती. घर, दुकान व ऑफिसमध्ये लावण्यासाठी; दुकानदारांना सुट्या विक्रीसाठी सोयीचे पॅक.",
+   "en": "Low-cost Rose agarbatti for daily puja at home, in shops and offices. Handy small packs for retailers to sell."
+  }
  },
  {
   "slug": "packet-mogra",
@@ -242,8 +304,12 @@
    "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
   },
   "featured": false,
-  "sort": 8,
-  "active": true
+  "sort": 9,
+  "active": true,
+  "uses": {
+   "mr": "रोजच्या पूजेसाठी कमी किमतीतील मोगरा अगरबत्ती. घर, दुकान व ऑफिसमध्ये लावण्यासाठी; दुकानदारांना सुट्या विक्रीसाठी सोयीचे पॅक.",
+   "en": "Low-cost Mogra · Jasmine agarbatti for daily puja at home, in shops and offices. Handy small packs for retailers to sell."
+  }
  },
  {
   "slug": "packet-kasturi",
@@ -274,8 +340,12 @@
    "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
   },
   "featured": false,
-  "sort": 9,
-  "active": true
+  "sort": 10,
+  "active": true,
+  "uses": {
+   "mr": "रोजच्या पूजेसाठी कमी किमतीतील कस्तुरी अगरबत्ती. घर, दुकान व ऑफिसमध्ये लावण्यासाठी; दुकानदारांना सुट्या विक्रीसाठी सोयीचे पॅक.",
+   "en": "Low-cost Kasturi · Musk agarbatti for daily puja at home, in shops and offices. Handy small packs for retailers to sell."
+  }
  },
  {
   "slug": "packet-champa",
@@ -306,8 +376,12 @@
    "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
   },
   "featured": false,
-  "sort": 10,
-  "active": true
+  "sort": 11,
+  "active": true,
+  "uses": {
+   "mr": "रोजच्या पूजेसाठी कमी किमतीतील चंपा अगरबत्ती. घर, दुकान व ऑफिसमध्ये लावण्यासाठी; दुकानदारांना सुट्या विक्रीसाठी सोयीचे पॅक.",
+   "en": "Low-cost Champa agarbatti for daily puja at home, in shops and offices. Handy small packs for retailers to sell."
+  }
  },
  {
   "slug": "packet-chandan",
@@ -338,8 +412,12 @@
    "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
   },
   "featured": false,
-  "sort": 11,
-  "active": true
+  "sort": 12,
+  "active": true,
+  "uses": {
+   "mr": "रोजच्या पूजेसाठी कमी किमतीतील चंदन अगरबत्ती. घर, दुकान व ऑफिसमध्ये लावण्यासाठी; दुकानदारांना सुट्या विक्रीसाठी सोयीचे पॅक.",
+   "en": "Low-cost Sandalwood agarbatti for daily puja at home, in shops and offices. Handy small packs for retailers to sell."
+  }
  },
  {
   "slug": "packet-denim",
@@ -372,8 +450,12 @@
    "en": "₹5 / ₹7 / ₹10 / ₹12 / ₹15"
   },
   "featured": true,
-  "sort": 12,
-  "active": true
+  "sort": 13,
+  "active": true,
+  "uses": {
+   "mr": "रोजच्या पूजेसाठी कमी किमतीतील डेनिम अगरबत्ती. घर, दुकान व ऑफिसमध्ये लावण्यासाठी; दुकानदारांना सुट्या विक्रीसाठी सोयीचे पॅक.",
+   "en": "Low-cost Denim agarbatti for daily puja at home, in shops and offices. Handy small packs for retailers to sell."
+  }
  },
  {
   "slug": "premium-kasturi",
@@ -402,8 +484,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": true,
-  "sort": 13,
-  "active": true
+  "sort": 14,
+  "active": true,
+  "uses": {
+   "mr": "खास पूजा, सण-उत्सव, घरातील कार्यक्रम आणि भेट देण्यासाठी निवडक कस्तुरी सुगंधाची अगरबत्ती. जारमध्ये काड्या सुरक्षित राहतात.",
+   "en": "Select Kasturi · Musk agarbatti for special pujas, festivals, family occasions and gifting. The jar keeps the sticks safe."
+  }
  },
  {
   "slug": "premium-mogra",
@@ -429,11 +515,17 @@
    "किमान ४० मिनिटे जळते"
   ],
   "image": "/images/products/premium-jar-mogra.jpg",
-  "gallery": [],
+  "gallery": [
+   "/images/gallery/premium-jar-mogra-2.jpg"
+  ],
   "priceNote": null,
   "featured": true,
-  "sort": 14,
-  "active": true
+  "sort": 15,
+  "active": true,
+  "uses": {
+   "mr": "खास पूजा, सण-उत्सव, घरातील कार्यक्रम आणि भेट देण्यासाठी निवडक मोगरा सुगंधाची अगरबत्ती. जारमध्ये काड्या सुरक्षित राहतात.",
+   "en": "Select Mogra · Jasmine agarbatti for special pujas, festivals, family occasions and gifting. The jar keeps the sticks safe."
+  }
  },
  {
   "slug": "premium-kewda",
@@ -462,8 +554,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 15,
-  "active": true
+  "sort": 16,
+  "active": true,
+  "uses": {
+   "mr": "खास पूजा, सण-उत्सव, घरातील कार्यक्रम आणि भेट देण्यासाठी निवडक केवडा सुगंधाची अगरबत्ती. जारमध्ये काड्या सुरक्षित राहतात.",
+   "en": "Select Kewda agarbatti for special pujas, festivals, family occasions and gifting. The jar keeps the sticks safe."
+  }
  },
  {
   "slug": "premium-gulab",
@@ -492,8 +588,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 16,
-  "active": true
+  "sort": 17,
+  "active": true,
+  "uses": {
+   "mr": "खास पूजा, सण-उत्सव, घरातील कार्यक्रम आणि भेट देण्यासाठी निवडक गुलाब सुगंधाची अगरबत्ती. जारमध्ये काड्या सुरक्षित राहतात.",
+   "en": "Select Rose agarbatti for special pujas, festivals, family occasions and gifting. The jar keeps the sticks safe."
+  }
  },
  {
   "slug": "premium-jaswand",
@@ -522,8 +622,46 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 17,
-  "active": true
+  "sort": 18,
+  "active": true,
+  "uses": {
+   "mr": "खास पूजा, सण-उत्सव, घरातील कार्यक्रम आणि भेट देण्यासाठी निवडक जास्वंद सुगंधाची अगरबत्ती. जारमध्ये काड्या सुरक्षित राहतात.",
+   "en": "Select Hibiscus agarbatti for special pujas, festivals, family occasions and gifting. The jar keeps the sticks safe."
+  }
+ },
+ {
+  "slug": "premium-chandan",
+  "category": "premium",
+  "subtype": "jar",
+  "name": {
+   "mr": "चंदन प्रीमियम",
+   "en": "Sandalwood Premium"
+  },
+  "tagline": {
+   "mr": "गोल्ड-कॅप जार",
+   "en": "Gold-cap jar"
+  },
+  "description": {
+   "mr": "निवडक कच्च्या मालापासून तयार केलेली चंदन प्रीमियम अगरबत्ती, सुंदर गोल्ड-कॅप जारमध्ये. भेट देण्यासाठीही उत्तम.",
+   "en": "Premium Sandalwood agarbatti in a gold-cap jar. A good gift too."
+  },
+  "fragrance": "chandan",
+  "benefits": [
+   "सौम्य व थंडावा देणारा, दीर्घकाळ टिकणारा सुगंध",
+   "ध्यान व पूजेच्या वेळी शांत वातावरण",
+   "घरात प्रसन्न, स्वच्छ सुगंध",
+   "किमान ४० मिनिटे जळते"
+  ],
+  "image": "/images/products/premium-jar-chandan.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 19,
+  "active": true,
+  "uses": {
+   "mr": "खास पूजा, सण-उत्सव, घरातील कार्यक्रम आणि भेट देण्यासाठी निवडक चंदन सुगंधाची अगरबत्ती. जारमध्ये काड्या सुरक्षित राहतात.",
+   "en": "Select Sandalwood agarbatti for special pujas, festivals, family occasions and gifting. The jar keeps the sticks safe."
+  }
  },
  {
   "slug": "dhoop-box-kewda-bel",
@@ -553,8 +691,12 @@
   ],
   "priceNote": null,
   "featured": true,
-  "sort": 18,
-  "active": true
+  "sort": 20,
+  "active": true,
+  "uses": {
+   "mr": "देवपूजा, आरती व सणांच्या वेळी घरात गाढ सुगंधासाठी लावली जाणारी केवडा व बेल धूप कांडी. बॉक्स पॅक देवघराजवळ ठेवायला व भेट द्यायला सोयीचा.",
+   "en": "Dhoop sticks with a deeper Kewda & Bel fragrance for puja, aarti and festivals. The box is easy to keep near the home shrine or to gift."
+  }
  },
  {
   "slug": "dhoop-box-jaswand",
@@ -582,8 +724,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 19,
-  "active": true
+  "sort": 21,
+  "active": true,
+  "uses": {
+   "mr": "देवपूजा, आरती व सणांच्या वेळी घरात गाढ सुगंधासाठी लावली जाणारी जास्वंद धूप कांडी. बॉक्स पॅक देवघराजवळ ठेवायला व भेट द्यायला सोयीचा.",
+   "en": "Dhoop sticks with a deeper Hibiscus fragrance for puja, aarti and festivals. The box is easy to keep near the home shrine or to gift."
+  }
  },
  {
   "slug": "dhoop-box-chandan",
@@ -611,8 +757,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": true,
-  "sort": 20,
-  "active": true
+  "sort": 22,
+  "active": true,
+  "uses": {
+   "mr": "देवपूजा, आरती व सणांच्या वेळी घरात गाढ सुगंधासाठी लावली जाणारी चंदन धूप कांडी. बॉक्स पॅक देवघराजवळ ठेवायला व भेट द्यायला सोयीचा.",
+   "en": "Dhoop sticks with a deeper Sandalwood fragrance for puja, aarti and festivals. The box is easy to keep near the home shrine or to gift."
+  }
  },
  {
   "slug": "dhoop-box-chafa",
@@ -640,8 +790,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 21,
-  "active": true
+  "sort": 23,
+  "active": true,
+  "uses": {
+   "mr": "देवपूजा, आरती व सणांच्या वेळी घरात गाढ सुगंधासाठी लावली जाणारी चाफा धूप कांडी. बॉक्स पॅक देवघराजवळ ठेवायला व भेट द्यायला सोयीचा.",
+   "en": "Dhoop sticks with a deeper Chafa fragrance for puja, aarti and festivals. The box is easy to keep near the home shrine or to gift."
+  }
  },
  {
   "slug": "dhoop-box-gulab",
@@ -669,8 +823,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 22,
-  "active": true
+  "sort": 24,
+  "active": true,
+  "uses": {
+   "mr": "देवपूजा, आरती व सणांच्या वेळी घरात गाढ सुगंधासाठी लावली जाणारी गुलाब धूप कांडी. बॉक्स पॅक देवघराजवळ ठेवायला व भेट द्यायला सोयीचा.",
+   "en": "Dhoop sticks with a deeper Rose fragrance for puja, aarti and festivals. The box is easy to keep near the home shrine or to gift."
+  }
  },
  {
   "slug": "dhoop-box-rui",
@@ -698,8 +856,45 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 23,
-  "active": true
+  "sort": 25,
+  "active": true,
+  "uses": {
+   "mr": "देवपूजा, आरती व सणांच्या वेळी घरात गाढ सुगंधासाठी लावली जाणारी रुई धूप कांडी. बॉक्स पॅक देवघराजवळ ठेवायला व भेट द्यायला सोयीचा.",
+   "en": "Dhoop sticks with a deeper Rui · Aak fragrance for puja, aarti and festivals. The box is easy to keep near the home shrine or to gift."
+  }
+ },
+ {
+  "slug": "dhoop-box-mogra",
+  "category": "dhoop",
+  "subtype": "box",
+  "name": {
+   "mr": "मोगरा धूप स्टिक",
+   "en": "Mogra · Jasmine Dhoop Box"
+  },
+  "tagline": {
+   "mr": "प्रीमियम धूप स्टिक · बॉक्स",
+   "en": "Premium dhoop sticks · box"
+  },
+  "description": {
+   "mr": "प्रार्थनेचा पवित्र सुगंध. मोगरा प्रीमियम धूप स्टिक, आकर्षक बॉक्स पॅकमध्ये.",
+   "en": "Premium Mogra · Jasmine dhoop sticks in a gift-ready box."
+  },
+  "fragrance": "mogra",
+  "benefits": [
+   "गोड व मोहक, ताजातवाना सुगंध",
+   "घरात प्रसन्न वातावरण",
+   "संध्याकाळच्या पूजेसाठी आवडता"
+  ],
+  "image": "/images/products/dhoop-box-mogra.jpg",
+  "gallery": [],
+  "priceNote": null,
+  "featured": false,
+  "sort": 26,
+  "active": true,
+  "uses": {
+   "mr": "देवपूजा, आरती व सणांच्या वेळी घरात गाढ सुगंधासाठी लावली जाणारी मोगरा धूप कांडी. बॉक्स पॅक देवघराजवळ ठेवायला व भेट द्यायला सोयीचा.",
+   "en": "Dhoop sticks with a deeper Mogra · Jasmine fragrance for puja, aarti and festivals. The box is easy to keep near the home shrine or to gift."
+  }
  },
  {
   "slug": "dhoop-jar-kewda-bel",
@@ -729,8 +924,12 @@
   ],
   "priceNote": null,
   "featured": false,
-  "sort": 24,
-  "active": true
+  "sort": 27,
+  "active": true,
+  "uses": {
+   "mr": "रोजची पूजा, आरती व सणांसाठी केवडा व बेल धूप कांडी. देवतेचे चित्र असलेला जार देवघरात ठेवायला सुंदर दिसतो.",
+   "en": "Dhoop sticks in Kewda & Bel for daily puja, aarti and festivals. The jar with a deity picture looks good kept in the home shrine."
+  }
  },
  {
   "slug": "dhoop-jar-jaswand",
@@ -758,8 +957,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 25,
-  "active": true
+  "sort": 28,
+  "active": true,
+  "uses": {
+   "mr": "रोजची पूजा, आरती व सणांसाठी जास्वंद धूप कांडी. देवतेचे चित्र असलेला जार देवघरात ठेवायला सुंदर दिसतो.",
+   "en": "Dhoop sticks in Hibiscus for daily puja, aarti and festivals. The jar with a deity picture looks good kept in the home shrine."
+  }
  },
  {
   "slug": "dhoop-jar-chandan",
@@ -789,8 +992,12 @@
   ],
   "priceNote": null,
   "featured": false,
-  "sort": 26,
-  "active": true
+  "sort": 29,
+  "active": true,
+  "uses": {
+   "mr": "रोजची पूजा, आरती व सणांसाठी चंदन धूप कांडी. देवतेचे चित्र असलेला जार देवघरात ठेवायला सुंदर दिसतो.",
+   "en": "Dhoop sticks in Sandalwood for daily puja, aarti and festivals. The jar with a deity picture looks good kept in the home shrine."
+  }
  },
  {
   "slug": "dhoop-jar-chafa",
@@ -818,8 +1025,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 27,
-  "active": true
+  "sort": 30,
+  "active": true,
+  "uses": {
+   "mr": "रोजची पूजा, आरती व सणांसाठी चाफा धूप कांडी. देवतेचे चित्र असलेला जार देवघरात ठेवायला सुंदर दिसतो.",
+   "en": "Dhoop sticks in Chafa for daily puja, aarti and festivals. The jar with a deity picture looks good kept in the home shrine."
+  }
  },
  {
   "slug": "dhoop-jar-gulab",
@@ -847,8 +1058,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 28,
-  "active": true
+  "sort": 31,
+  "active": true,
+  "uses": {
+   "mr": "रोजची पूजा, आरती व सणांसाठी गुलाब धूप कांडी. देवतेचे चित्र असलेला जार देवघरात ठेवायला सुंदर दिसतो.",
+   "en": "Dhoop sticks in Rose for daily puja, aarti and festivals. The jar with a deity picture looks good kept in the home shrine."
+  }
  },
  {
   "slug": "dhoop-jar-mogra",
@@ -876,8 +1091,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 29,
-  "active": true
+  "sort": 32,
+  "active": true,
+  "uses": {
+   "mr": "रोजची पूजा, आरती व सणांसाठी मोगरा धूप कांडी. देवतेचे चित्र असलेला जार देवघरात ठेवायला सुंदर दिसतो.",
+   "en": "Dhoop sticks in Mogra · Jasmine for daily puja, aarti and festivals. The jar with a deity picture looks good kept in the home shrine."
+  }
  },
  {
   "slug": "dhoop-jar-rui",
@@ -907,8 +1126,12 @@
   ],
   "priceNote": null,
   "featured": true,
-  "sort": 30,
-  "active": true
+  "sort": 33,
+  "active": true,
+  "uses": {
+   "mr": "रोजची पूजा, आरती व सणांसाठी रुई धूप कांडी. देवतेचे चित्र असलेला जार देवघरात ठेवायला सुंदर दिसतो.",
+   "en": "Dhoop sticks in Rui · Aak for daily puja, aarti and festivals. The jar with a deity picture looks good kept in the home shrine."
+  }
  },
  {
   "slug": "cup-dhoop",
@@ -941,8 +1164,12 @@
   ],
   "priceNote": null,
   "featured": true,
-  "sort": 31,
-  "active": true
+  "sort": 34,
+  "active": true,
+  "uses": {
+   "mr": "लहान कपाच्या आकारात तयार केलेला धूप, ज्यात हर्बल/मसाला मिश्रण भरलेले असते. थेट पेटवून पूजा, आरती, होम किंवा घरात सुगंधासाठी वापरतात. धूर जास्त असल्याने मंदिर, दुकान व मोठ्या जागेसाठी उपयुक्त.",
+   "en": "A small cup-shaped dhoop filled with a herbal/masala mix. Light it directly for puja, aarti, havan or fragrance at home. It gives more smoke, so it suits temples, shops and larger rooms."
+  }
  },
  {
   "slug": "kapur",
@@ -969,8 +1196,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": true,
-  "sort": 32,
-  "active": true
+  "sort": 35,
+  "active": true,
+  "uses": {
+   "mr": "आरतीच्या ताटात किंवा कापूरदाणीत ठेवून पेटवला जातो. पूजा, आरती व होमाच्या वेळी ज्योत लावण्यासाठी आणि घरात कापराच्या सुगंधासाठी.",
+   "en": "Lit on the aarti plate or in a camphor holder for the flame during puja, aarti and havan, and for the familiar camphor fragrance at home."
+  }
  },
  {
   "slug": "phulvat",
@@ -999,8 +1230,12 @@
   ],
   "priceNote": null,
   "featured": true,
-  "sort": 33,
-  "active": true
+  "sort": 36,
+  "active": true,
+  "uses": {
+   "mr": "कापसापासून बनवलेली जाड, फुलासारख्या आकाराची वात, जी दिव्यात किंवा निरांजनात तेल/तूप घालून लावली जाते. साध्या वातीपेक्षा मोठी असल्याने प्रकाश जास्त तेजस्वी मिळतो. रोजची पूजा, आरती, दिवाळी व सणांसाठी.",
+   "en": "Thick, flower-shaped cotton wicks placed in a diya or niranjan with oil or ghee. Bigger than a plain wick, so the flame is brighter. For daily puja, aarti, Diwali and festivals."
+  }
  },
  {
   "slug": "samai-vat",
@@ -1027,8 +1262,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": true,
-  "sort": 34,
-  "active": true
+  "sort": 37,
+  "active": true,
+  "uses": {
+   "mr": "समई (पारंपरिक पितळी दिवा) मध्ये लावण्यासाठी तयार केलेली कापसाची लांब वात. दिव्यात नीट बसते आणि ज्योत शांत, स्थिर व जास्त वेळ पेटलेली राहते. रोजच्या दिवाबत्तीसाठी सोयीची.",
+   "en": "Long cotton wicks made for the samai, the traditional brass lamp. They sit well in the lamp and give a calm, steady flame that lasts. Handy for the daily evening lamp."
+  }
  },
  {
   "slug": "ood",
@@ -1054,8 +1293,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 35,
-  "active": true
+  "sort": 38,
+  "active": true,
+  "uses": {
+   "mr": "धुपाटण्यात निखाऱ्यावर किंवा होमात टाकून सुगंधी धूर करण्यासाठी वापरले जाणारे ऊद मिश्रण.",
+   "en": "An ood mix sprinkled on embers in a dhoop holder or into the havan fire to give fragrant smoke."
+  }
  },
  {
   "slug": "gulal",
@@ -1081,8 +1324,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 36,
-  "active": true
+  "sort": 39,
+  "active": true,
+  "uses": {
+   "mr": "देवाला वाहण्यासाठी, पूजा-अभिषेकात आणि उत्सव व मिरवणुकीत उधळण्यासाठी लाल गुलाल.",
+   "en": "Red gulal offered to the deity in puja and thrown in celebrations and processions."
+  }
  },
  {
   "slug": "bhandara",
@@ -1108,8 +1355,12 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 37,
-  "active": true
+  "sort": 40,
+  "active": true,
+  "uses": {
+   "mr": "देवपूजेत वाहण्यासाठी आणि जत्रा-उत्सवात उधळण्यासाठी पिवळा भंडारा.",
+   "en": "Yellow bhandara offered in puja and thrown at jatras and festivals."
+  }
  },
  {
   "slug": "rangoli",
@@ -1135,7 +1386,11 @@
   "gallery": [],
   "priceNote": null,
   "featured": false,
-  "sort": 38,
-  "active": true
+  "sort": 41,
+  "active": true,
+  "uses": {
+   "mr": "दारासमोर, देवघरात व सण-उत्सवात रांगोळी काढण्यासाठी विविध रंगांची रांगोळी.",
+   "en": "Rangoli powder in many colours for designs at the doorstep, near the shrine and at festivals."
+  }
  }
 ]

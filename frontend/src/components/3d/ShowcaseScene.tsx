@@ -48,7 +48,7 @@ export default function ShowcaseScene({ slugs, progress }: { slugs: string[]; pr
           <Studio />
           <Carousel slugs={slugs} progress={progress} still={reduce} />
           <Sparkles count={35} scale={[8, 5, 3]} size={2} speed={reduce ? 0 : 0.2} color="#E2BE78" opacity={0.5} />
-          <ContactShadows position={[0, -1.95, 0]} opacity={0.45} scale={10} blur={2.4} far={3} resolution={256} color="#06140f" />
+          <ContactShadows position={[0, -1.95, 0]} opacity={0.45} scale={10} blur={2.4} far={3} resolution={256} color="#140b06" />
         </Suspense>
       </Canvas>
     </div>

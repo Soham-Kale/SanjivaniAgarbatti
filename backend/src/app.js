@@ -7,14 +7,17 @@ import { config } from './config.js';
 import products from './routes/products.js';
 import enquiries from './routes/enquiries.js';
 import admin from './routes/admin.js';
+import auth from './routes/auth.js';
+import content from './routes/content.js';
 import { errorHandler, notFound } from './middleware/errors.js';
 
 export function createApp() {
   const app = express();
   app.set('trust proxy', 1);
-  app.use(helmet());
+  // Images in /uploads are shown on the website, which runs on a different origin.
+  app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
   app.use(cors({ origin: config.corsOrigin }));
-  app.use(express.json({ limit: '50kb' }));
+  app.use(express.json({ limit: '1mb' }));
   if (process.env.NODE_ENV !== 'test') app.use(morgan('dev'));
 
   app.get('/api/health', (req, res) =>
@@ -22,7 +25,10 @@ export function createApp() {
   );
   app.use('/api/products', products);
   app.use('/api/enquiries', enquiries);
+  app.use('/api/auth', auth);
+  app.use('/api/content', content);
   app.use('/api/admin', admin);
+  app.use('/uploads', express.static(config.uploadDir, { maxAge: '30d', immutable: true, index: false }));
 
   app.use(notFound);
   app.use(errorHandler);

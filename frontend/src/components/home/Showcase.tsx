@@ -43,7 +43,7 @@ export default function Showcase() {
   const s = STEPS[i];
 
   return (
-    <section ref={ref} className="on-dark relative bg-forest-deep text-ivory" style={{ height: `${STEPS.length * 85 + 30}vh` }} aria-label={t({ mr: '3D उत्पादन दर्शन', en: '3D product showcase' })}>
+    <section ref={ref} className="on-dark relative bg-wood-deep text-ivory" style={{ height: `${STEPS.length * 85 + 30}vh` }} aria-label={t({ mr: '3D उत्पादन दर्शन', en: '3D product showcase' })}>
       <div className="sticky top-0 flex h-[100svh] flex-col overflow-hidden">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_60%_at_35%_55%,rgba(201,154,69,.25),transparent_70%)]" />
         <div className="wrap relative grid flex-1 items-center gap-4 pt-20 lg:grid-cols-[1.2fr_1fr] lg:pt-0">

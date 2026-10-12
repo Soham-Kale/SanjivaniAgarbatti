@@ -6,17 +6,19 @@ import { motion } from 'framer-motion';
 import SectionHead from '../SectionHead';
 import { rise, stagger } from '../Reveal';
 import { useLang } from '@/lib/i18n';
-import { CATEGORY_INFO } from '@/lib/site';
+import { useContent } from '@/lib/content-context';
+import { media } from '@/lib/media';
 import type { Category, Product } from '@/lib/types';
 
-/** Editorial bento of the categories that actually exist in the product data. */
+/** Category cards (photo above, text below) for the categories that exist in the product data. */
 export default function CategoryDiscovery({ products }: { products: Product[] }) {
   const { t, lang } = useLang();
+  const { categories: CATEGORY_INFO } = useContent();
   const counts = products.reduce<Record<string, number>>((m, p) => ((m[p.category] = (m[p.category] || 0) + 1), m), {});
   const cats = (Object.keys(CATEGORY_INFO) as Category[]).filter((c) => counts[c]);
 
   return (
-    <section className="section bg-sage/60" aria-labelledby="cat-title">
+    <section className="section bg-sand/60" aria-labelledby="cat-title">
       <div className="wrap">
         <SectionHead
           eyebrow={{ mr: 'श्रेणी', en: 'Categories' }}
@@ -24,7 +26,7 @@ export default function CategoryDiscovery({ products }: { products: Product[] })
           text={{ mr: 'अगरबत्तीपासून कापूर व वातींपर्यंत, सर्व एकाच ब्रँडकडून.', en: 'From agarbatti to camphor and wicks, all from one brand.' }}
         />
         <motion.ul
-          className="grid auto-rows-[190px] grid-cols-2 gap-3 sm:gap-5 md:auto-rows-[230px] md:grid-cols-4"
+          className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 lg:grid-cols-5"
           variants={stagger}
           initial="hidden"
           whileInView="show"
@@ -33,20 +35,24 @@ export default function CategoryDiscovery({ products }: { products: Product[] })
           {cats.map((c, i) => {
             const info = CATEGORY_INFO[c];
             return (
-              <motion.li key={c} variants={rise} className={i === 0 ? 'col-span-2 row-span-2' : ''}>
-                <Link href={`/products?c=${c}`} className="group relative block h-full overflow-hidden rounded-[22px] bg-forest">
-                  <Image src={info.image} alt="" fill sizes="(max-width: 768px) 50vw, 40vw" className="object-cover opacity-90 transition duration-[1.2s] ease-soft group-hover:scale-[1.06] group-hover:opacity-100" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-forest-night/90 via-forest-night/25 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
-                    <span className="text-[.75rem] font-semibold uppercase tracking-[.14em] text-gold-light">
+              <motion.li key={c} variants={rise} className={i === 0 ? 'col-span-2 md:col-span-1' : ''}>
+                <Link
+                  href={`/products?c=${c}`}
+                  className="group flex h-full flex-col overflow-hidden rounded-[20px] border border-charcoal/10 bg-ivory shadow-card transition duration-500 ease-soft hover:-translate-y-1 hover:shadow-lift"
+                >
+                  <div className={`relative overflow-hidden bg-sand ${i === 0 ? 'aspect-[16/10] md:aspect-[4/5]' : 'aspect-[4/5]'}`}>
+                    <Image src={media(info.image)} alt={t(info.label)} fill sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 240px" className="object-cover transition duration-[1.2s] ease-soft group-hover:scale-[1.06]" />
+                    <span className="absolute left-3 top-3 rounded-full bg-ivory/90 px-2.5 py-0.5 text-[.72rem] font-semibold text-maroon backdrop-blur">
                       {lang === 'mr' ? `${counts[c]} उत्पादने` : `${counts[c]} products`}
                     </span>
-                    <h3 className={`mt-1 text-ivory ${i === 0 ? 'text-[clamp(1.6rem,3vw,2.4rem)]' : 'text-[1.25rem] sm:text-[1.45rem]'}`}>{t(info.label)}</h3>
-                    <p className={`text-[.9rem] text-mist ${i === 0 ? 'block' : 'hidden sm:block'}`}>{t(info.blurb)}</p>
                   </div>
-                  <span className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-ivory/90 text-forest opacity-0 transition duration-500 group-hover:opacity-100" aria-hidden>
-                    →
-                  </span>
+                  <div className="flex flex-1 flex-col p-4">
+                    <h3 className="font-display text-[1.15rem] leading-snug text-wood sm:text-[1.25rem]">{t(info.label)}</h3>
+                    <p className="mt-1 text-[.85rem] leading-relaxed text-stone">{t(info.blurb)}</p>
+                    <span className="mt-auto pt-3 text-[.85rem] font-semibold text-wood transition group-hover:text-maroon">
+                      {t({ mr: 'पाहा', en: 'Browse' })} →
+                    </span>
+                  </div>
                 </Link>
               </motion.li>
             );

@@ -4,8 +4,8 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState } 
 import type { CartItem, Product } from './types';
 
 /**
- * "ऑर्डर यादी" (order list). Prices are not published yet, so the list is sent to the shop on
- * WhatsApp and saved as an order enquiry in the backend; the shop confirms price and delivery.
+ * "ऑर्डर यादी" (order list). The list is sent to the shop on WhatsApp and saved as an order
+ * enquiry in the backend; the shop confirms the final price and delivery.
  */
 type Ctx = {
   items: CartItem[];
@@ -47,7 +47,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const add = useCallback((p: Product, qty = 1) => {
     setItems((list) => {
       const i = list.findIndex((x) => x.slug === p.slug);
-      if (i === -1) return [...list, { slug: p.slug, name: p.name, image: p.image, qty }];
+      if (i === -1) return [...list, { slug: p.slug, name: p.name, image: p.image, qty, price: p.price ?? null }];
       const next = [...list];
       next[i] = { ...next[i], qty: Math.min(next[i].qty + qty, 999) };
       return next;

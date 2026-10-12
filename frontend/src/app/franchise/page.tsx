@@ -4,6 +4,7 @@ import { NoProfitNote, Plans, Steps } from '@/components/FranchisePlans';
 import FranchiseInfo from '@/components/FranchiseInfo';
 import EnquiryForm from '@/components/EnquiryForm';
 import T from '@/components/T';
+import { getContent } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: 'फ्रँचायझी',
@@ -12,19 +13,17 @@ export const metadata: Metadata = {
 
 const PLAN_IDS = ['mini', 'franchise', 'warehouse'];
 
-export default function FranchisePage({ searchParams }: { searchParams: { plan?: string } }) {
+export default async function FranchisePage({ searchParams }: { searchParams: { plan?: string } }) {
+  const { franchise } = await getContent();
   const plan = PLAN_IDS.includes(searchParams.plan ?? '') ? searchParams.plan! : 'franchise';
   return (
     <>
       <section className="section wrap pt-16">
         <SectionHead
           as="h1"
-          eyebrow={{ mr: 'फ्रँचायझी · संपूर्ण महाराष्ट्र', en: 'Franchise · All Maharashtra' }}
-          title={{ mr: 'तुमची गुंतवणूक, आमचा ब्रँड, दोघांची प्रगती', en: 'Your investment, our brand, growth for both' }}
-          text={{
-            mr: 'तुमच्या गावात संजीवनीचे दुकान सुरू करा. ब्रँड, माल पुरवठा, प्रशिक्षण आणि मार्केटिंग सहाय्य आमच्याकडून.',
-            en: 'Open a Sanjivani shop in your town. Brand, stock supply, training and marketing support from us.',
-          }}
+          eyebrow={franchise.eyebrow}
+          title={franchise.title}
+          text={franchise.text}
         />
         <Plans withCta />
         <Steps />
@@ -37,7 +36,7 @@ export default function FranchisePage({ searchParams }: { searchParams: { plan?:
         <div id="enquiry" className="grid scroll-mt-24 gap-10 rounded-3xl border border-charcoal/10 bg-ivory-2 p-6 md:grid-cols-[1fr_1.2fr] md:p-10">
           <div>
             <div className="eyebrow"><T mr="फ्रँचायझी चौकशी" en="Franchise enquiry" /></div>
-            <h2 className="mt-2.5 text-[2rem] text-forest"><T mr="तुमच्या गावात संजीवनी सुरू करूया" en="Let's start Sanjivani in your town" /></h2>
+            <h2 className="mt-2.5 text-[2rem] text-wood"><T mr="तुमच्या गावात संजीवनी सुरू करूया" en="Let's start Sanjivani in your town" /></h2>
             <p className="text-stone"><T mr="फॉर्म भरा, आमची टीम तुमच्याशी संपर्क करेल." en="Fill in the form and our team will get in touch." /></p>
           </div>
           <EnquiryForm type="franchise" defaultPlan={plan} />

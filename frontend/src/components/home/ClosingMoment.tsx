@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useLang } from '@/lib/i18n';
+import { useContent } from '@/lib/content-context';
 
 /** Soft SVG smoke wisps behind the closing line; pure CSS/SVG so no extra WebGL context. */
 function Wisps() {
@@ -38,12 +39,13 @@ function Wisps() {
 
 export default function ClosingMoment() {
   const { t } = useLang();
+  const { closing } = useContent();
   return (
-    <section className="on-dark relative overflow-hidden bg-forest-deep py-28 text-center text-ivory md:py-36">
+    <section className="on-dark relative overflow-hidden bg-wood-deep py-28 text-center text-ivory md:py-36">
       <Wisps />
       <div className="wrap relative">
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="eyebrow justify-center">
-          {t({ mr: 'संजीवनी', en: 'Sanjivani' })}
+          {t(closing.eyebrow)}
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
@@ -52,9 +54,9 @@ export default function ClosingMoment() {
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto mt-5 max-w-4xl text-[clamp(2.4rem,6vw,4.8rem)] leading-[1.25] text-ivory"
         >
-          आपल्या प्रत्येक पूजेसाठी… <span className="italic text-gold-light">संजीवनी सोबत!</span>
+          {t(closing.title)} <span className="italic text-gold-light">{t(closing.highlight)}</span>
         </motion.h2>
-        <p className="mx-auto mt-5 max-w-lg text-mist">{t({ mr: 'तुमची ऑर्डर यादी बनवा आणि WhatsApp वर पाठवा. आम्ही किंमत व डिलिव्हरी कळवू.', en: 'Build your order list and send it on WhatsApp. We will confirm price and delivery.' })}</p>
+        <p className="mx-auto mt-5 max-w-lg text-mist">{t(closing.text)}</p>
         <div className="mt-9 flex flex-wrap justify-center gap-3">
           <Link href="/products" className="btn-gold">{t({ mr: 'उत्पादने पाहा', en: 'Explore Products' })} →</Link>
           <Link href="/contact" className="btn-outline-light">{t({ mr: 'संपर्क करा', en: 'Contact us' })}</Link>

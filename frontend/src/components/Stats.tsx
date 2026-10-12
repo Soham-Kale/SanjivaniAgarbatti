@@ -20,7 +20,7 @@ function Count({ to, suffix }: { to: number; suffix: string }) {
     return () => c.stop();
   }, [inView, reduce, to]);
   return (
-    <b ref={ref} className="block font-display text-[clamp(1.9rem,3.4vw,2.6rem)] font-normal tabular-nums text-forest">
+    <b ref={ref} className="block font-display text-[clamp(1.9rem,3.4vw,2.6rem)] font-normal tabular-nums text-wood">
       {lang === 'mr' ? toMr(v) : v}
       {suffix}
     </b>

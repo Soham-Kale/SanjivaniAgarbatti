@@ -8,9 +8,13 @@ Content is Marathi-first, with an English toggle in the header (remembered per b
 
 ## Design and 3D (premium upgrade)
 
-- **Palette** (tokens in `frontend/tailwind.config.ts`): ivory `#F8F3E9` backgrounds, deep forest green
-  `#163D32` for primary bands and buttons (from the logo's leaves), saffron gold `#C99A45` accents,
-  sandalwood `#79513A`, charcoal `#252722` text, soft sage `#DCE5D8`.
+- **Palette** (tokens in `frontend/tailwind.config.ts`): ivory `#F8F3E9` and sand `#F1E5CF`
+  backgrounds, deep sandalwood-brown `wood` `#3B2416` for dark bands, headings and buttons, temple
+  gold `#C99A45` accents, kumkum `maroon` `#8C2A1F` for small highlights (from the catalogue's
+  headings), sandalwood `#79513A`, charcoal `#252722` text.
+- **Product text**: every product has a `uses` field ("what it is for", shown on cards and the
+  detail page) and the detail page shows plain "how to use" steps from `frontend/src/lib/usage.ts`.
+  The About page gallery gives every photo a caption saying what it shows.
 - **Marathi typography**: *Tiro Devanagari Marathi* for headings (drawn for Marathi, correct ळ/ऱ्
   and conjuncts) and *Noto Sans Devanagari* for body text, self-hosted by `next/font` at build time.
   Body line-height 1.75 and heading padding keep vowel signs from clipping.
@@ -19,7 +23,7 @@ Content is Marathi-first, with an English toggle in the header (remembered per b
     agarbatti, shader smoke, gold dust and contact shadows. Drag to rotate (mouse or touch); the
     camera follows the pointer. Choosing a fragrance lower on the page recolours the smoke.
   - Scroll showcase: a sticky section that turns between three real packs as you scroll.
-  - Product pages: a "3D मध्ये पाहा" toggle opens a drag-to-rotate viewer for the 16 products that
+  - Product pages: a "3D मध्ये पाहा" toggle opens a drag-to-rotate viewer for the 19 products that
     have a model (5 premium jars, 6 dhoop boxes, 5 pouches).
   - The models are simple procedural shapes (jar, carton, pillow pouch) wrapped with **straight
     crops of the client's own product photos** (`frontend/public/textures/`). No packaging was
@@ -63,12 +67,15 @@ Nothing has been installed yet. Run these commands yourself in a terminal.
 cd backend
 npm install
 cp .env.example .env          # Windows: copy .env.example .env
-# edit .env: set MONGODB_URI and a long random ADMIN_KEY
-npm run seed                  # loads the 38 products into MongoDB
+# edit .env: set MONGODB_URI, a long random JWT_SECRET, ADMIN_EMAIL and ADMIN_PASSWORD
+npm run seed                  # loads the products into MongoDB (keeps admin edits)
 npm run dev                   # starts the API with auto-reload
 ```
 
 Check it: open http://localhost:5000/api/health and http://localhost:5000/api/products
+
+If you already ran `npm install` in `backend` before the admin panel was added, run it again: it
+adds `bcryptjs`, `jsonwebtoken` and `multer`.
 
 ### 2. Frontend (website on http://localhost:3000)
 
@@ -93,12 +100,45 @@ cd frontend && npm run build && npm start      # serves on port 3000
 cd backend  && npm start                       # serves on port 5000
 ```
 
+## Admin panel (`/admin`)
+
+Open http://localhost:3000/admin and sign in. The panel is in Marathi and English and works on
+phone and desktop. Every save refreshes the website straight away.
+
+| Section | What the admin can do |
+| --- | --- |
+| Dashboard | Product, price and enquiry counts, latest enquiries, quick links |
+| Products & prices | Search and filter; set price and MRP right in the list; hide/show; delete permanently; add a new product; edit every field (names, description, uses, highlights, main photo and gallery uploads, pack size, price note, stock, category, fragrance, featured, order, URL) |
+| Website content | Edit any text, phone number, photo and list on the site: contact details, announcement bar, SEO, home banner, featured block, category cards, our story, why us, franchise plans/steps/note, closing block, about page, footer. "Reset to original" per section |
+| Orders & enquiries | Filter by type and status, change status, add notes, delete, download CSV for Excel |
+| Account | Change the admin password (signs out other devices) |
+
+**First admin.** Set `JWT_SECRET`, `ADMIN_EMAIL` and `ADMIN_PASSWORD` (10+ characters) in
+`backend/.env` and start the API: the account is created once, if no admin exists. Then remove
+`ADMIN_PASSWORD` from `.env`. Or create/reset an admin any time:
+
+```bash
+cd backend
+npm run create-admin -- owner@example.com "a-long-password"
+```
+
+Passwords are stored hashed (bcrypt); sign-in is limited to 10 tries per 15 minutes and gives a
+12-hour token kept only in that browser tab. Uploaded photos go to `backend/uploads` (served at
+`/uploads`; JPG/PNG/WebP/AVIF, max 5 MB) — back this folder up along with MongoDB.
+
+Prices: a product with no price shows "price on enquiry"; with a price, cards and the product page
+show it (MRP struck through, % off) and the cart shows totals in the WhatsApp order. Content you
+have not edited keeps the built-in text, so the site still works if the API is offline.
+
+`npm run seed` only adds missing products; `npm run seed -- --force` overwrites products with the
+JSON file (this erases admin edits to those products).
+
 ## Pages
 
 | URL | What it shows |
 | --- | --- |
 | `/` | 3D hero, stats, featured products with category tabs, fragrance explorer, why us, franchise plans + 8-step process + enquiry form, founders, gallery |
-| `/products` | All 38 products, category tabs and fragrance filter (`/products?c=dhoop` opens a tab) |
+| `/products` | All products, category tabs and fragrance filter (`/products?c=dhoop` opens a tab) |
 | `/products/[slug]` | Product photo(s), description, brochure benefits, WhatsApp order, related products |
 | `/franchise` | 3 plans, process, support, ideal locations, who can apply, FAQ, enquiry form (`?plan=mini` preselects) |
 | `/about` | Founders, mission and objectives, why us, gallery |
@@ -121,21 +161,22 @@ Floating WhatsApp and call buttons are on every page. `sitemap.xml` and `robots.
 Enquiries are validated (10-digit Indian mobile), rate-limited (8 per IP per 15 min) and have a
 honeypot field against bots.
 
-**Admin endpoints** need the header `x-admin-key: <ADMIN_KEY from .env>`:
+**Sign-in** (`/api/auth`): `POST /login {email, password}` returns a token; `GET /me`;
+`POST /password {currentPassword, newPassword}`. `GET /api/content` returns the edited website content (public).
+
+**Admin endpoints** need `Authorization: Bearer <token>` (or the optional `x-admin-key` header):
 
 | Method | Path | Notes |
 | --- | --- | --- |
+| GET | `/api/admin/stats` | dashboard counts |
 | GET | `/api/admin/enquiries` | `?type=franchise&status=new&page=1&limit=50` |
-| PATCH | `/api/admin/enquiries/:id` | `{ "status": "contacted", "notes": "..." }` |
+| PATCH/DELETE | `/api/admin/enquiries/:id` | `{ "status": "contacted", "notes": "..." }` / delete |
 | GET | `/api/admin/enquiries.csv` | Excel-friendly CSV export (Marathi safe) |
 | GET/POST | `/api/admin/products` | list all / create |
-| PUT/DELETE | `/api/admin/products/:slug` | update / hide (soft delete) |
-
-Example:
-
-```bash
-curl -H "x-admin-key: YOUR_KEY" http://localhost:5000/api/admin/enquiries?type=franchise
-```
+| GET/PUT | `/api/admin/products/:slug` | one product / update (any field, incl. `price`, `mrp`, `packSize`, `inStock`) |
+| DELETE | `/api/admin/products/:slug` | hide; `?permanent=true` deletes |
+| GET/PUT | `/api/admin/content` | website content `{ data }` |
+| POST | `/api/admin/uploads` | multipart field `files` (up to 10 images) → `{ urls }` |
 
 ## Images
 
@@ -152,7 +193,8 @@ over it is enough.
 
 ## Where to edit things
 
-- Phone numbers, WhatsApp, email, address, plans, steps: `frontend/src/lib/site.ts`
+- Day to day: use the admin panel (`/admin`).
+- Built-in default texts (used until edited in the panel): `frontend/src/lib/content.ts`
 - Fragrance explorer text and smoke colours: `frontend/src/lib/fragrances.ts`
 - Colours and fonts (Divya palette): `frontend/tailwind.config.ts`
 - 3D incense scene: `frontend/src/components/IncenseScene.tsx`
@@ -161,11 +203,11 @@ over it is enough.
 
 - Confirm the address: three versions appear in the client files; the site uses
   "Behind Patel Furniture, Malewadi-Akluj" from the visiting card.
-- MRP and pack sizes per product (only the ₹5–₹15 packet range is known).
+- Prices, MRP and pack sizes per product: enter them in the admin panel.
 - Photos for Z-Black, Lavender, Masala agarbatti and Jaswand pouch (not shown yet).
 - Whether franchise amounts are shown publicly. The franchise copy makes **no profit or income
   promises** and shows the no-guarantee note from the agreement; keep it that way.
 - Enquiry notifications: add email (SMTP / Resend) or WhatsApp Cloud API at the `TODO` in
   `backend/src/routes/enquiries.js`.
-- Replace the shared `ADMIN_KEY` with real logins before more people use the admin API.
+- Use a long random `JWT_SECRET`, serve the site and API over HTTPS, and back up MongoDB and `backend/uploads`.
 - Set `NEXT_PUBLIC_SITE_URL` to the real domain for correct sitemap and share links.

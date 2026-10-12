@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { Component, useCallback, useRef, useState } from 'react';
 import { useLang } from '@/lib/i18n';
+import { useContent } from '@/lib/content-context';
+import { media } from '@/lib/media';
 
 const IncenseScene = dynamic(() => import('./IncenseScene'), { ssr: false });
 
@@ -24,6 +26,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export default function Hero() {
   const { t } = useLang();
+  const { hero } = useContent();
   const reduce = useReducedMotion();
   const [ready, setReady] = useState(false);
   const onReady = useCallback(() => setReady(true), []);
@@ -32,18 +35,19 @@ export default function Hero() {
   const copyY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 80]);
   const copyO = useTransform(scrollYProgress, [0, 0.7], [1, reduce ? 1 : 0]);
 
-  const words = t({ mr: 'प्रार्थनेचा|पवित्र|सुगंध', en: 'The sacred|fragrance|of prayer' }).split('|');
+  // Words are separated by "|" in the admin panel; the second word is highlighted in gold.
+  const words = t(hero.title).split('|').map((w) => w.trim()).filter(Boolean);
 
   return (
-    <section ref={ref} className="on-dark relative -mt-[72px] overflow-hidden bg-forest-deep pt-[72px] text-ivory" aria-labelledby="hero-title">
+    <section ref={ref} className="on-dark relative -mt-[72px] overflow-hidden bg-wood-deep pt-[72px] text-ivory" aria-labelledby="hero-title">
       {/* atmosphere: warm lamp glow, vignette, grain */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_70%_at_72%_55%,rgba(201,154,69,.32)_0%,rgba(22,61,50,0)_60%),radial-gradient(80%_60%_at_10%_0%,rgba(33,80,63,.9)_0%,rgba(14,42,34,0)_70%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_70%_at_72%_55%,rgba(201,154,69,.32)_0%,rgba(43,25,14,0)_60%),radial-gradient(80%_60%_at_10%_0%,rgba(92,59,37,.75)_0%,rgba(43,25,14,0)_70%)]" />
       <div className="pointer-events-none absolute inset-0 grain" />
 
       <div className="wrap relative grid min-h-[calc(100svh-72px)] items-center gap-6 pb-10 lg:grid-cols-[1fr_1.15fr] lg:pb-0">
         <motion.div style={{ y: copyY, opacity: copyO }} className="relative z-10 max-w-xl pt-10 lg:pt-0">
           <motion.div className="eyebrow" initial={reduce ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}>
-            {t({ mr: 'संजीवनी धूप आणि अगरबत्ती · अकलूज', en: 'Sanjivani Dhoop & Agarbatti · Akluj' })}
+            {t(hero.eyebrow)}
           </motion.div>
           <h1 id="hero-title" className="mt-5 text-[clamp(2.9rem,7vw,5.6rem)] leading-[1.18] text-ivory">
             {words.map((w, i) => (
@@ -60,20 +64,17 @@ export default function Hero() {
             ))}
           </h1>
           <motion.p className="mt-4 font-display text-[1.2rem] italic text-gold-light/90" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }}>
-            Bringing Divine Fragrance to Every Home
+            {hero.tagline}
           </motion.p>
           <motion.p className="mt-5 max-w-[46ch] text-[1.06rem] text-mist" initial={reduce ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: EASE, delay: 0.9 }}>
-            {t({
-              mr: 'प्रीमियम अगरबत्ती, धूप कांडी, कप धूप आणि संपूर्ण पूजा साहित्य. माळेवाडी-अकलूज येथे स्वतः तयार केलेले, घाऊक व किरकोळ दोन्ही.',
-              en: 'Premium agarbatti, dhoop sticks, cup dhoop and complete puja sahitya. Made by us in Malewadi-Akluj, for wholesale and retail.',
-            })}
+            {t(hero.text)}
           </motion.p>
           <motion.div className="mt-8 flex flex-wrap gap-3" initial={reduce ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: EASE, delay: 1.05 }}>
             <motion.span whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
-              <Link className="btn-gold" href="/products">{t({ mr: 'उत्पादने पाहा', en: 'Explore Products' })} <span aria-hidden>→</span></Link>
+              <Link className="btn-gold" href="/products">{t(hero.ctaPrimary)} <span aria-hidden>→</span></Link>
             </motion.span>
             <motion.span whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
-              <Link className="btn-outline-light" href="/about">{t({ mr: 'आमची कथा', en: 'Discover Our Story' })}</Link>
+              <Link className="btn-outline-light" href="/about">{t(hero.ctaSecondary)}</Link>
             </motion.span>
           </motion.div>
           <motion.p className="mt-8 hidden text-[.8rem] text-mist/70 lg:block" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }}>
@@ -85,7 +86,7 @@ export default function Hero() {
           {/* poster: shown until the 3D scene is ready, and kept if WebGL is unavailable */}
           <motion.div className="absolute inset-0 grid place-items-center" animate={{ opacity: ready ? 0 : 1 }} transition={{ duration: 0.8 }} aria-hidden={ready}>
             <div className="relative aspect-[3/4] w-[min(62%,340px)] overflow-hidden rounded-t-full border border-gold/40 shadow-glow">
-              <Image src="/images/products/premium-jar-kasturi.jpg" alt="कस्तुरी प्रीमियम अगरबत्ती जार" fill priority sizes="340px" className="object-cover" />
+              <Image src={media(hero.poster)} alt="" fill priority sizes="340px" className="object-cover" />
             </div>
           </motion.div>
           <SceneBoundary>

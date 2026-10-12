@@ -4,18 +4,10 @@ import { motion } from 'framer-motion';
 import SectionHead from './SectionHead';
 import { rise, stagger } from './Reveal';
 import { useLang } from '@/lib/i18n';
+import { useContent } from '@/lib/content-context';
+import type { WhyIcon } from '@/lib/content';
 
-/** Verified product characteristics from the catalogue and brochure. No health claims. */
-const ITEMS = [
-  { icon: 'clock', b: { mr: 'किमान ४० मिनिटे', en: 'At least 40 minutes' }, s: { mr: 'एक अगरबत्ती किमान ४० मिनिटे जळते.', en: 'Each agarbatti burns for at least 40 minutes.' } },
-  { icon: 'hand', b: { mr: 'रंग हाताला लागत नाही', en: 'No colour on your hands' }, s: { mr: 'हाताळताना रंग लागत नाही.', en: 'The colour does not rub off when handled.' } },
-  { icon: 'smoke', b: { mr: 'कमी धूर', en: 'Low smoke' }, s: { mr: 'सौम्य, कमी धूर देणारी अगरबत्ती.', en: 'Gentle sticks that give little smoke.' } },
-  { icon: 'flower', b: { mr: 'सौम्य, दीर्घकाळ सुगंध', en: 'Mild, lasting fragrance' }, s: { mr: 'घर, दुकान, ऑफिस आणि मंदिरात प्रसन्न वातावरण.', en: 'A pleasant mood at home, shop, office and temple.' } },
-  { icon: 'cup', b: { mr: 'कप धूप २+ तास', en: 'Cup dhoop, 2+ hours' }, s: { mr: 'कोळशासह येणारा बहुरंगी कप धूप.', en: 'Multicolour cup dhoop that comes with charcoal.' } },
-  { icon: 'store', b: { mr: 'घाऊक व किरकोळ', en: 'Wholesale & retail' }, s: { mr: '₹५ पासून पॅक; दुकानदार व डीलरसाठी होलसेल दर.', en: 'Packs from ₹5; wholesale rates for shops and dealers.' } },
-] as const;
-
-function Icon({ name }: { name: (typeof ITEMS)[number]['icon'] }) {
+function Icon({ name }: { name: WhyIcon }) {
   const p = { fill: 'none', stroke: 'currentColor', strokeWidth: 1.5, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const };
   return (
     <svg viewBox="0 0 24 24" className="h-7 w-7" aria-hidden="true">
@@ -31,22 +23,23 @@ function Icon({ name }: { name: (typeof ITEMS)[number]['icon'] }) {
 
 export default function WhyUs() {
   const { t } = useLang();
+  const { why } = useContent();
   return (
     <section className="section wrap" aria-labelledby="why-title">
       <SectionHead
         align="center"
-        eyebrow={{ mr: 'आम्हीच का?', en: 'Why Sanjivani' }}
-        title={{ mr: 'गुणवत्ता जी प्रत्येक पेटीत दिसते', en: 'Quality you can see in every box' }}
-        text={{ mr: 'उत्तम दर्जाचा कच्चा माल, चांगली burning quality आणि आकर्षक packaging.', en: 'Quality raw material, good burning quality and attractive packaging.' }}
+        eyebrow={why.eyebrow}
+        title={why.title}
+        text={why.text}
       />
       <motion.ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" variants={stagger} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-80px' }}>
-        {ITEMS.map((it) => (
-          <motion.li key={it.icon} variants={rise} className="group card flex gap-5 p-6 transition duration-500 hover:-translate-y-1 hover:shadow-lift">
-            <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-forest text-gold-light transition-transform duration-500 group-hover:rotate-[-6deg]">
+        {why.items.map((it, i) => (
+          <motion.li key={i} variants={rise} className="group card flex gap-5 p-6 transition duration-500 hover:-translate-y-1 hover:shadow-lift">
+            <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-wood text-gold-light transition-transform duration-500 group-hover:rotate-[-6deg]">
               <Icon name={it.icon} />
             </span>
             <div>
-              <h3 className="font-display text-[1.3rem] text-forest">{t(it.b)}</h3>
+              <h3 className="font-display text-[1.3rem] text-wood">{t(it.b)}</h3>
               <p className="mt-1 text-[.95rem] text-stone">{t(it.s)}</p>
             </div>
           </motion.li>

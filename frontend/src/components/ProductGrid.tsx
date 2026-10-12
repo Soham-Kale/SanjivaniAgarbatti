@@ -34,9 +34,9 @@ export default function ProductGrid({ products, initial = 'all' }: { products: P
                 setCat(c.id);
                 setFrag('');
               }}
-              className="relative min-h-[44px] shrink-0 rounded-full px-4 text-[.92rem] font-medium text-stone transition-colors hover:text-forest aria-pressed:text-ivory"
+              className="relative min-h-[44px] shrink-0 rounded-full px-4 text-[.92rem] font-medium text-stone transition-colors hover:text-wood aria-pressed:text-ivory"
             >
-              {cat === c.id && <motion.span layoutId="cat-pill" className="absolute inset-0 rounded-full bg-forest" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />}
+              {cat === c.id && <motion.span layoutId="cat-pill" className="absolute inset-0 rounded-full bg-wood" transition={{ type: 'spring', stiffness: 380, damping: 32 }} />}
               <span className="relative">{t(c.label)}</span>
             </button>
           ))}
@@ -50,7 +50,7 @@ export default function ProductGrid({ products, initial = 'all' }: { products: P
                 type="button"
                 aria-pressed={frag === id}
                 onClick={() => setFrag(id)}
-                className="min-h-[36px] shrink-0 rounded-full border border-charcoal/15 px-3 text-charcoal-soft transition hover:border-forest aria-pressed:border-gold aria-pressed:bg-gold/15 aria-pressed:text-forest"
+                className="min-h-[36px] shrink-0 rounded-full border border-charcoal/15 px-3 text-charcoal-soft transition hover:border-wood aria-pressed:border-gold aria-pressed:bg-gold/15 aria-pressed:text-wood"
               >
                 {id ? t(FRAGRANCE_NAMES[id] ?? { mr: id, en: id }) : t({ mr: 'सर्व', en: 'All' })}
               </button>

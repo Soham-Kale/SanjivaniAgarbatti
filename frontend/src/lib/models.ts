@@ -19,17 +19,20 @@ export const MODELS: Record<string, ModelSpec> = {
   'premium-kewda': jar('kewda', 704 / 384, '#c8452c'),
   'premium-gulab': jar('gulab', 683 / 384, '#2f8a7a'),
   'premium-jaswand': jar('jaswand', 651 / 384, '#c9a46a'),
+  'premium-chandan': jar('chandan', 774 / 384, '#6b4630'),
   'dhoop-box-kewda-bel': box('kewda-bel', 692 / 512, '#c9d43a'),
   'dhoop-box-jaswand': box('jaswand', 693 / 512, '#e8746f'),
   'dhoop-box-chandan': box('chandan', 735 / 512, '#e0a24c'),
   'dhoop-box-chafa': box('chafa', 705 / 512, '#f0cf5a'),
   'dhoop-box-gulab': box('gulab', 633 / 512, '#e7a3c2'),
   'dhoop-box-rui': box('rui', 787 / 512, '#e8b88a'),
+  'dhoop-box-mogra': box('mogra', 678 / 512, '#8fbf5a'),
   'pouch-kewda': pouch('kewda', 982 / 512),
   'pouch-mogra': pouch('mogra', 926 / 512),
   'pouch-chandan': pouch('chandan', 953 / 512),
   'pouch-gulab': pouch('gulab', 1020 / 512),
   'pouch-kasturi': pouch('kasturi', 1007 / 512),
+  'pouch-jaswand': pouch('jaswand', 984 / 512),
 };
 
 export const hasModel = (slug: string) => slug in MODELS;

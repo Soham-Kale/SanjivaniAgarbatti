@@ -6,16 +6,18 @@ import SectionHead from '../SectionHead';
 import ProductCard from '../ProductCard';
 import { rise, stagger } from '../Reveal';
 import { useLang } from '@/lib/i18n';
+import { useContent } from '@/lib/content-context';
 import type { Product } from '@/lib/types';
 
 export default function FeaturedProducts({ products, total }: { products: Product[]; total: number }) {
   const { t } = useLang();
+  const { featured } = useContent();
   return (
     <section className="section wrap" aria-labelledby="featured-title">
       <SectionHead
-        eyebrow={{ mr: 'निवडक उत्पादने', en: 'Featured' }}
-        title={{ mr: 'प्रत्येक पूजेसाठी, एकाच ठिकाणी', en: 'For every puja, in one place' }}
-        text={{ mr: 'रंग हाताला लागत नाही, कमी धूर आणि दीर्घकाळ टिकणारा सौम्य सुगंध.', en: 'Colour does not stick to hands, low smoke and a mild, long-lasting fragrance.' }}
+        eyebrow={featured.eyebrow}
+        title={featured.title}
+        text={featured.text}
       />
       <motion.ul
         className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4"
