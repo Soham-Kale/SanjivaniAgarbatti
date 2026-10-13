@@ -1,6 +1,6 @@
 // Creates an admin, or resets the password of an existing one (signing out its other sessions).
 // Usage: npm run create-admin -- you@example.com "a-long-password"
-import './env.mjs';
+import { mongoOptions } from './env.mjs';
 import bcrypt from 'bcryptjs';
 import mongoose from 'mongoose';
 
@@ -16,7 +16,7 @@ if (password.length < MIN_PASSWORD) {
 }
 
 const email = rawEmail.trim().toLowerCase();
-await mongoose.connect(process.env.MONGODB_URI, { serverSelectionTimeoutMS: 10000 });
+await mongoose.connect(process.env.MONGODB_URI, mongoOptions);
 const admins = mongoose.connection.collection('admins');
 const passwordHash = await bcrypt.hash(password, 12);
 const now = new Date();

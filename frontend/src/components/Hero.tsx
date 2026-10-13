@@ -81,7 +81,7 @@ export default function Hero() {
             {words.map((w, i) => (
               <Fragment key={w + i}>
               {i > 0 && ' '}
-              <span className="inline-block overflow-hidden pb-[.14em] pt-[.08em] align-top">
+              <span className="-my-[.3em] inline-block overflow-hidden pb-[.36em] pt-[.3em] align-top">
                 <motion.span
                   className={`inline-block ${i === 1 ? 'text-gradient' : ''}`}
                   initial={reduce ? false : { y: '115%', rotate: 6 }}

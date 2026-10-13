@@ -9,6 +9,7 @@ const NAV = [
   { href: '/admin', mr: 'डॅशबोर्ड', en: 'Dashboard', icon: '◧' },
   { href: '/admin/products', mr: 'उत्पादने व किंमती', en: 'Products & prices', icon: '▦' },
   { href: '/admin/content', mr: 'वेबसाइट मजकूर', en: 'Website content', icon: '✎' },
+  { href: '/admin/franchise', mr: 'फ्रँचायझी अर्ज', en: 'Franchise applications', icon: '★' },
   { href: '/admin/enquiries', mr: 'ऑर्डर व चौकशी', en: 'Orders & enquiries', icon: '✉' },
   { href: '/admin/account', mr: 'खाते', en: 'Account', icon: '⚿' },
 ];

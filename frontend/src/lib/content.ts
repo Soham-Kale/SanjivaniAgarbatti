@@ -1,3 +1,4 @@
+import { FRANCHISE_FAQ } from './faq';
 import type { Category, I18n } from './types';
 
 /**
@@ -8,6 +9,7 @@ import type { Category, I18n } from './types';
 
 export type Phone = { display: string; tel: string; person: I18n; role: string; photo: string };
 export type Plan = { id: 'mini' | 'franchise' | 'warehouse'; name: I18n; amount: string; deposit: I18n; points: I18n[]; featured: boolean };
+export type GalleryPhoto = { src: string; title: I18n; text: I18n; href: string; wide: boolean };
 export type WhyIcon = 'clock' | 'hand' | 'smoke' | 'flower' | 'cup' | 'store';
 
 export type SiteContent = {
@@ -33,9 +35,20 @@ export type SiteContent = {
     photos: { src: string; cap: I18n }[];
   };
   why: { eyebrow: I18n; title: I18n; text: I18n; items: { icon: WhyIcon; b: I18n; s: I18n }[] };
-  franchise: { eyebrow: I18n; title: I18n; text: I18n; plans: Plan[]; steps: I18n[]; note: I18n };
+  franchise: {
+    eyebrow: I18n;
+    title: I18n;
+    text: I18n;
+    plans: Plan[];
+    steps: I18n[];
+    note: I18n;
+    blocks: { title: I18n; items: I18n[] }[];
+    faq: { q: I18n; a: I18n }[];
+  };
+  showcase: { eyebrow: I18n; steps: { k: I18n; h: I18n; p: I18n }[] };
+  gallery: { eyebrow: I18n; title: I18n; text: I18n; photos: GalleryPhoto[] };
   closing: { eyebrow: I18n; title: I18n; highlight: I18n; text: I18n };
-  about: { eyebrow: I18n; title: I18n; quote: string; text: I18n };
+  about: { eyebrow: I18n; title: I18n; quote: string; text: I18n; mission: { eyebrow: I18n; title: I18n; items: I18n[]; image: string } };
   footer: { blurb: I18n; note: I18n };
 };
 
@@ -150,7 +163,7 @@ export const DEFAULT_CONTENT: SiteContent = {
       },
     ],
     photos: [
-      { src: '/images/gallery/shop.jpg', cap: { mr: 'स्वतः उत्पादन · घाऊक व किरकोळ', en: 'Own production · wholesale & retail' } },
+      { src: '/images/gallery/shop-front.jpg', cap: { mr: 'स्वतः उत्पादन · घाऊक व किरकोळ', en: 'Own production · wholesale & retail' } },
       { src: '/images/products/premium-jar-chandan.jpg', cap: { mr: 'चंदन प्रीमियम अगरबत्ती, गोल्ड-कॅप जार', en: 'Chandan premium agarbatti, gold-cap jar' } },
       { src: '/images/products/dhoop-box-mogra.jpg', cap: { mr: 'मोगरा प्रीमियम धूप स्टिक बॉक्स', en: 'Mogra premium dhoop stick box' } },
     ],
@@ -227,6 +240,172 @@ export const DEFAULT_CONTENT: SiteContent = {
       mr: 'टीप: फ्रँचायझीमध्ये कोणत्याही नफ्याची किंवा उत्पन्नाची हमी दिली जात नाही. सर्व अटी व शर्ती फ्रँचायझी करारानुसार लागू.',
       en: 'Note: No profit or income is guaranteed under the franchise. All terms and conditions are as per the franchise agreement.',
     },
+    blocks: [
+      {
+        title: { mr: 'आमच्याकडून सहाय्य', en: 'Support from us' },
+        items: [
+          { mr: 'संजीवनी ब्रँड नाव व बोर्ड', en: 'Sanjivani brand name and board' },
+          { mr: 'नियमित माल पुरवठा', en: 'Regular stock supply' },
+          { mr: 'दुकान सेटअप मार्गदर्शन', en: 'Shop setup guidance' },
+          { mr: 'उत्पादन व विक्री प्रशिक्षण', en: 'Product and sales training' },
+          { mr: 'पोस्टर, बॅनर व सोशल मीडिया मार्केटिंग सहाय्य', en: 'Posters, banners and social media support' },
+        ],
+      },
+      {
+        title: { mr: 'योग्य ठिकाणे', en: 'Ideal locations' },
+        items: [
+          { mr: 'मंदिर परिसर', en: 'Near temples' },
+          { mr: 'बाजारपेठ व मुख्य रस्ता', en: 'Market areas and main roads' },
+          { mr: 'तालुका व जिल्हा ठिकाणे', en: 'Taluka and district towns' },
+          { mr: 'मोठी गावे', en: 'Large villages' },
+        ],
+      },
+      {
+        title: { mr: 'कोण अर्ज करू शकतो?', en: 'Who can apply?' },
+        items: [
+          { mr: 'नवीन व्यवसाय सुरू करू इच्छिणारे युवक-युवती', en: 'Young people starting a business' },
+          { mr: 'महिला उद्योजिका व बचत गट', en: 'Women entrepreneurs and self-help groups' },
+          { mr: 'सध्याचे किराणा / पूजा साहित्य दुकानदार', en: 'Existing kirana / puja shop owners' },
+          { mr: 'वितरक व होलसेलर', en: 'Distributors and wholesalers' },
+        ],
+      },
+    ],
+    faq: FRANCHISE_FAQ,
+  },
+  showcase: {
+    eyebrow: { mr: '3D मध्ये जवळून पाहा', en: 'Up close, in 3D' },
+    steps: [
+      {
+        k: { mr: 'प्रीमियम अगरबत्ती', en: 'Premium agarbatti' },
+        h: { mr: 'मोगरा, गोल्ड-कॅप जारमध्ये', en: 'Mogra, in a gold-cap jar' },
+        p: { mr: 'गोड व मोहक मोगऱ्याचा सुगंध. सुंदर जार, भेट देण्यासाठीही उत्तम.', en: 'Sweet, graceful jasmine. A handsome jar that also makes a good gift.' },
+      },
+      {
+        k: { mr: 'प्रीमियम धूप स्टिक', en: 'Premium dhoop sticks' },
+        h: { mr: 'चंदन धूप, बॉक्स पॅक', en: 'Chandan dhoop, boxed' },
+        p: { mr: 'सौम्य व थंडावा देणारा चंदनाचा सुगंध, रोजच्या पूजेसाठी.', en: 'A soft, cooling sandalwood fragrance for daily puja.' },
+      },
+      {
+        k: { mr: 'प्रीमियम अगरबत्ती', en: 'Premium agarbatti' },
+        h: { mr: 'चंदन प्रीमियम जार', en: 'Sandalwood premium jar' },
+        p: { mr: 'सौम्य चंदन सुगंधाची प्रीमियम अगरबत्ती, खास पूजा व सणांसाठी.', en: 'Premium agarbatti with a mild sandalwood fragrance, for special pujas and festivals.' },
+      },
+      {
+        k: { mr: 'प्रीमियम धूप स्टिक', en: 'Premium dhoop sticks' },
+        h: { mr: 'जास्वंद धूप स्टिक', en: 'Hibiscus dhoop sticks' },
+        p: { mr: 'हलका व नैसर्गिक जास्वंदाचा सुगंध, देवी पूजेसाठी आवडता.', en: 'A light, natural hibiscus fragrance, a favourite for Devi puja.' },
+      },
+      {
+        k: { mr: 'दैनंदिन अगरबत्ती', en: 'Daily agarbatti' },
+        h: { mr: 'गुलाब, रोजच्या पूजेसाठी', en: 'Rose, for every day' },
+        p: { mr: 'प्रसन्न व गोड गुलाबाचा सुगंध, सोयीच्या पाऊचमध्ये.', en: 'A cheerful, sweet rose fragrance in a handy pouch.' },
+      },
+    ],
+  },
+  gallery: {
+    eyebrow: { mr: 'गॅलरी', en: 'Gallery' },
+    title: { mr: 'आमची उत्पादने, जवळून', en: 'Our products, up close' },
+    text: { mr: 'प्रत्येक फोटोखाली ते उत्पादन काय आहे आणि कशासाठी वापरतात ते दिले आहे.', en: 'Each photo says what the product is and what it is used for.' },
+    photos: [
+      {
+        src: '/images/gallery/shop-front.jpg',
+        title: { mr: 'संजीवनी दुकान, माळेवाडी-अकलूज', en: 'Sanjivani shop, Malewadi-Akluj' },
+        text: { mr: 'आमचे दुकान, जिथे स्वतः तयार केलेली अगरबत्ती, धूप व पूजा साहित्य घाऊक व किरकोळ मिळते.', en: 'Our shop, selling our own agarbatti, dhoop and puja items wholesale and retail.' },
+        wide: true,
+        href: '',
+      },
+      {
+        src: '/images/gallery/cup-dhoop-open.jpg',
+        title: { mr: 'प्रीमियम कप धूप', en: 'Premium cup dhoop' },
+        text: { mr: 'बहुरंगी कप धूपचा बॉक्स. थेट पेटवून पूजा, आरती व होमासाठी; एक कप २ तासांपेक्षा जास्त जळतो.', en: 'A box of multicolour dhoop cups. Light one directly for puja, aarti or havan; each burns for over 2 hours.' },
+        href: '/products/cup-dhoop',
+        wide: false,
+      },
+      {
+        src: '/images/gallery/cup-dhoop-charcoal.jpg',
+        title: { mr: 'कप धूप व कोळसा', en: 'Cup dhoop with charcoal' },
+        text: { mr: 'कप धूपसोबत कोळशाचा रोल मिळतो.', en: 'Each cup dhoop pack comes with a charcoal roll.' },
+        href: '/products/cup-dhoop',
+        wide: false,
+      },
+      {
+        src: '/images/gallery/cup-dhoop-closeup.jpg',
+        title: { mr: 'कप धूप, जवळून', en: 'Cup dhoop, close up' },
+        text: { mr: 'हर्बल/मसाला मिश्रण भरलेले लहान कप. धूर जास्त असल्याने मंदिर, दुकान व मोठ्या जागेसाठी उपयुक्त.', en: 'Small cups filled with a herbal/masala mix. More smoke, so they suit temples, shops and larger rooms.' },
+        href: '/products/cup-dhoop',
+        wide: false,
+      },
+      {
+        src: '/images/gallery/premium-jar-mogra-2.jpg',
+        title: { mr: 'मोगरा प्रीमियम जार', en: 'Mogra premium jar' },
+        text: { mr: 'गोल्ड-कॅप जारमधील मोगरा अगरबत्ती. खास पूजा, सण व भेट देण्यासाठी.', en: 'Mogra agarbatti in a gold-cap jar, for special pujas, festivals and gifting.' },
+        href: '/products/premium-mogra',
+        wide: false,
+      },
+      {
+        src: '/images/products/premium-jar-chandan.jpg',
+        title: { mr: 'चंदन प्रीमियम जार', en: 'Chandan premium jar' },
+        text: { mr: 'सौम्य चंदन सुगंधाची प्रीमियम अगरबत्ती, ध्यान व पूजेच्या वेळी लावण्यासाठी.', en: 'Premium agarbatti with a mild sandalwood fragrance, for puja and quiet moments.' },
+        href: '/products/premium-chandan',
+        wide: false,
+      },
+      {
+        src: '/images/gallery/dhoop-jar-kewda-bel-pair.jpg',
+        title: { mr: 'केवडा व बेल धूप जार', en: 'Kewda & Bel dhoop jars' },
+        text: { mr: 'शिवपूजेसाठी विशेष केवडा व बेल सुगंधाची धूप कांडी.', en: 'Kewda and bel dhoop sticks, a favourite for Shiva puja.' },
+        href: '/products/dhoop-jar-kewda-bel',
+        wide: false,
+      },
+      {
+        src: '/images/gallery/dhoop-jar-rui-pair.jpg',
+        title: { mr: 'रुई धूप जार', en: 'Rui dhoop jars' },
+        text: { mr: 'रुई वनस्पतीपासून तयार पारंपरिक सुगंधाची धूप कांडी, शिवपूजेसाठी.', en: 'Dhoop sticks made from the rui (aak) plant, with a traditional fragrance for Shiva puja.' },
+        href: '/products/dhoop-jar-rui',
+        wide: false,
+      },
+      {
+        src: '/images/gallery/dhoop-jar-chandan-2.jpg',
+        title: { mr: 'चंदन धूप जार', en: 'Chandan dhoop jar' },
+        text: { mr: 'देवतेच्या चित्रासह जारमधील चंदन धूप कांडी, रोजची पूजा व आरतीसाठी.', en: 'Chandan dhoop sticks in a jar with a deity picture, for daily puja and aarti.' },
+        href: '/products/dhoop-jar-chandan',
+        wide: false,
+      },
+      {
+        src: '/images/products/dhoop-box-mogra.jpg',
+        title: { mr: 'मोगरा धूप स्टिक बॉक्स', en: 'Mogra dhoop stick box' },
+        text: { mr: 'श्री स्वामी समर्थांच्या चित्रासह मोगरा प्रीमियम धूप स्टिक बॉक्स.', en: 'Mogra premium dhoop sticks in a box with a Shri Swami Samarth picture.' },
+        href: '/products/dhoop-box-mogra',
+        wide: false,
+      },
+      {
+        src: '/images/gallery/dhoop-box-kewda-bel-2.jpg',
+        title: { mr: 'केवडा व बेल धूप बॉक्स', en: 'Kewda & Bel dhoop box' },
+        text: { mr: 'शिव-पार्वतीच्या चित्रासह केवडा व बेल धूप स्टिक बॉक्स.', en: 'Kewda and bel dhoop sticks in a box with a Shiva-Parvati picture.' },
+        href: '/products/dhoop-box-kewda-bel',
+        wide: false,
+      },
+      {
+        src: '/images/products/pouch-jaswand.jpg',
+        title: { mr: 'जास्वंद अगरबत्ती पाऊच', en: 'Jaswand agarbatti pouch' },
+        text: { mr: 'हलक्या, नैसर्गिक जास्वंद सुगंधाची रोजच्या पूजेसाठी अगरबत्ती.', en: 'Daily-puja agarbatti with a light hibiscus fragrance.' },
+        href: '/products/pouch-jaswand',
+        wide: false,
+      },
+      {
+        src: '/images/gallery/packet-denim-single.jpg',
+        title: { mr: 'डेनिम अगरबत्ती पॅकेट', en: 'Denim agarbatti packet' },
+        text: { mr: 'घर, ऑफिस व दुकानासाठी आधुनिक सुगंध, ₹५ पासूनच्या पॅकमध्ये.', en: 'A modern fragrance for home, office and shop, in packs from ₹5.' },
+        href: '/products/packet-denim',
+        wide: false,
+      },
+      {
+        src: '/images/gallery/phulvat-2.jpg',
+        title: { mr: 'फुलवात', en: 'Phulvat' },
+        text: { mr: 'दिवा व निरांजनात तेल/तूप घालून लावण्यासाठी कापसाची फुलवात.', en: 'Cotton flower wicks for a diya or niranjan with oil or ghee.' },
+        href: '/products/phulvat',
+        wide: false,
+      },
+    ],
   },
   closing: {
     eyebrow: { mr: 'संजीवनी', en: 'Sanjivani' },
@@ -241,6 +420,17 @@ export const DEFAULT_CONTENT: SiteContent = {
     text: {
       mr: 'पूजेपासून सण-समारंभापर्यंत लागणारे सर्व प्रकारचे पूजा साहित्य एकाच ठिकाणी, गुणवत्तेची खात्री आणि रास्त किमतीत. ग्रामीण व शहरी भागातील युवक-युवतींना आणि महिलांना स्वयंरोजगार व व्यवसायाची संधी देणे हा आमचा उद्देश आहे.',
       en: 'Everything needed from daily puja to festivals, in one place, with assured quality and fair prices. Our aim is to create self-employment and business opportunities for young people and women in rural and urban areas.',
+    },
+    mission: {
+      eyebrow: { mr: 'ध्येय व उद्देश', en: 'Mission & objectives' },
+      title: { mr: 'सुगंधाची सुंदर अनुभूती, प्रत्येक घरात', en: 'A beautiful experience of fragrance, in every home' },
+      items: [
+        { mr: 'ग्रामीण व शहरी युवक-युवतींना स्वयंरोजगाराची संधी', en: 'Self-employment for young people in villages and towns' },
+        { mr: 'महिलांना व्यवसायात सहभागी होण्याची संधी', en: 'Business opportunities for women' },
+        { mr: 'फ्रँचायझीधारकांना प्रशिक्षण व मार्गदर्शन', en: 'Training and guidance for franchisees' },
+        { mr: 'प्रत्येक घरापर्यंत दर्जेदार पूजा साहित्य', en: 'Quality puja sahitya for every home' },
+      ],
+      image: '/images/brand/visiting-card.jpg',
     },
   },
   footer: {

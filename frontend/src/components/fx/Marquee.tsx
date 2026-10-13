@@ -39,7 +39,7 @@ export default function Marquee({ items, speed = 2.2, className = '' }: { items:
           <span key={k} className="flex shrink-0 items-center">
             {row.map((w, i) => (
               <span key={i} className="flex items-center">
-                <span className="px-6 font-display text-[clamp(1.6rem,3.2vw,2.6rem)] leading-none">{w}</span>
+                <span className="px-6 font-display text-[clamp(1.6rem,3.2vw,2.6rem)] leading-[1.6]">{w}</span>
                 <span className="text-[1.1rem] opacity-70">✦</span>
               </span>
             ))}

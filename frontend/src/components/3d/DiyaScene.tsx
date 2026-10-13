@@ -113,9 +113,10 @@ function Diya({ seed = 0, still }: { seed?: number; still: boolean }) {
 function Rig() {
   useFrame((state, dt) => {
     // step back on narrow (portrait) screens so all three diyas stay in frame
-    const z = state.viewport.aspect < 1 ? 13 : 7.5;
-    easing.damp3(state.camera.position, [state.pointer.x * 0.8, 2.2 + state.pointer.y * 0.4, z], 0.6, dt);
-    state.camera.lookAt(0, -0.2, 0);
+    // (the canvas is a wide strip under the closing text, so frame the diyas themselves)
+    const z = state.viewport.aspect < 1.6 ? 11 : 7.5;
+    easing.damp3(state.camera.position, [state.pointer.x * 0.8, 0.4 + state.pointer.y * 0.3, z], 0.6, dt);
+    state.camera.lookAt(0, -1.9, 0);
   });
   return null;
 }
@@ -125,7 +126,7 @@ export default function DiyaScene() {
   const { ref, frameloop, reduce } = useCanvasLoop();
   return (
     <div ref={ref} className="absolute inset-0" aria-hidden="true">
-      <Canvas dpr={[1, 1.5]} frameloop={frameloop} camera={{ position: [0, 2.2, 7.5], fov: 35 }} gl={{ alpha: true, antialias: true }} onCreated={({ gl }) => (gl.toneMapping = THREE.ACESFilmicToneMapping)}>
+      <Canvas dpr={[1, 1.5]} frameloop={frameloop} camera={{ position: [0, 0.4, 7.5], fov: 35 }} gl={{ alpha: true, antialias: true }} onCreated={({ gl }) => (gl.toneMapping = THREE.ACESFilmicToneMapping)}>
         <Suspense fallback={null}>
           <ambientLight intensity={0.25} color="#ffd9b0" />
           <Rig />
@@ -144,7 +145,7 @@ export default function DiyaScene() {
               <meshStandardMaterial color="#1C0F30" roughness={0.9} />
             </mesh>
           </group>
-          <Sparkles count={50} scale={[8, 5, 3]} position={[0, 0.5, -0.5]} size={3.5} speed={reduce ? 0 : 0.5} noise={1.2} color="#FF9A3C" opacity={0.9} />
+          <Sparkles count={50} scale={[8, 5, 3]} position={[0, -1.2, -0.5]} size={3.5} speed={reduce ? 0 : 0.5} noise={1.2} color="#FF9A3C" opacity={0.9} />
           <fog attach="fog" args={['#120A21', 7, 16]} />
         </Suspense>
       </Canvas>

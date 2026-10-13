@@ -19,7 +19,7 @@ export default function SplitWords({ text, highlight, delay = 0, className = '',
     <motion.span className={className} initial={reduce ? false : 'hidden'} {...trigger} transition={{ staggerChildren: 0.07, delayChildren: delay }}>
       {words.map((w, i) => (
         <Fragment key={i}>
-        <span className="inline-block overflow-hidden pb-[.14em] pt-[.1em] align-top">
+        <span className="-my-[.3em] inline-block overflow-hidden pb-[.36em] pt-[.3em] align-top">
           <motion.span
             className={`inline-block ${i === hl ? 'text-gradient-deep [.on-dark_&]:text-gradient' : ''}`}
             variants={{ hidden: { y: '115%', rotate: 4 }, show: { y: 0, rotate: 0, transition: { duration: 0.9, ease: EASE } } }}

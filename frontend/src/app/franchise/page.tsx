@@ -5,7 +5,6 @@ import FranchiseInfo from '@/components/FranchiseInfo';
 import EnquiryForm from '@/components/EnquiryForm';
 import T from '@/components/T';
 import { getContent } from '@/lib/api';
-import { FRANCHISE_FAQ } from '@/lib/faq';
 import { breadcrumbJsonLd, faqJsonLd, ldJson, pageMeta } from '@/lib/seo';
 
 export const metadata: Metadata = pageMeta({
@@ -22,7 +21,7 @@ export default async function FranchisePage({ searchParams }: { searchParams: { 
   const plan = PLAN_IDS.includes(searchParams.plan ?? '') ? searchParams.plan! : 'franchise';
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={ldJson(faqJsonLd(FRANCHISE_FAQ.map((f) => ({ q: `${f.q.mr} (${f.q.en})`, a: `${f.a.mr} ${f.a.en}` }))))} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={ldJson(faqJsonLd(franchise.faq.map((f) => ({ q: `${f.q.mr} (${f.q.en})`, a: `${f.a.mr} ${f.a.en}` }))))} />
       <script type="application/ld+json" dangerouslySetInnerHTML={ldJson(breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Franchise', path: '/franchise' }]))} />
       <PageHero eyebrow={franchise.eyebrow} title={franchise.title} text={franchise.text} />
       <section className="wrap relative z-10 -mt-10 pb-20" aria-labelledby="plans-title">

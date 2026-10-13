@@ -15,3 +15,9 @@ if (!process.env.MONGODB_URI) {
   console.error('MONGODB_URI is not set. Add it to frontend/.env.local first.');
   process.exit(1);
 }
+
+// Same rule as the site (src/server/db.ts): without a database name in the URI, use "sanjivani".
+export const mongoOptions = {
+  serverSelectionTimeoutMS: 10000,
+  ...(/^mongodb(\+srv)?:\/\/[^/]+\/[^/?]+/.test(process.env.MONGODB_URI) ? {} : { dbName: 'sanjivani' }),
+};

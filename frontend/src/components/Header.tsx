@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { useLang } from '@/lib/i18n';
 import { useCart } from '@/lib/cart';
 import { NAV } from '@/lib/site';
+import LangMenu from './LangMenu';
 
 export function Brand({ dark = false }: { dark?: boolean }) {
   return (
@@ -34,7 +35,7 @@ export function BagIcon() {
 const DARK_TOP = ['/', '/products', '/franchise', '/contact', '/about'];
 
 export default function Header() {
-  const { lang, setLang, t } = useLang();
+  const { t } = useLang();
   const { count, setOpen: openCart } = useCart();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -73,16 +74,7 @@ export default function Header() {
           })}
         </nav>
         <div className={`flex items-center gap-1.5 ${tone}`}>
-          <button
-            type="button"
-            onClick={() => setLang(lang === 'mr' ? 'en' : 'mr')}
-            className={`h-11 rounded-full border px-3.5 text-[.82rem] font-semibold ${overHero ? 'border-ivory/30' : 'border-charcoal/15'}`}
-            aria-label={`मराठी / EN: ${lang === 'mr' ? 'Switch to English' : 'मराठीत पाहा'}`}
-          >
-            <span className={lang === 'mr' ? '' : 'opacity-70'}>मराठी</span>
-            <span className="mx-1 opacity-40">/</span>
-            <span className={lang === 'en' ? '' : 'opacity-70'}>EN</span>
-          </button>
+          <LangMenu dark={overHero} />
           <motion.button
             whileTap={{ scale: 0.92 }}
             type="button"

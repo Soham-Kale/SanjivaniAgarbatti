@@ -17,9 +17,8 @@ export default function ClosingMoment() {
   return (
     <section ref={ref} className="on-dark relative flex min-h-[100svh] flex-col overflow-hidden bg-wood-night text-center text-ivory">
       <Aurora tone="warm" />
-      {near && <DiyaScene />}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-wood-night to-transparent" />
-      <div className="wrap relative pt-24 md:pt-32">
+      <div className="wrap relative z-10 pt-24 md:pt-28">
         <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="eyebrow justify-center">
           {t(closing.eyebrow)}
         </motion.p>
@@ -40,6 +39,8 @@ export default function ClosingMoment() {
           <Link href="/contact" className="btn-outline-light px-8">{t({ mr: 'संपर्क करा', en: 'Contact us' })}</Link>
         </motion.div>
       </div>
+      {/* the diyas get their own stage below the text, so they never sit behind it */}
+      <div className="relative mt-auto h-[clamp(240px,38svh,420px)] w-full">{near && <DiyaScene />}</div>
     </section>
   );
 }
