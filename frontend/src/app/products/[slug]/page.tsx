@@ -8,7 +8,8 @@ export function generateStaticParams() {
   return getLocalProducts().map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const p = await getProduct(params.slug);
   if (!p) return { title: 'पान सापडले नाही', robots: { index: false } };
   return pageMeta({
@@ -19,7 +20,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   });
 }
 
-export default async function ProductPage({ params }: { params: { slug: string } }) {
+export default async function ProductPage(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   const p = await getProduct(params.slug);
   if (!p) notFound();
   const all = await getProducts();

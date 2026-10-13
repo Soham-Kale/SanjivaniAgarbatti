@@ -40,7 +40,7 @@ export default function AboutFounders({ headingLevel = 'h2' }: { headingLevel?: 
           <div className="grid grid-cols-2 gap-[18px]">
             {founders.map((f, i) => (
               <Reveal key={f.tel} delay={i * 0.12} className={`text-center ${i % 2 ? 'md:mt-14' : ''}`}>
-                <Tilt max={10} className="glow-border hover-glow relative aspect-[3/4] overflow-hidden rounded-[26px] border border-charcoal/10 shadow-lift">
+                <Tilt max={10} fill={false} className="glow-border hover-glow relative aspect-[3/4] overflow-hidden rounded-[26px] border border-charcoal/10 shadow-lift">
                   <Image src={media(f.photo)} alt={f.person.mr} fill sizes="(max-width: 768px) 50vw, 260px" className="object-cover" />
                   <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-wood-night/70 to-transparent" />
                 </Tilt>

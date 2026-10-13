@@ -47,7 +47,8 @@ export function route<A extends unknown[]>(fn: (...args: A) => Promise<Response>
 }
 
 export function clientIp(req: Request) {
-  return (req.headers.get('x-forwarded-for') || '').split(',')[0].trim() || req.headers.get('x-real-ip') || 'local';
+  // x-real-ip is set by Vercel and can't be faked by the visitor; x-forwarded-for is the fallback elsewhere.
+  return req.headers.get('x-real-ip') || (req.headers.get('x-forwarded-for') || '').split(',')[0].trim() || 'local';
 }
 
 /**

@@ -8,7 +8,7 @@ import { useRef } from 'react';
  * (mouse only; touch devices stay flat). Children can lift off the card with
  * `style={{ transform: 'translateZ(40px)' }}`.
  */
-export default function Tilt({ children, className, max = 8, glare = true }: { children: React.ReactNode; className?: string; max?: number; glare?: boolean }) {
+export default function Tilt({ children, className, max = 8, glare = true, fill = true }: { children: React.ReactNode; className?: string; max?: number; glare?: boolean; fill?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const x = useMotionValue(0);
@@ -23,7 +23,7 @@ export default function Tilt({ children, className, max = 8, glare = true }: { c
   const glareBg = useMotionTemplate`radial-gradient(circle at ${gx} ${gy}, rgba(255,236,200,.38), rgba(255,255,255,0) 55%)`;
 
   return (
-    <div style={{ perspective: 1100 }} className="h-full">
+    <div style={{ perspective: 1100 }} className={fill ? 'h-full' : undefined}>
       <motion.div
         ref={ref}
         className={className}

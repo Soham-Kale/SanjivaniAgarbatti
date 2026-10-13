@@ -16,14 +16,16 @@ const nextConfig = {
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          { key: 'Content-Security-Policy', value: "frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'" },
+          { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), payment=()' },
+          { key: 'Cross-Origin-Opener-Policy', value: 'same-origin' },
         ],
       },
     ];
   },
-  experimental: {
-    // Keep the MongoDB driver out of the bundle; it is loaded from node_modules on the server.
-    serverComponentsExternalPackages: ['mongoose'],
-  },
+  // Keep the MongoDB driver out of the bundle; it is loaded from node_modules on the server.
+  serverExternalPackages: ['mongoose'],
   images: {
     formats: ['image/avif', 'image/webp'],
     // Product photos uploaded in the admin panel are stored on Cloudinary.

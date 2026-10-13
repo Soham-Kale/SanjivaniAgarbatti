@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import PageHero from '@/components/PageHero';
-import ProductGrid from '@/components/ProductGrid';
+import { ProductGridFromUrl } from '@/components/UrlChoice';
 import { getProducts } from '@/lib/api';
 import { abs, breadcrumbJsonLd, ldJson, pageMeta } from '@/lib/seo';
-import type { Category } from '@/lib/types';
 
 export const metadata: Metadata = pageMeta({
   title: 'उत्पादने · Agarbatti, Dhoop & Puja Sahitya',
@@ -12,11 +11,8 @@ export const metadata: Metadata = pageMeta({
   path: '/products',
 });
 
-const VALID = ['daily', 'premium', 'dhoop', 'cup', 'puja'];
-
-export default async function ProductsPage({ searchParams }: { searchParams: { c?: string } }) {
+export default async function ProductsPage() {
   const products = await getProducts();
-  const initial = (VALID.includes(searchParams.c ?? '') ? searchParams.c : 'all') as Category | 'all';
   const list = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -37,7 +33,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: { c
         }}
       />
       <section className="wrap pb-24 pt-10">
-        <ProductGrid key={initial} products={products} initial={initial} />
+        <ProductGridFromUrl products={products} />
       </section>
     </>
   );

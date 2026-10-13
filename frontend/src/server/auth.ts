@@ -8,13 +8,13 @@ import { Admin, hashPassword, type AdminDoc } from './models';
 export type AdminUser = { doc: AdminDoc; email: string } | { doc: null; email: 'api-key' };
 
 export function signToken(admin: AdminDoc) {
-  return jwt.sign({ sub: String(admin._id), v: admin.tokenVersion }, env.jwtSecret, { expiresIn: env.jwtExpiresIn as jwt.SignOptions['expiresIn'] });
+  return jwt.sign({ sub: String(admin._id), v: admin.tokenVersion }, env.jwtSecret, { algorithm: 'HS256', expiresIn: env.jwtExpiresIn as jwt.SignOptions['expiresIn'] });
 }
 
 async function adminFromToken(token: string) {
   if (!token || !env.jwtSecret) return null;
   try {
-    const payload = jwt.verify(token, env.jwtSecret) as { sub: string; v: number };
+    const payload = jwt.verify(token, env.jwtSecret, { algorithms: ['HS256'] }) as { sub: string; v: number };
     const admin = await Admin.findById(payload.sub);
     if (!admin || admin.tokenVersion !== payload.v) return null;
     return admin;

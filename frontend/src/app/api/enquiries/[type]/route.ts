@@ -16,8 +16,8 @@ const allow = rateLimiter(8, 15 * 60 * 1000);
  * Saves the enquiry (shown in the admin panel) and emails it to the company.
  */
 export const POST = route(
-  async (req: Request, { params }: { params: { type: string } }) => {
-    const type = params.type as EnquiryKind;
+  async (req: Request, ctx: { params: Promise<{ type: string }> }) => {
+    const type = (await ctx.params).type as EnquiryKind;
     if (!ENQUIRY_TYPES.includes(type)) return fail(404, 'Not found');
     if (!dbConfigured() && !emailConfigured()) return fail(503, 'Enquiries are not set up on the server');
     if (!allow(clientIp(req))) return fail(429, 'Too many requests. Please call or WhatsApp us.');

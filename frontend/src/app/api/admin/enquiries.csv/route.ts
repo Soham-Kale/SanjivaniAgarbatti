@@ -6,7 +6,11 @@ export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 const COLS = ['createdAt', 'type', 'status', 'name', 'mobile', 'city', 'plan', 'hasShop', 'investment', 'shopName', 'businessType', 'products', 'items', 'message', 'notes'];
-const esc = (v: unknown) => `"${String(v ?? '').replace(/"/g, '""')}"`;
+// Visitors type these fields, so a value starting with = + - @ is prefixed with ' to stop Excel running it as a formula.
+const esc = (v: unknown) => {
+  const s = String(v ?? '');
+  return `"${(/^[=+\-@\t\r]/.test(s) ? `'${s}` : s).replace(/"/g, '""')}"`;
+};
 
 // GET /api/admin/enquiries.csv?type=franchise
 export const GET = route(async (req: Request) => {

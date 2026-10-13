@@ -123,3 +123,32 @@ export function parseProduct(body: Body = {}, { partial = false } = {}) {
   if (data.price != null && data.mrp != null && (data.mrp as number) < (data.price as number)) errors.mrp = 'MRP cannot be lower than the selling price';
   return { data, errors };
 }
+
+/** A link the admin typed: a page on this site (/...), a web address, or mail/phone/WhatsApp. */
+export function safeLink(v: unknown) {
+  const s = str(v, 500);
+  return /^(\/(?!\/)|https?:\/\/|mailto:|tel:)/i.test(s) ? s : '';
+}
+
+const LINK_KEYS = new Set(['link', 'href', 'mapUrl']);
+const IMAGE_KEYS = new Set(['src', 'image', 'photo', 'poster']);
+
+/**
+ * Cleans the website content the admin saves: links must be safe (no javascript: URLs) and
+ * photos must be site images or this site's Cloudinary uploads. Other text is kept as typed.
+ */
+export function sanitizeContent(v: unknown, key = '', depth = 0): unknown {
+  if (depth > 12) return undefined;
+  if (Array.isArray(v)) return v.slice(0, 200).map((x) => sanitizeContent(x, key, depth + 1));
+  if (v && typeof v === 'object') {
+    const out: Body = {};
+    for (const [k, x] of Object.entries(v as Body)) if (!k.startsWith('$') && !k.includes('.')) out[k] = sanitizeContent(x, k, depth + 1);
+    return out;
+  }
+  if (typeof v === 'string') {
+    if (LINK_KEYS.has(key)) return v.trim() ? safeLink(v) : '';
+    if (IMAGE_KEYS.has(key)) return v.trim() ? imagePath(v) : '';
+    return v.slice(0, 5000);
+  }
+  return typeof v === 'number' || typeof v === 'boolean' ? v : undefined;
+}

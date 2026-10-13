@@ -58,7 +58,7 @@ function Scene({ low, still, onReady, progress }: { low: boolean; still: boolean
         <Halo still={still} radius={2.05} />
       </group>
       <ScrollSpin progress={progress}>
-      <PresentationControls global={false} cursor snap rotation={[0, -0.25, 0]} polar={[-0.15, 0.2]} azimuth={[-0.9, 0.9]} config={{ mass: 1, tension: 170, friction: 26 }}>
+      <PresentationControls global={false} cursor snap rotation={[0, -0.25, 0]} polar={[-0.15, 0.2]} azimuth={[-0.9, 0.9]} damping={0.2}>
         <Float enabled={!still} speed={1.4} rotationIntensity={0.15} floatIntensity={0.5} floatingRange={[-0.05, 0.08]}>
           <Idle still={still}>
             <group position={[0.15, -0.12, 0.6]} scale={1.05}>

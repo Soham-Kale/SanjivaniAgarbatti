@@ -5,10 +5,11 @@ import { ENQUIRY_STATUS, Enquiry } from '@/server/models';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-type Ctx = { params: { id: string } };
+type Ctx = { params: Promise<{ id: string }> };
 
 // PATCH /api/admin/enquiries/:id  { status, notes }
-export const PATCH = route(async (req: Request, { params }: Ctx) => {
+export const PATCH = route(async (req: Request, ctx: Ctx) => {
+  const params = await ctx.params;
   const me = await requireAdmin(req);
   if (me instanceof Response) return me;
   const b = await body(req);
@@ -19,7 +20,8 @@ export const PATCH = route(async (req: Request, { params }: Ctx) => {
   return item ? json({ item }) : fail(404, 'Enquiry not found');
 });
 
-export const DELETE = route(async (req: Request, { params }: Ctx) => {
+export const DELETE = route(async (req: Request, ctx: Ctx) => {
+  const params = await ctx.params;
   const me = await requireAdmin(req);
   if (me instanceof Response) return me;
   const item = await Enquiry.findByIdAndDelete(params.id);

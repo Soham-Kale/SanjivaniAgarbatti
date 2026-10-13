@@ -6,16 +6,18 @@ import { parseProduct } from '@/server/validate';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-type Ctx = { params: { slug: string } };
+type Ctx = { params: Promise<{ slug: string }> };
 
-export const GET = route(async (req: Request, { params }: Ctx) => {
+export const GET = route(async (req: Request, ctx: Ctx) => {
+  const params = await ctx.params;
   const me = await requireAdmin(req);
   if (me instanceof Response) return me;
   const item = await Product.findOne({ slug: params.slug }).lean();
   return item ? json({ item: plain(item) }) : fail(404, 'Product not found');
 });
 
-export const PUT = route(async (req: Request, { params }: Ctx) => {
+export const PUT = route(async (req: Request, ctx: Ctx) => {
+  const params = await ctx.params;
   const me = await requireAdmin(req);
   if (me instanceof Response) return me;
   const { data, errors } = parseProduct(await body(req), { partial: true });
@@ -31,7 +33,8 @@ export const PUT = route(async (req: Request, { params }: Ctx) => {
 
 // DELETE /api/admin/products/:slug                 -> hides it from the website (can be restored)
 // DELETE /api/admin/products/:slug?permanent=true  -> removes it from the database
-export const DELETE = route(async (req: Request, { params }: Ctx) => {
+export const DELETE = route(async (req: Request, ctx: Ctx) => {
+  const params = await ctx.params;
   const me = await requireAdmin(req);
   if (me instanceof Response) return me;
   const permanent = new URL(req.url).searchParams.get('permanent') === 'true';

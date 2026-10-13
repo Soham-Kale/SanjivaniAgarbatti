@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Reveal, { MaskReveal } from '../Reveal';
 import SplitWords from '../fx/SplitWords';
 import { useLang } from '@/lib/i18n';
@@ -20,6 +20,15 @@ export default function BrandStory() {
   const slow = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [40, -40]);
   const fast = useTransform(scrollYProgress, [0, 1], reduce ? [0, 0] : [110, -110]);
   const line = useTransform(scrollYProgress, [0.2, 0.7], ['0%', '100%']);
+  // The two small photos drift at different speeds on wide screens only; on phones they stay level.
+  const [wide, setWide] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const on = () => setWide(mq.matches);
+    on();
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, []);
 
   return (
     <section ref={ref} className="section relative overflow-hidden bg-gradient-to-b from-ivory via-sand/60 to-ivory" aria-labelledby="story-title">
@@ -36,7 +45,7 @@ export default function BrandStory() {
             </motion.figure>
           )}
           {shots.slice(0, 2).map((s, i) => (
-            <motion.figure key={s.src} style={{ y: i === 0 ? fast : slow }}>
+            <motion.figure key={s.src} style={{ y: wide && i === 0 ? fast : slow }}>
               <MaskReveal delay={0.15 + i * 0.1} className="relative aspect-[4/5] overflow-hidden rounded-[28px] shadow-lift">
                 <Image src={media(s.src)} alt={t(s.cap)} fill sizes="(max-width: 1024px) 50vw, 300px" className="object-cover transition duration-[1.2s] hover:scale-105" />
               </MaskReveal>
