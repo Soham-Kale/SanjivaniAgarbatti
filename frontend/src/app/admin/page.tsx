@@ -6,7 +6,7 @@ import { adminFetch } from '@/lib/admin/api';
 import { ENQUIRY_LABEL, STATUS_LABEL, type Enquiry } from '@/lib/admin/types';
 import { Notice, PageTitle, Panel } from '@/components/admin/ui';
 
-type Stats = { products: number; hidden: number; priced: number; newEnquiries: number; byType: Record<string, number>; recent: Enquiry[] };
+type Stats = { products: number; hidden: number; priced: number; newEnquiries: number; byType: Record<string, number>; recent: Enquiry[]; db?: { host: string; name: string } };
 
 export default function Dashboard() {
   const [s, setS] = useState<Stats | null>(null);
@@ -27,6 +27,12 @@ export default function Dashboard() {
   return (
     <>
       <PageTitle mr="डॅशबोर्ड" en="Dashboard" />
+      {s?.db?.host && (
+        <p className="-mt-3 mb-5 text-[.85rem] text-stone">
+          डेटाबेस · Database: <b className="font-semibold text-charcoal">{s.db.host}</b> / <b className="font-semibold text-charcoal">{s.db.name}</b>
+          {/^(localhost|127\.)/.test(s.db.host) && <span className="ml-2 text-red-700">(this computer, not Atlas)</span>}
+        </p>
+      )}
       {error && <Notice kind="error">{error}</Notice>}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {tiles.map((t) => (

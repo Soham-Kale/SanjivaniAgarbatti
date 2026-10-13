@@ -1,4 +1,5 @@
 import { requireAdmin } from '@/server/auth';
+import { dbLocation } from '@/server/db';
 import { ensureSeeded } from '@/server/data';
 import { json, plain, route } from '@/server/http';
 import { Enquiry, Product } from '@/server/models';
@@ -18,5 +19,5 @@ export const GET = route(async (req: Request) => {
     Enquiry.aggregate<{ _id: string; count: number }>([{ $group: { _id: '$type', count: { $sum: 1 } } }]),
     Enquiry.find().sort({ createdAt: -1 }).limit(6).lean(),
   ]);
-  return json({ products, hidden, priced, newEnquiries, byType: Object.fromEntries(byType.map((b) => [b._id, b.count])), recent: plain(recent) });
+  return json({ products, hidden, priced, newEnquiries, byType: Object.fromEntries(byType.map((b) => [b._id, b.count])), recent: plain(recent), db: dbLocation() });
 });
