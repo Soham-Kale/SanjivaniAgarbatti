@@ -9,6 +9,7 @@ import type { Category, I18n } from './types';
 
 export type Phone = { display: string; tel: string; person: I18n; role: string; photo: string };
 export type Plan = { id: 'mini' | 'franchise' | 'warehouse'; name: I18n; amount: string; deposit: I18n; points: I18n[]; featured: boolean };
+export type Outlet = { name: I18n; address: I18n; photo: string; mapUrl: string };
 export type GalleryPhoto = { src: string; title: I18n; text: I18n; href: string; wide: boolean };
 export type WhyIcon = 'clock' | 'hand' | 'smoke' | 'flower' | 'cup' | 'store';
 
@@ -44,6 +45,8 @@ export type SiteContent = {
     note: I18n;
     blocks: { title: I18n; items: I18n[] }[];
     faq: { q: I18n; a: I18n }[];
+    why: { eyebrow: I18n; title: I18n; image: string; alt: I18n };
+    outlets: { eyebrow: I18n; title: I18n; text: I18n; items: Outlet[] };
   };
   showcase: { eyebrow: I18n; steps: { k: I18n; h: I18n; p: I18n }[] };
   gallery: { eyebrow: I18n; title: I18n; text: I18n; photos: GalleryPhoto[] };
@@ -77,8 +80,8 @@ export const DEFAULT_CONTENT: SiteContent = {
     // The client documents carry three address versions; this one matches the latest
     // visiting card. Confirm with the client before launch.
     address: {
-      mr: 'पटेल फर्निचरच्या मागे, माळेवाडी-अकलूज, ता. माळशिरस, जि. सोलापूर ४१३१०१',
-      en: 'Behind Patel Furniture, Malewadi-Akluj, Tal. Malshiras, Dist. Solapur 413101',
+      mr: 'अकलूज - मालेवाडी रोड, मालेवाडी, विद्या नगर, अकलूज, महाराष्ट्र 413118',
+      en: 'Akluj - Malewadi Rd, Malewadi, Vidya Nagar, Akluj, Maharashtra 413118',
     },
     mapUrl: 'https://maps.google.com/?q=Malewadi+Akluj+Solapur',
     hours: { mr: '', en: '' },
@@ -271,6 +274,31 @@ export const DEFAULT_CONTENT: SiteContent = {
       },
     ],
     faq: FRANCHISE_FAQ,
+    why: {
+      eyebrow: { mr: 'आमचीच का?', en: 'Why Sanjivani?' },
+      title: { mr: 'संजीवनीसोबत फ्रँचायझी का?', en: 'Why partner with Sanjivani?' },
+      image: '/images/franchise-why-us.jpg',
+      alt: {
+        mr: 'आमचीच का: उत्तम दर्जाचा कच्चा माल, प्रभावी सुगंध, चांगली जळण्याची गुणवत्ता, आकर्षक किंमत, होलसेल व रिटेल दोन्हीसाठी योग्य, सातत्यपूर्ण गुणवत्ता, आकर्षक पॅकेजिंग, फ्रँचायझी व डीलर पार्टनरसाठी व्यवसायाची संधी आणि विश्वासार्ह भागीदारी.',
+        en: 'Why us: quality raw material, lasting fragrance, good burning quality, attractive pricing, suited to wholesale and retail, consistent quality, attractive packaging, a business opportunity for franchise and dealer partners, and a reliable partnership.',
+      },
+    },
+    outlets: {
+      eyebrow: { mr: 'आमची आउटलेट्स', en: 'Our outlets' },
+      title: { mr: 'संजीवनी आता तुमच्या जवळ', en: 'Sanjivani, now near you' },
+      text: {
+        mr: 'संजीवनीची सुरू झालेली दुकाने. भेट द्या, सुगंध अनुभवा आणि खरेदी करा.',
+        en: 'Sanjivani shops that are already open. Visit, try the fragrances and shop.',
+      },
+      items: [
+        {
+          name: { mr: 'संजीवनी आउटलेट, टाकळी सिकंदर', en: 'Sanjivani Outlet, Takali Sikandar' },
+          address: { mr: 'टाकळी सिकंदर, महाराष्ट्र', en: 'Takali Sikandar, Maharashtra' },
+          photo: '/images/outlets/takali-sikandar.jpg',
+          mapUrl: 'https://maps.google.com/?q=Takali+Sikandar+Maharashtra',
+        },
+      ],
+    },
   },
   showcase: {
     eyebrow: { mr: '3D मध्ये जवळून पाहा', en: 'Up close, in 3D' },

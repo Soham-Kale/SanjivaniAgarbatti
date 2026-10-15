@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import PageHero from '@/components/PageHero';
 import { NoProfitNote, Plans, Steps } from '@/components/FranchisePlans';
 import FranchiseInfo from '@/components/FranchiseInfo';
+import FranchiseOutlets from '@/components/FranchiseOutlets';
+import FranchiseWhy from '@/components/FranchiseWhy';
 import { FranchiseFormFromUrl } from '@/components/UrlChoice';
 import T from '@/components/T';
 import { getContent } from '@/lib/api';
@@ -29,6 +31,10 @@ export default async function FranchisePage() {
         <Steps />
         <NoProfitNote />
       </section>
+
+      <FranchiseWhy />
+
+      <FranchiseOutlets />
 
       <FranchiseInfo />
 
